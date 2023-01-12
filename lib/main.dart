@@ -1,0 +1,32 @@
+import 'package:flutter/material.dart';
+import 'package:insurancetech/pages/login.page.dart';
+import 'package:insurancetech/pages/esqueceuSenhaEnviar.page.dart';
+import 'package:insurancetech/pages/cadastro.page.dart';
+import 'package:insurancetech/pages/redefinirSenha.page.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Insurance Tech',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.grey,
+      ),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => LoginPage(),
+        '/cadastro': (context) => CadastroPage(),
+        '/esqueceuSenhaEnviar': (context) => EsqueceuSenhaPage(),
+        '/redefinirSenha': (context) => RedefinirSenhaPage(),
+      },
+    );
+  }
+}
+
