@@ -126,6 +126,7 @@ class _LoginPageState extends State<LoginPage> {
                     onPressed: () {
                       if(username == 'eduardo' && password == '123'){
                         print('Logado com sucesso');
+                        Navigator.of(context).pushReplacementNamed('/home');
                       }
                     },
                     child: Row(

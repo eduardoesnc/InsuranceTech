@@ -6,10 +6,10 @@ class EsqueceuSenhaPage extends StatefulWidget {
   const EsqueceuSenhaPage({Key? key}) : super(key: key);
 
   @override
-  State<EsqueceuSenhaPage> createState() => _EsqueceuSenhaPage();
+  State<EsqueceuSenhaPage> createState() => _EsqueceuSenhaPageState();
 }
 
-class _EsqueceuSenhaPage extends State<EsqueceuSenhaPage> {
+class _EsqueceuSenhaPageState extends State<EsqueceuSenhaPage> {
 
   @override
   Widget build(BuildContext context) {

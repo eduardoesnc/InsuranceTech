@@ -3,6 +3,9 @@ import 'package:insurancetech/pages/login.page.dart';
 import 'package:insurancetech/pages/esqueceuSenhaEnviar.page.dart';
 import 'package:insurancetech/pages/cadastro.page.dart';
 import 'package:insurancetech/pages/redefinirSenha.page.dart';
+import 'package:insurancetech/pages/home.page.dart';
+import 'package:insurancetech/pages/estimarReivindicacao.page.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +20,7 @@ class MyApp extends StatelessWidget {
       title: 'Insurance Tech',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.grey,
+        primarySwatch: Colors.blue,
       ),
       initialRoute: '/',
       routes: {
@@ -25,6 +28,8 @@ class MyApp extends StatelessWidget {
         '/cadastro': (context) => CadastroPage(),
         '/esqueceuSenhaEnviar': (context) => EsqueceuSenhaPage(),
         '/redefinirSenha': (context) => RedefinirSenhaPage(),
+        '/home': (context) => HomePage(),
+        '/estimar': (context) => EstimarReivindicacaoPage(),
       },
     );
   }

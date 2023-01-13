@@ -4,10 +4,10 @@ class RedefinirSenhaPage extends StatefulWidget {
   const RedefinirSenhaPage({Key? key}) : super(key: key);
 
   @override
-  State<RedefinirSenhaPage> createState() => _RedefinirSenhaPage();
+  State<RedefinirSenhaPage> createState() => _RedefinirSenhaPageState();
 }
 
-class _RedefinirSenhaPage extends State<RedefinirSenhaPage> {
+class _RedefinirSenhaPageState extends State<RedefinirSenhaPage> {
 
   @override
   Widget build(BuildContext context) {
