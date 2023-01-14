@@ -9,6 +9,8 @@ class EstimarReivindicacaoPage extends StatefulWidget {
 
 class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
 
+  bool salvarInfo = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +42,7 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
               ListTile(
                 title: Text("Carros salvos"),
                 onTap: () {
-                  Navigator.of(context).pushReplacementNamed('/home');
+                  Navigator.of(context).pushReplacementNamed('/carrosSalvos');
                 },
               ),
               ListTile(
@@ -52,7 +54,7 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
               ListTile(
                 title: Text("Sobre"),
                 onTap: () {
-                  Navigator.of(context).pushReplacementNamed('/home');
+                  Navigator.of(context).pushReplacementNamed('/sobre');
                 },
               ),
             ],
@@ -85,7 +87,7 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                 ),
               ),
             ),
-            SizedBox( height: 60 ),
+            SizedBox( height: 50 ),
             Container(
               height: 54,
               decoration: BoxDecoration(
@@ -428,21 +430,36 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
             ),
             SizedBox(height: 20,),
             Container(
-              child: Row(
-                children: [
-                  Text(
-                    'Salvar informações',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                    ),
+              height: 40,
+              child: SizedBox(
+                child: TextButton(
+                  onPressed: () {
+                    setState(() {
+                        salvarInfo = !salvarInfo;
+                    });
+                  },
+                  child: Row(
+                    children: [
+                      Text(
+                        'Salvar informações',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                      SizedBox(width: 5,),
+                      SizedBox(
+                        width: 30,
+                        child: Icon(
+                          salvarInfo ? Icons.check_box : Icons.check_box_outline_blank,
+                          color: salvarInfo ? Colors.green : Colors.black,
+                          semanticLabel: salvarInfo ? 'Não salvar informações' : 'Salvar informações',
+                        ),
+                      ),
+                    ],
                   ),
-                  SizedBox(width: 5,),
-                  SizedBox(
-                    width: 30,
-                    child: Image.asset("assets/check-box.png"),
-                  ),
-                ],
+                ),
               ),
             ),
             SizedBox(height: 20,),
@@ -458,7 +475,7 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
               child: SizedBox.expand(
                 child: TextButton(
                   onPressed: () {
-                    //Navigator.of(context).pushReplacementNamed('/home');
+                    Navigator.of(context).pushReplacementNamed('/resultado');
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -467,7 +484,7 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                         "Enviar",
                         style: TextStyle(
                           color: Colors.black,
-                          fontSize: 20,
+                          fontSize: 18,
                           fontWeight: FontWeight.normal,
                         ),
                         textAlign: TextAlign.left,

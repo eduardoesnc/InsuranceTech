@@ -123,8 +123,8 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 child: SizedBox.expand(
                   child: TextButton(
-                    onPressed: () {
-                      if(username == 'eduardo' && password == '123'){
+                    onPressed: () { 
+                      if(username == 'teste' && password == '123'){
                         print('Logado com sucesso');
                         Navigator.of(context).pushReplacementNamed('/home');
                       }

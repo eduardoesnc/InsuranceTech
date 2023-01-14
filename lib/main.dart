@@ -5,7 +5,10 @@ import 'package:insurancetech/pages/cadastro.page.dart';
 import 'package:insurancetech/pages/redefinirSenha.page.dart';
 import 'package:insurancetech/pages/home.page.dart';
 import 'package:insurancetech/pages/estimarReivindicacao.page.dart';
-
+import 'package:insurancetech/pages/resultadoEstimativa.page.dart';
+import 'package:insurancetech/pages/sobre.page.dart';
+import 'package:insurancetech/pages/sugestoes.page.dart';
+import 'package:insurancetech/pages/carrosSalvos.page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +16,6 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -30,6 +32,10 @@ class MyApp extends StatelessWidget {
         '/redefinirSenha': (context) => RedefinirSenhaPage(),
         '/home': (context) => HomePage(),
         '/estimar': (context) => EstimarReivindicacaoPage(),
+        '/resultado': (context) => ResultadoEstimativaPage(),
+        '/sobre': (context) => SobrePage(),
+        '/sugestoes': (context) => SugestoesPage(),
+        '/carrosSalvos': (context) => CarrosSalvosPage(),
       },
     );
   }

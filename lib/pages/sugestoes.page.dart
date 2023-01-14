@@ -1,15 +1,14 @@
-//TROCAR DESTINO DOS BOTÕES
-
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class SugestoesPage extends StatefulWidget {
+  const SugestoesPage({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<SugestoesPage> createState() => _SugestoesPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _SugestoesPageState extends State<SugestoesPage> {
+
 
   @override
   Widget build(BuildContext context) {
@@ -62,26 +61,24 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       appBar: AppBar(
-        toolbarHeight: 100,
         elevation: 0,
         backgroundColor: Color(0xFF2a5298),
         centerTitle: true,
         title: SizedBox(
           width: 90,
-          height: 90,
           child: Image.asset("assets/logo.png"),
         ),
       ),
       body: Container(
-        padding: EdgeInsets.only(top: 60, left: 40, right: 40,),
+        padding: EdgeInsets.only(top: 10, left: 40, right: 40),
         color: Color(0xFF2a5298),
         child: ListView(
           children: <Widget>[
-            SizedBox( height: 20 ),
+            SizedBox( height: 50 ),
             Container(
               alignment: Alignment.center,
               child: Text(
-                'Como podemos te ajudar?',
+                'Envie-nos sugestões',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 20,
@@ -89,7 +86,144 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            SizedBox( height: 60 ),
+            SizedBox( height: 50 ),
+            Container(
+              height: 54,
+              decoration: BoxDecoration(
+                color: Colors.white12,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+              child: TextFormField(
+                onChanged: (text) {
+
+                },
+                //autofocus: true,
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(
+                  labelText: "Nome*",
+                  border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(8),),),
+                  labelStyle: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 18,
+                  ),
+                ),
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            SizedBox(height: 20),
+            Container(
+              height: 54,
+              decoration: BoxDecoration(
+                color: Colors.white12,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+              child: TextFormField(
+                onChanged: (text) {
+
+                },
+                //autofocus: true,
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(
+                  labelText: "Email*",
+                  border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(8),),),
+                  labelStyle: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 18,
+                  ),
+                ),
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            SizedBox(height: 20),
+            Container(
+              height: 54,
+              decoration: BoxDecoration(
+                color: Colors.white12,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+              child: TextFormField(
+                onChanged: (text) {
+
+                },
+                //autofocus: true,
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(
+                  labelText: "Assunto*",
+                  border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(8),),),
+                  labelStyle: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 18,
+                  ),
+                ),
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            SizedBox(height: 20),
+            Container(
+              height: 150,
+              decoration: BoxDecoration(
+                color: Colors.white12,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+              child: TextFormField(
+                textAlign: TextAlign.start,
+                onChanged: (text) {
+
+                },
+                //autofocus: true,
+                textAlignVertical: TextAlignVertical.top,
+
+                keyboardType: TextInputType.multiline,
+                maxLines: null,
+                expands: true,
+                decoration: InputDecoration(
+                  labelText: "Mensagem*",
+                  border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(8),),),
+                  labelStyle: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 18,
+
+                  ),
+                ),
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            SizedBox(height: 20,),
+            Container(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                '* Campos obrigatórios',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 14,
+                ),
+              ),
+            ),
+            SizedBox(height: 20,),
             Container(
               height: 50,
               alignment: Alignment.centerLeft,
@@ -102,13 +236,13 @@ class _HomePageState extends State<HomePage> {
               child: SizedBox.expand(
                 child: TextButton(
                   onPressed: () {
-                    Navigator.of(context).pushReplacementNamed('/estimar');
+
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text(
-                        "Estimar reivindicação",
+                        "Enviar",
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 18,
@@ -121,134 +255,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            SizedBox( height: 25 ),
-            Container(
-              height: 50,
-              alignment: Alignment.centerLeft,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(5),
-                ),
-              ),
-              child: SizedBox.expand(
-                child: TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pushReplacementNamed('/home');
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        "Análise gráfica",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 18,
-                          fontWeight: FontWeight.normal,
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            SizedBox( height: 25 ),
-            Container(
-              height: 50,
-              alignment: Alignment.centerLeft,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(5),
-                ),
-              ),
-              child: SizedBox.expand(
-                child: TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pushReplacementNamed('/home');
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        "Carros salvos",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 18,
-                          fontWeight: FontWeight.normal,
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            SizedBox( height: 25 ),
-            Container(
-              height: 50,
-              alignment: Alignment.centerLeft,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(5),
-                ),
-              ),
-              child: SizedBox.expand(
-                child: TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pushReplacementNamed('/home');
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        "Documentos",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 18,
-                          fontWeight: FontWeight.normal,
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            SizedBox( height: 25 ),
-            Container(
-              height: 50,
-              alignment: Alignment.centerLeft,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(5),
-                ),
-              ),
-              child: SizedBox.expand(
-                child: TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pushReplacementNamed('/sobre');
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        "Sobre",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 18,
-                          fontWeight: FontWeight.normal,
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
+            SizedBox(height: 40,)
           ],
         ),
       ),
