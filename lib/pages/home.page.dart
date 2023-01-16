@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
               ListTile(
                 title: Text("Documentos necessários"),
                 onTap: () {
-                  Navigator.of(context).pushReplacementNamed('/home');
+                  Navigator.of(context).pushReplacementNamed('/documentos');
                 },
               ),
               ListTile(
@@ -166,7 +166,7 @@ class _HomePageState extends State<HomePage> {
               child: SizedBox.expand(
                 child: TextButton(
                   onPressed: () {
-                    Navigator.of(context).pushReplacementNamed('/home');
+                    Navigator.of(context).pushReplacementNamed('/carrosSalvos');
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -198,7 +198,7 @@ class _HomePageState extends State<HomePage> {
               child: SizedBox.expand(
                 child: TextButton(
                   onPressed: () {
-                    Navigator.of(context).pushReplacementNamed('/home');
+                    Navigator.of(context).pushReplacementNamed('/documentos');
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,

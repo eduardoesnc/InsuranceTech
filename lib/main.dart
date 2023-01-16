@@ -9,6 +9,7 @@ import 'package:insurancetech/pages/resultadoEstimativa.page.dart';
 import 'package:insurancetech/pages/sobre.page.dart';
 import 'package:insurancetech/pages/sugestoes.page.dart';
 import 'package:insurancetech/pages/carrosSalvos.page.dart';
+import 'package:insurancetech/pages/documentos.page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
         '/sobre': (context) => SobrePage(),
         '/sugestoes': (context) => SugestoesPage(),
         '/carrosSalvos': (context) => CarrosSalvosPage(),
+        '/documentos': (context) => DocumentosPage(),
       },
     );
   }

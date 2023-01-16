@@ -47,7 +47,7 @@ class _SobrePageState extends State<SobrePage> {
               ListTile(
                 title: Text("Documentos necessários"),
                 onTap: () {
-                  Navigator.of(context).pushReplacementNamed('/home');
+                  Navigator.of(context).pushReplacementNamed('/documentos');
                 },
               ),
               ListTile(

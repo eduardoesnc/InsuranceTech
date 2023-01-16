@@ -49,7 +49,7 @@ class _CarrosSalvosPageState extends State<CarrosSalvosPage> {
               ListTile(
                 title: Text("Documentos necessários"),
                 onTap: () {
-                  Navigator.of(context).pushReplacementNamed('/home');
+                  Navigator.of(context).pushReplacementNamed('/documentos');
                 },
               ),
               ListTile(

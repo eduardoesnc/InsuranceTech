@@ -48,7 +48,7 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
               ListTile(
                 title: Text("Documentos necessários"),
                 onTap: () {
-                  Navigator.of(context).pushReplacementNamed('/home');
+                  Navigator.of(context).pushReplacementNamed('/documentos');
                 },
               ),
               ListTile(
