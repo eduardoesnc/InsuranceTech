@@ -1,15 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:insurancetech/pages/login.page.dart';
-import 'package:insurancetech/pages/esqueceuSenhaEnviar.page.dart';
-import 'package:insurancetech/pages/cadastro.page.dart';
-import 'package:insurancetech/pages/redefinirSenha.page.dart';
-import 'package:insurancetech/pages/home.page.dart';
-import 'package:insurancetech/pages/estimarReivindicacao.page.dart';
-import 'package:insurancetech/pages/resultadoEstimativa.page.dart';
-import 'package:insurancetech/pages/sobre.page.dart';
-import 'package:insurancetech/pages/sugestoes.page.dart';
-import 'package:insurancetech/pages/carrosSalvos.page.dart';
-import 'package:insurancetech/pages/documentos.page.dart';
+import 'package:insurancetech/routes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,19 +16,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       initialRoute: '/',
-      routes: {
-        '/': (context) => LoginPage(),
-        '/cadastro': (context) => CadastroPage(),
-        '/esqueceuSenhaEnviar': (context) => EsqueceuSenhaPage(),
-        '/redefinirSenha': (context) => RedefinirSenhaPage(),
-        '/home': (context) => HomePage(),
-        '/estimar': (context) => EstimarReivindicacaoPage(),
-        '/resultado': (context) => ResultadoEstimativaPage(),
-        '/sobre': (context) => SobrePage(),
-        '/sugestoes': (context) => SugestoesPage(),
-        '/carrosSalvos': (context) => CarrosSalvosPage(),
-        '/documentos': (context) => DocumentosPage(),
-      },
+      routes: instanceRoutes(context)
     );
   }
 }

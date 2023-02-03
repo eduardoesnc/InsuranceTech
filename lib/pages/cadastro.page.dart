@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:insurancetech/components/largeButton.dart';
 
 class CadastroPage extends StatefulWidget {
   const CadastroPage({Key? key}) : super(key: key);
+
+  static const routeName = '/cadastro';
 
   @override
   State<CadastroPage> createState() => _CadastroPageState();
@@ -155,37 +158,14 @@ class _CadastroPageState extends State<CadastroPage> {
               ),
             ),
             SizedBox( height: 40 ),
-            Container(
-              height: 50,
-              alignment: Alignment.centerLeft,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(5),
-                ),
-              ),
-              child: SizedBox.expand(
-                child: TextButton(
-                  onPressed: () {
-                    //1*
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        "Cadastrar",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                          fontWeight: FontWeight.normal,
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+
+            LargeButton(
+                texto: 'Cadastrar',
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
             ),
+
             SizedBox(
               height: 40,
             ),

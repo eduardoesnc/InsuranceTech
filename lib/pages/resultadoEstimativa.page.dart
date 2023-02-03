@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
+import 'package:insurancetech/components/drawer.dart';
+import 'package:insurancetech/components/largeButton.dart';
+
 class ResultadoEstimativaPage extends StatefulWidget {
   const ResultadoEstimativaPage({Key? key}) : super(key: key);
+
+  static const routeName = '/resultado';
 
   @override
   State<ResultadoEstimativaPage> createState() => _ResultadoEstimativaPageState();
@@ -13,53 +18,7 @@ class _ResultadoEstimativaPageState extends State<ResultadoEstimativaPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        width: 260,
-        backgroundColor: Colors.white,
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(0,50,0,0),
-          child: Column(
-            children: [
-              ListTile(
-                title: Text("Home"),
-                onTap: () {
-                  Navigator.of(context).pushReplacementNamed('/home');
-                },
-              ),
-              ListTile(
-                title: Text("Estimar reivindicação"),
-                onTap: () {
-                  Navigator.of(context).pushReplacementNamed('/estimar');
-                },
-              ),
-              ListTile(
-                title: Text("Análises sobre seguros"),
-                onTap: () {
-                  Navigator.of(context).pushReplacementNamed('/home');
-                },
-              ),
-              ListTile(
-                title: Text("Carros salvos"),
-                onTap: () {
-                  Navigator.of(context).pushReplacementNamed('/carrosSalvos');
-                },
-              ),
-              ListTile(
-                title: Text("Documentos necessários"),
-                onTap: () {
-                  Navigator.of(context).pushReplacementNamed('/documentos');
-                },
-              ),
-              ListTile(
-                title: Text("Sobre"),
-                onTap: () {
-                  Navigator.of(context).pushReplacementNamed('/sobre');
-                },
-              ),
-            ],
-          ),
-        ),
-      ),
+      drawer: const AppDrawer(),
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Color(0xFF2a5298),
@@ -89,7 +48,7 @@ class _ResultadoEstimativaPageState extends State<ResultadoEstimativaPage> {
             SizedBox( height: 50 ),
             Container(
               alignment: Alignment.center,
-              child: Text(
+              child: const Text(
                 'Grande Chance',
                 style: TextStyle(
                   color: Color(0xFFF14835),
@@ -103,7 +62,7 @@ class _ResultadoEstimativaPageState extends State<ResultadoEstimativaPage> {
               alignment: Alignment.topLeft,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
+                children: const <Widget>[
                   Text(
                     'Motivos:',
                     textAlign: TextAlign.left,
@@ -186,39 +145,17 @@ class _ResultadoEstimativaPageState extends State<ResultadoEstimativaPage> {
                 ],
               ),
             ),
-            SizedBox( height: 20 ),
-            Container(
-              height: 50,
-              alignment: Alignment.centerLeft,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(5),
-                ),
-              ),
-              child: SizedBox.expand(
-                child: TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pushReplacementNamed('/home');
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        "Retornar para página inicial",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 18,
-                          fontWeight: FontWeight.normal,
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+
+            const SizedBox( height: 20 ),
+
+            LargeButton(
+                texto: 'Retornar para página inicial',
+                onPressed: () {
+                  Navigator.of(context).pushReplacementNamed('/home');
+                },
             ),
-            SizedBox(height: 40,)
+
+            const SizedBox(height: 40,)
           ],
         ),
       ),

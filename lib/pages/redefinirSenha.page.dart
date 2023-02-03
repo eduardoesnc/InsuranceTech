@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:insurancetech/components/largeButton.dart';
 
 class RedefinirSenhaPage extends StatefulWidget {
   const RedefinirSenhaPage({Key? key}) : super(key: key);
+
+  static const routeName = '/redefinirSenha';
 
   @override
   State<RedefinirSenhaPage> createState() => _RedefinirSenhaPageState();
@@ -93,35 +96,12 @@ class _RedefinirSenhaPageState extends State<RedefinirSenhaPage> {
               ),
             ),
             SizedBox( height: 40 ),
-            Container(
-              height: 50,
-              alignment: Alignment.centerLeft,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(5),
-                ),
-              ),
-              child: SizedBox.expand(
-                child: TextButton(
-                  onPressed: () {},
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        "Cadastrar nova senha",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                          fontWeight: FontWeight.normal,
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+
+            LargeButton(
+                texto: 'Cadastrar nova senha',
+                onPressed: () {},
             ),
+
           ],
         ),
       ),

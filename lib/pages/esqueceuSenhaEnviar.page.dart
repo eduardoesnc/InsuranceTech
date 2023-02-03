@@ -1,9 +1,12 @@
 //1* - FALTA CRIAR A NOTIFICAÇÃO DE QUE O EMAIL FOI ENVIADO COM SUCESSO
 
 import 'package:flutter/material.dart';
+import 'package:insurancetech/components/largeButton.dart';
 
 class EsqueceuSenhaPage extends StatefulWidget {
   const EsqueceuSenhaPage({Key? key}) : super(key: key);
+
+  static const routeName = '/esqueceuSenhaEnviar';
 
   @override
   State<EsqueceuSenhaPage> createState() => _EsqueceuSenhaPageState();
@@ -79,37 +82,14 @@ class _EsqueceuSenhaPageState extends State<EsqueceuSenhaPage> {
                 ),
               ),
               SizedBox( height: 60 ),
-              Container(
-                height: 50,
-                alignment: Alignment.centerLeft,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(5),
-                  ),
-                ),
-                child: SizedBox.expand(
-                  child: TextButton(
-                    onPressed: () {
-                      //1*
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          "Enviar",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontWeight: FontWeight.normal,
-                          ),
-                          textAlign: TextAlign.left,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+
+              LargeButton(
+                texto: 'Enviar',
+                onPressed: () {
+
+                },
               ),
+
             ],
           ),
         ),
