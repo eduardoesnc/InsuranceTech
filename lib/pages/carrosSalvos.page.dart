@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'package:insurancetech/components/drawer.dart';
+
+import '../components/largeButton.dart';
+
 //Dar um jeito nos tamanhos dos botões e deixar o botão para retornar lá embaixo
 
 class CarrosSalvosPage extends StatefulWidget {
@@ -17,56 +21,10 @@ class _CarrosSalvosPageState extends State<CarrosSalvosPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        width: 260,
-        backgroundColor: Colors.white,
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(0,50,0,0),
-          child: Column(
-            children: [
-              ListTile(
-                title: Text("Home"),
-                onTap: () {
-                  Navigator.of(context).pushReplacementNamed('/home');
-                },
-              ),
-              ListTile(
-                title: Text("Estimar reivindicação"),
-                onTap: () {
-                  Navigator.of(context).pushReplacementNamed('/estimar');
-                },
-              ),
-              ListTile(
-                title: Text("Análises sobre seguros"),
-                onTap: () {
-                  Navigator.of(context).pushReplacementNamed('/home');
-                },
-              ),
-              ListTile(
-                title: Text("Carros salvos"),
-                onTap: () {
-                  Navigator.of(context).pushReplacementNamed('/carrosSalvos');
-                },
-              ),
-              ListTile(
-                title: Text("Documentos necessários"),
-                onTap: () {
-                  Navigator.of(context).pushReplacementNamed('/documentos');
-                },
-              ),
-              ListTile(
-                title: Text("Sobre"),
-                onTap: () {
-                  Navigator.of(context).pushReplacementNamed('/sobre');
-                },
-              ),
-            ],
-          ),
-        ),
-      ),
+      drawer: const AppDrawer(),
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Color(0xFF2a5298),
+        backgroundColor: const Color(0xFF2a5298),
         centerTitle: true,
         title: SizedBox(
           width: 90,
@@ -74,14 +32,14 @@ class _CarrosSalvosPageState extends State<CarrosSalvosPage> {
         ),
       ),
       body: Container(
-        padding: EdgeInsets.only(top: 10, left: 40, right: 40),
-        color: Color(0xFF2a5298),
+        padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
+        color: const Color(0xFF2a5298),
         child: ListView(
           children: <Widget>[
-            SizedBox( height: 50 ),
+            const SizedBox( height: 50 ),
             Container(
               alignment: Alignment.center,
-              child: Text(
+              child: const Text(
                 'Carros salvos',
                 style: TextStyle(
                   color: Colors.white,
@@ -90,11 +48,11 @@ class _CarrosSalvosPageState extends State<CarrosSalvosPage> {
                 ),
               ),
             ),
-            SizedBox( height: 50 ),
+            const SizedBox( height: 50 ),
             Container(
               height: 50,
               alignment: Alignment.centerLeft,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.all(
                   Radius.circular(5),
@@ -107,7 +65,7 @@ class _CarrosSalvosPageState extends State<CarrosSalvosPage> {
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
+                    children: const <Widget>[
                       Text(
                         "Ex. Carro 01",
                         style: TextStyle(
@@ -122,11 +80,11 @@ class _CarrosSalvosPageState extends State<CarrosSalvosPage> {
                 ),
               ),
             ),
-            SizedBox( height: 20 ),
+            const SizedBox( height: 20 ),
             Container(
               height: 50,
               alignment: Alignment.centerLeft,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.all(
                   Radius.circular(5),
@@ -139,7 +97,7 @@ class _CarrosSalvosPageState extends State<CarrosSalvosPage> {
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
+                    children: const <Widget>[
                       Text(
                         "Ex. Carro 02",
                         style: TextStyle(
@@ -154,11 +112,11 @@ class _CarrosSalvosPageState extends State<CarrosSalvosPage> {
                 ),
               ),
             ),
-            SizedBox( height: 20 ),
+            const SizedBox( height: 20 ),
             Container(
               height: 50,
               alignment: Alignment.centerLeft,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.all(
                   Radius.circular(5),
@@ -171,7 +129,7 @@ class _CarrosSalvosPageState extends State<CarrosSalvosPage> {
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
+                    children: const <Widget>[
                       Text(
                         "Ex. Carro 03",
                         style: TextStyle(
@@ -186,39 +144,16 @@ class _CarrosSalvosPageState extends State<CarrosSalvosPage> {
                 ),
               ),
             ),
-            SizedBox( height: 20 ),
-            Container(
-              height: 50,
-              alignment: Alignment.bottomCenter,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(5),
-                ),
-              ),
-              child: SizedBox.expand(
-                child: TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pushReplacementNamed('/home');
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        "Retornar para página inicial",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 18,
-                          fontWeight: FontWeight.normal,
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+            const SizedBox( height: 20 ),
+
+            LargeButton(
+              texto: 'Retornar para página inicial',
+              onPressed: () {
+                Navigator.of(context).pushNamed('/home');
+              },
             ),
-            SizedBox(height: 40,)
+
+            const SizedBox(height: 40,)
           ],
         ),
       ),

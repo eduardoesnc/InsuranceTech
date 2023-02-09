@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:insurancetech/components/drawer.dart';
-import 'package:insurancetech/components/largeButton.dart';
+import '../components/drawer.dart';
+import '../components/largeButton.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

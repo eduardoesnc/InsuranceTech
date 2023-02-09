@@ -23,12 +23,12 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.only(
+        padding: const EdgeInsets.only(
           top: 80,
           left: 40,
           right: 40,
         ),
-        color: Color(0xFF2a5298),
+        color: const Color(0xFF2a5298),
         child: ListView(
           children: <Widget>[
             SizedBox(
@@ -36,12 +36,12 @@ class _LoginPageState extends State<LoginPage> {
               height: 128,
               child: Image.asset("assets/logo.png"),
             ),
-            SizedBox(
+            const SizedBox(
               height: 80,
             ),
             Container(
               height: 54,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white12,
                 borderRadius: BorderRadius.all(
                   Radius.circular(8),
@@ -51,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
                 controller: _emailcontroller,
                 //autofocus: true,
                 keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: "Email",
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
@@ -64,18 +64,18 @@ class _LoginPageState extends State<LoginPage> {
                     fontSize: 18,
                   ),
                 ),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 18,
                   color: Colors.white,
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Container(
               height: 54,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white12,
                 borderRadius: BorderRadius.all(
                   Radius.circular(8),
@@ -86,7 +86,7 @@ class _LoginPageState extends State<LoginPage> {
                 controller: _passwordcontroller,
                 keyboardType: TextInputType.text,
                 obscureText: true,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: "Senha",
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
@@ -99,20 +99,20 @@ class _LoginPageState extends State<LoginPage> {
                     fontSize: 18,
                   ),
                 ),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 18,
                   color: Colors.white,
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
             Container(
               height: 40,
               alignment: Alignment.centerLeft,
               child: TextButton(
-                child: Text(
+                child: const Text(
                   "Esqueceu a senha?",
                   style: TextStyle(
                     color: Colors.white,
@@ -124,35 +124,30 @@ class _LoginPageState extends State<LoginPage> {
                 },
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
             LargeButton(
               texto: 'Login',
               onPressed: () {
                 login();
-                if (_emailcontroller.text == 'teste' &&
-                    _passwordcontroller.text == '123') {
-                  print('Logado com sucesso');
-                  Navigator.of(context).pushReplacementNamed('/home');
-                }
               },
+            ),
+            const SizedBox(
+              height: 40,
             ),
             SizedBox(
               height: 40,
-            ),
-            Container(
-              height: 40,
               child: TextButton(
                 onPressed: () {
-                  Navigator.pushReplacement(
+                  Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => CadastroPage()
+                        builder: (context) => const CadastroPage()
                     ),
                   );
                 },
-                child: Text(
+                child: const Text(
                   "Cadastre-se",
                   textAlign: TextAlign.center,
                   style: TextStyle(
@@ -175,11 +170,11 @@ class _LoginPageState extends State<LoginPage> {
         email: _emailcontroller.text,
         password: _passwordcontroller.text,
       );
-      if (UserCredential != null) {
+      if (userCredential != null) {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => HomePage(),
+            builder: (context) => const HomePage(),
           ),
         );
         ScaffoldMessenger.of(context).showSnackBar(

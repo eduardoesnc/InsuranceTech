@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:insurancetech/models/checagem.page.dart';
 
+import '../components/largeButton.dart';
+
 class CadastroPage extends StatefulWidget {
   const CadastroPage({Key? key}) : super(key: key);
 
@@ -22,12 +24,12 @@ class _CadastroPageState extends State<CadastroPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.only(
+        padding: const EdgeInsets.only(
           top: 60,
           left: 40,
           right: 40,
         ),
-        color: Color(0xFF2a5298),
+        color: const Color(0xFF2a5298),
         child: ListView(
           children: <Widget>[
             SizedBox(
@@ -35,10 +37,10 @@ class _CadastroPageState extends State<CadastroPage> {
               height: 100,
               child: Image.asset("assets/logo.png"),
             ),
-            SizedBox(height: 40),
+            const SizedBox(height: 40),
             Container(
               alignment: Alignment.center,
-              child: Text(
+              child: const Text(
                 'Crie sua conta',
                 style: TextStyle(
                   color: Colors.white,
@@ -47,10 +49,10 @@ class _CadastroPageState extends State<CadastroPage> {
                 ),
               ),
             ),
-            SizedBox(height: 40),
+            const SizedBox(height: 40),
             Container(
               height: 54,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white12,
                 borderRadius: BorderRadius.all(
                   Radius.circular(8),
@@ -62,7 +64,7 @@ class _CadastroPageState extends State<CadastroPage> {
                 onChanged: (text) {},
                 keyboardType: TextInputType.text,
                 obscureText: false,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: "Usuário",
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
@@ -75,16 +77,16 @@ class _CadastroPageState extends State<CadastroPage> {
                     fontSize: 18,
                   ),
                 ),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 18,
                   color: Colors.white,
                 ),
               ),
             ),
-            SizedBox(height: 18),
+            const SizedBox(height: 18),
             Container(
               height: 54,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white12,
                 borderRadius: BorderRadius.all(
                   Radius.circular(8),
@@ -96,7 +98,7 @@ class _CadastroPageState extends State<CadastroPage> {
                 onChanged: (text) {},
                 keyboardType: TextInputType.emailAddress,
                 obscureText: false,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: "Email",
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
@@ -109,16 +111,16 @@ class _CadastroPageState extends State<CadastroPage> {
                     fontSize: 18,
                   ),
                 ),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 18,
                   color: Colors.white,
                 ),
               ),
             ),
-            SizedBox(height: 18),
+            const SizedBox(height: 18),
             Container(
               height: 54,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white12,
                 borderRadius: BorderRadius.all(
                   Radius.circular(8),
@@ -130,7 +132,7 @@ class _CadastroPageState extends State<CadastroPage> {
                 onChanged: (text) {},
                 keyboardType: TextInputType.text,
                 obscureText: true,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: "Senha",
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
@@ -143,16 +145,16 @@ class _CadastroPageState extends State<CadastroPage> {
                     fontSize: 18,
                   ),
                 ),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 18,
                   color: Colors.white,
                 ),
               ),
             ),
-            SizedBox(height: 18),
+            const SizedBox(height: 18),
             Container(
               height: 54,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white12,
                 borderRadius: BorderRadius.all(
                   Radius.circular(8),
@@ -164,7 +166,7 @@ class _CadastroPageState extends State<CadastroPage> {
                 onChanged: (text) {},
                 keyboardType: TextInputType.text,
                 obscureText: true,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: "Confirmar senha",
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
@@ -177,64 +179,41 @@ class _CadastroPageState extends State<CadastroPage> {
                     fontSize: 18,
                   ),
                 ),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 18,
                   color: Colors.white,
                 ),
               ),
             ),
-            SizedBox(height: 40),
-            Container(
-              height: 50,
-              alignment: Alignment.centerLeft,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(5),
-                ),
-              ),
-              child: SizedBox.expand(
-                child: TextButton(
-                  onPressed: () {
-                    if (_confirmPasswordController.text == _passwordController.text) {
-                      cadastrar();
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text(
-                            'As senhas são diferentes.',
-                        ),
-                        backgroundColor: Colors.redAccent,
-                      ));
-                    }
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        "Cadastrar",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                          fontWeight: FontWeight.normal,
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+            const SizedBox(height: 40),
+
+            LargeButton(
+              texto: 'Cadastrar',
+              onPressed: () {
+                if (_confirmPasswordController.text == _passwordController.text) {
+                  cadastrar();
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    content: Text(
+                      'As senhas são diferentes.',
+                    ),
+                    backgroundColor: Colors.redAccent,
+                  ));
+                }
+              },
             ),
-            SizedBox(
+
+            const SizedBox(
               height: 40,
             ),
-            Container(
+            SizedBox(
               height: 40,
               child: TextButton(
                 onPressed: () {
                   Navigator.of(context).pushNamed('/');
                 },
-                child: Text(
-                  "Já tenho conta.",
+                child: const Text(
+                  "Já tenho conta!",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white,
@@ -259,7 +238,7 @@ class _CadastroPageState extends State<CadastroPage> {
         Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(
-              builder: (context) => ChecagemPage(),
+              builder: (context) => const ChecagemPage(),
             ),
             (route) => false);
         ScaffoldMessenger.of(context).showSnackBar(

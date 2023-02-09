@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:insurancetech/components/drawer.dart';
+
 class SobrePage extends StatefulWidget {
   const SobrePage({Key? key}) : super(key: key);
 
@@ -15,56 +17,10 @@ class _SobrePageState extends State<SobrePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        width: 260,
-        backgroundColor: Colors.white,
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(0,50,0,0),
-          child: Column(
-            children: [
-              ListTile(
-                title: Text("Home"),
-                onTap: () {
-                  Navigator.of(context).pushReplacementNamed('/home');
-                },
-              ),
-              ListTile(
-                title: Text("Estimar reivindicação"),
-                onTap: () {
-                  Navigator.of(context).pushReplacementNamed('/estimar');
-                },
-              ),
-              ListTile(
-                title: Text("Análises sobre seguros"),
-                onTap: () {
-                  Navigator.of(context).pushReplacementNamed('/home');
-                },
-              ),
-              ListTile(
-                title: Text("Carros salvos"),
-                onTap: () {
-                  Navigator.of(context).pushReplacementNamed('/carrosSalvos');
-                },
-              ),
-              ListTile(
-                title: Text("Documentos necessários"),
-                onTap: () {
-                  Navigator.of(context).pushReplacementNamed('/documentos');
-                },
-              ),
-              ListTile(
-                title: Text("Sobre"),
-                onTap: () {
-                  Navigator.of(context).pushReplacementNamed('/sobre');
-                },
-              ),
-            ],
-          ),
-        ),
-      ),
+      drawer: const AppDrawer(),
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Color(0xFF2a5298),
+        backgroundColor: const Color(0xFF2a5298),
         centerTitle: true,
         title: SizedBox(
           width: 90,
@@ -72,17 +28,17 @@ class _SobrePageState extends State<SobrePage> {
         ),
       ),
       body: Container(
-        padding: EdgeInsets.only(top: 10, left: 40, right: 40),
-        color: Color(0xFF2a5298),
+        padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
+        color: const Color(0xFF2a5298),
         child: ListView(
           children: <Widget>[
-            SizedBox( height: 25 ),
+            const SizedBox( height: 25 ),
             Container(
               alignment: Alignment.topLeft,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(
+                  const Text(
                     'Sobre',
                     textAlign: TextAlign.left,
                     style: TextStyle(
@@ -91,8 +47,8 @@ class _SobrePageState extends State<SobrePage> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 20),
-                  Text(
+                  const SizedBox(height: 20),
+                  const Text(
                     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. '
                         'Donec nec mauris elit. Morbi in bibendum quam. Vivamus '
                         'ac interdum ligula, egestas convallis ex. Mauris posuere'
@@ -106,8 +62,8 @@ class _SobrePageState extends State<SobrePage> {
                       fontWeight: FontWeight.normal,
                     ),
                   ),
-                  SizedBox(height: 25),
-                  Text(
+                  const SizedBox(height: 25),
+                  const Text(
                     'Nós realizamos estimavas!',
                     textAlign: TextAlign.left,
                     style: TextStyle(
@@ -116,8 +72,8 @@ class _SobrePageState extends State<SobrePage> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 20),
-                  Text(
+                  const SizedBox(height: 20),
+                  const Text(
                     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. '
                         'Donec nec mauris elit. Morbi in bibendum quam. Vivamus '
                         'ac interdum ligula, egestas convallis ex.',
@@ -128,8 +84,8 @@ class _SobrePageState extends State<SobrePage> {
                       fontWeight: FontWeight.normal,
                     ),
                   ),
-                  SizedBox(height: 25),
-                  Text(
+                  const SizedBox(height: 25),
+                  const Text(
                     'Tecnologias utilizadas',
                     textAlign: TextAlign.left,
                     style: TextStyle(
@@ -138,8 +94,8 @@ class _SobrePageState extends State<SobrePage> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 20),
-                  Text(
+                  const SizedBox(height: 20),
+                  const Text(
                     'Flutter: Lorem ipsum dolor sit amet, consectetur adipiscing'
                         ' elit. Donec nec mauris elit. Morbi in bibendum quam.',
                     textAlign: TextAlign.justify,
@@ -149,8 +105,8 @@ class _SobrePageState extends State<SobrePage> {
                       fontWeight: FontWeight.normal,
                     ),
                   ),
-                  SizedBox(height: 20),
-                  Text(
+                  const SizedBox(height: 20),
+                  const Text(
                     'Python: Lorem ipsum dolor sit amet, consectetur adipiscing '
                         'elit. Donec nec mauris elit. Morbi in bibendum quam.',
                     textAlign: TextAlign.justify,
@@ -160,8 +116,8 @@ class _SobrePageState extends State<SobrePage> {
                       fontWeight: FontWeight.normal,
                     ),
                   ),
-                  SizedBox(height: 20),
-                  Text(
+                  const SizedBox(height: 20),
+                  const Text(
                     'MySQL: Lorem ipsum dolor sit amet, consectetur adipiscing '
                         'elit. Donec nec mauris elit. Morbi in bibendum quam.',
                     textAlign: TextAlign.justify,
@@ -171,8 +127,8 @@ class _SobrePageState extends State<SobrePage> {
                       fontWeight: FontWeight.normal,
                     ),
                   ),
-                  SizedBox(height: 20),
-                  Text(
+                  const SizedBox(height: 20),
+                  const Text(
                     'Streamlit: Lorem ipsum dolor sit amet, consectetur adipiscing'
                         ' elit. Donec nec mauris elit. Morbi in bibendum quam.',
                     textAlign: TextAlign.justify,
@@ -182,8 +138,8 @@ class _SobrePageState extends State<SobrePage> {
                       fontWeight: FontWeight.normal,
                     ),
                   ),
-                  SizedBox(height: 20),
-                  Container(
+                  const SizedBox(height: 20),
+                  SizedBox(
                     height: 40,
                     child: SizedBox(
                       child: TextButton(
@@ -191,7 +147,7 @@ class _SobrePageState extends State<SobrePage> {
                           Navigator.of(context).pushReplacementNamed('/sugestoes');
                         },
                         child: Row(
-                          children: [
+                          children: const [
                             SizedBox(
                               width: 30,
                               child: Icon(
@@ -213,7 +169,7 @@ class _SobrePageState extends State<SobrePage> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                 ],
               ),
             ),

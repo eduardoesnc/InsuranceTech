@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../components/drawer.dart';
+import '../components/largeButton.dart';
+
 class EstimarReivindicacaoPage extends StatefulWidget {
   const EstimarReivindicacaoPage({Key? key}) : super(key: key);
 
@@ -16,56 +19,10 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        width: 260,
-        backgroundColor: Colors.white,
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(0,50,0,0),
-          child: Column(
-            children: [
-              ListTile(
-                title: Text("Home"),
-                onTap: () {
-                  Navigator.of(context).pushReplacementNamed('/home');
-                },
-              ),
-              ListTile(
-                title: Text("Estimar reivindicação"),
-                onTap: () {
-                  Navigator.of(context).pushReplacementNamed('/estimar');
-                },
-              ),
-              ListTile(
-                title: Text("Análises sobre seguros"),
-                onTap: () {
-                  Navigator.of(context).pushReplacementNamed('/home');
-                },
-              ),
-              ListTile(
-                title: Text("Carros salvos"),
-                onTap: () {
-                  Navigator.of(context).pushReplacementNamed('/carrosSalvos');
-                },
-              ),
-              ListTile(
-                title: Text("Documentos necessários"),
-                onTap: () {
-                  Navigator.of(context).pushReplacementNamed('/documentos');
-                },
-              ),
-              ListTile(
-                title: Text("Sobre"),
-                onTap: () {
-                  Navigator.of(context).pushReplacementNamed('/sobre');
-                },
-              ),
-            ],
-          ),
-        ),
-      ),
+      drawer: const AppDrawer(),
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Color(0xFF2a5298),
+        backgroundColor: const Color(0xFF2a5298),
         centerTitle: true,
         title: SizedBox(
           width: 90,
@@ -73,14 +30,14 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
         ),
       ),
       body: Container(
-        padding: EdgeInsets.only(top: 10, left: 40, right: 40),
-        color: Color(0xFF2a5298),
+        padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
+        color: const Color(0xFF2a5298),
         child: ListView(
           children: <Widget>[
-            SizedBox( height: 50 ),
+            const SizedBox( height: 50 ),
             Container(
               alignment: Alignment.center,
-              child: Text(
+              child: const Text(
                 'Informe os dados',
                 style: TextStyle(
                   color: Colors.white,
@@ -89,10 +46,10 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                 ),
               ),
             ),
-            SizedBox( height: 50 ),
+            const SizedBox( height: 50 ),
             Container(
               height: 54,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white12,
                 borderRadius: BorderRadius.all(
                   Radius.circular(8),
@@ -104,7 +61,7 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                 },
                 //autofocus: true,
                 keyboardType: TextInputType.text,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: "Nome para identificação *",
                   border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(8),),),
                   labelStyle: TextStyle(
@@ -113,16 +70,16 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     fontSize: 18,
                   ),
                 ),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 18,
                   color: Colors.white,
                 ),
               ),
             ),
-            SizedBox( height: 20 ),
+            const SizedBox( height: 20 ),
             Container(
               height: 54,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white12,
                 borderRadius: BorderRadius.all(
                   Radius.circular(8),
@@ -134,7 +91,7 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                 },
                 //autofocus: true,
                 keyboardType: TextInputType.text,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: "Idade do condutor *",
                   border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(8),),),
                   labelStyle: TextStyle(
@@ -143,16 +100,16 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     fontSize: 18,
                   ),
                 ),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 18,
                   color: Colors.white,
                 ),
               ),
             ),
-            SizedBox( height: 20 ),
+            const SizedBox( height: 20 ),
             Container(
               height: 54,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white12,
                 borderRadius: BorderRadius.all(
                   Radius.circular(8),
@@ -164,7 +121,7 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                 },
                 //autofocus: true,
                 keyboardType: TextInputType.text,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: "Idade do carro *",
                   border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(8),),),
                   labelStyle: TextStyle(
@@ -173,16 +130,16 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     fontSize: 18,
                   ),
                 ),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 18,
                   color: Colors.white,
                 ),
               ),
             ),
-            SizedBox( height: 20 ),
+            const SizedBox( height: 20 ),
             Container(
               height: 54,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white12,
                 borderRadius: BorderRadius.all(
                   Radius.circular(8),
@@ -194,7 +151,7 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                 },
                 //autofocus: true,
                 keyboardType: TextInputType.text,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: "Modelo do carro *",
                   border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(8),),),
                   labelStyle: TextStyle(
@@ -203,16 +160,16 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     fontSize: 18,
                   ),
                 ),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 18,
                   color: Colors.white,
                 ),
               ),
             ),
-            SizedBox( height: 20 ),
+            const SizedBox( height: 20 ),
             Container(
               height: 54,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white12,
                 borderRadius: BorderRadius.all(
                   Radius.circular(8),
@@ -224,7 +181,7 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                 },
                 //autofocus: true,
                 keyboardType: TextInputType.text,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: "Tipo de combustivel *",
                   border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(8),),),
                   labelStyle: TextStyle(
@@ -233,16 +190,16 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     fontSize: 18,
                   ),
                 ),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 18,
                   color: Colors.white,
                 ),
               ),
             ),
-            SizedBox( height: 20 ),
+            const SizedBox( height: 20 ),
             Container(
               height: 54,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white12,
                 borderRadius: BorderRadius.all(
                   Radius.circular(8),
@@ -254,7 +211,7 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                 },
                 //autofocus: true,
                 keyboardType: TextInputType.text,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: "Segmento do carro *",
                   border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(8),),),
                   labelStyle: TextStyle(
@@ -263,16 +220,16 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     fontSize: 18,
                   ),
                 ),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 18,
                   color: Colors.white,
                 ),
               ),
             ),
-            SizedBox( height: 20 ),
+            const SizedBox( height: 20 ),
             Container(
               height: 54,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white12,
                 borderRadius: BorderRadius.all(
                   Radius.circular(8),
@@ -284,7 +241,7 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                 },
                 //autofocus: true,
                 keyboardType: TextInputType.text,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: "Tem assistência de freio? *",
                   border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(8),),),
                   labelStyle: TextStyle(
@@ -293,16 +250,16 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     fontSize: 18,
                   ),
                 ),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 18,
                   color: Colors.white,
                 ),
               ),
             ),
-            SizedBox( height: 20 ),
+            const SizedBox( height: 20 ),
             Container(
               height: 54,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white12,
                 borderRadius: BorderRadius.all(
                   Radius.circular(8),
@@ -314,7 +271,7 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                 },
                 //autofocus: true,
                 keyboardType: TextInputType.text,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: "Tem câmera de ré? *",
                   border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(8),),),
                   labelStyle: TextStyle(
@@ -323,16 +280,16 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     fontSize: 18,
                   ),
                 ),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 18,
                   color: Colors.white,
                 ),
               ),
             ),
-            SizedBox( height: 20 ),
+            const SizedBox( height: 20 ),
             Container(
               height: 54,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white12,
                 borderRadius: BorderRadius.all(
                   Radius.circular(8),
@@ -344,7 +301,7 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                 },
                 //autofocus: true,
                 keyboardType: TextInputType.text,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: "Tipo de transmissão *",
                   border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(8),),),
                   labelStyle: TextStyle(
@@ -353,16 +310,16 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     fontSize: 18,
                   ),
                 ),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 18,
                   color: Colors.white,
                 ),
               ),
             ),
-            SizedBox( height: 20 ),
+            const SizedBox( height: 20 ),
             Container(
               height: 54,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white12,
                 borderRadius: BorderRadius.all(
                   Radius.circular(8),
@@ -374,7 +331,7 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                 },
                 //autofocus: true,
                 keyboardType: TextInputType.text,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: "Densidade populacional *",
                   border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(8),),),
                   labelStyle: TextStyle(
@@ -383,16 +340,16 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     fontSize: 18,
                   ),
                 ),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 18,
                   color: Colors.white,
                 ),
               ),
             ),
-            SizedBox( height: 20 ),
+            const SizedBox( height: 20 ),
             Container(
               height: 54,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white12,
                 borderRadius: BorderRadius.all(
                   Radius.circular(8),
@@ -404,7 +361,7 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                 },
                 //autofocus: true,
                 keyboardType: TextInputType.text,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: "Bairro/Cidade *",
                   border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(8),),),
                   labelStyle: TextStyle(
@@ -413,16 +370,16 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     fontSize: 18,
                   ),
                 ),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 18,
                   color: Colors.white,
                 ),
               ),
             ),
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
             Container(
               alignment: Alignment.centerLeft,
-              child: Text(
+              child: const Text(
                 '* Campos obrigatórios',
                 style: TextStyle(
                   color: Colors.white,
@@ -430,8 +387,8 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                 ),
               ),
             ),
-            SizedBox(height: 20,),
-            Container(
+            const SizedBox(height: 20,),
+            SizedBox(
               height: 40,
               child: SizedBox(
                 child: TextButton(
@@ -442,7 +399,7 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                   },
                   child: Row(
                     children: [
-                      Text(
+                      const Text(
                         'Salvar informações',
                         style: TextStyle(
                           color: Colors.white,
@@ -450,7 +407,7 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                           fontWeight: FontWeight.normal,
                         ),
                       ),
-                      SizedBox(width: 5,),
+                      const SizedBox(width: 5,),
                       SizedBox(
                         width: 30,
                         child: Icon(
@@ -464,39 +421,16 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                 ),
               ),
             ),
-            SizedBox(height: 20,),
-            Container(
-              height: 50,
-              alignment: Alignment.centerLeft,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(5),
-                ),
-              ),
-              child: SizedBox.expand(
-                child: TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pushReplacementNamed('/resultado');
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        "Enviar",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 18,
-                          fontWeight: FontWeight.normal,
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+            const SizedBox(height: 20,),
+
+            LargeButton(
+              texto: 'Enviar',
+              onPressed: () {
+                Navigator.of(context).pushNamed('/resultado');
+              },
             ),
-            SizedBox(height: 40,)
+
+            const SizedBox(height: 40,)
           ],
         ),
       ),

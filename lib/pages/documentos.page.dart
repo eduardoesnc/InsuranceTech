@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:insurancetech/components/drawer.dart';
+
 
 class DocumentosPage extends StatefulWidget {
   const DocumentosPage({Key? key}) : super(key: key);
@@ -17,56 +19,10 @@ class _DocumentosPageState extends State<DocumentosPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        width: 260,
-        backgroundColor: Colors.white,
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(0,50,0,0),
-          child: Column(
-            children: [
-              ListTile(
-                title: Text("Home"),
-                onTap: () {
-                  Navigator.of(context).pushReplacementNamed('/home');
-                },
-              ),
-              ListTile(
-                title: Text("Estimar reivindicação"),
-                onTap: () {
-                  Navigator.of(context).pushReplacementNamed('/estimar');
-                },
-              ),
-              ListTile(
-                title: Text("Análises sobre seguros"),
-                onTap: () {
-                  Navigator.of(context).pushReplacementNamed('/home');
-                },
-              ),
-              ListTile(
-                title: Text("Carros salvos"),
-                onTap: () {
-                  Navigator.of(context).pushReplacementNamed('/carrosSalvos');
-                },
-              ),
-              ListTile(
-                title: Text("Documentos necessários"),
-                onTap: () {
-                  Navigator.of(context).pushReplacementNamed('/documentos');
-                },
-              ),
-              ListTile(
-                title: Text("Sobre"),
-                onTap: () {
-                  Navigator.of(context).pushReplacementNamed('/sobre');
-                },
-              ),
-            ],
-          ),
-        ),
-      ),
+      drawer: const AppDrawer(),
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Color(0xFF2a5298),
+        backgroundColor: const Color(0xFF2a5298),
         centerTitle: true,
         title: SizedBox(
           width: 90,
@@ -74,14 +30,14 @@ class _DocumentosPageState extends State<DocumentosPage> {
         ),
       ),
       body: Container(
-        padding: EdgeInsets.only(top: 10, left: 40, right: 40),
-        color: Color(0xFF2a5298),
+        padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
+        color: const Color(0xFF2a5298),
         child: ListView(
           children: <Widget>[
-            SizedBox( height: 50 ),
+            const SizedBox( height: 50 ),
             Container(
               alignment: Alignment.center,
-              child: Text(
+              child: const Text(
                 'Documentos necessários para reivindicar o seguro',
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -91,11 +47,11 @@ class _DocumentosPageState extends State<DocumentosPage> {
                 ),
               ),
             ),
-            SizedBox( height: 50 ),
+            const SizedBox( height: 50 ),
             Container(
               height: 50,
               alignment: Alignment.centerLeft,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.all(
                   Radius.circular(5),
@@ -117,7 +73,7 @@ class _DocumentosPageState extends State<DocumentosPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
+                        const Text(
                           'RG',
                           style: TextStyle(
                             color: Colors.black,
@@ -125,7 +81,7 @@ class _DocumentosPageState extends State<DocumentosPage> {
                             fontWeight: FontWeight.normal,
                           ),
                         ),
-                        SizedBox(width: 5,),
+                        const SizedBox(width: 5,),
                         SizedBox(
                           width: 30,
                           child: Icon(
@@ -140,11 +96,11 @@ class _DocumentosPageState extends State<DocumentosPage> {
                 ),
               ),
             ),
-            SizedBox( height: 20 ),
+            const SizedBox( height: 20 ),
             Container(
               height: 50,
               alignment: Alignment.centerLeft,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.all(
                   Radius.circular(5),
@@ -166,7 +122,7 @@ class _DocumentosPageState extends State<DocumentosPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
+                        const Text(
                           'CPF',
                           style: TextStyle(
                             color: Colors.black,
@@ -174,7 +130,7 @@ class _DocumentosPageState extends State<DocumentosPage> {
                             fontWeight: FontWeight.normal,
                           ),
                         ),
-                        SizedBox(width: 5,),
+                        const SizedBox(width: 5,),
                         SizedBox(
                           width: 30,
                           child: Icon(
@@ -189,11 +145,11 @@ class _DocumentosPageState extends State<DocumentosPage> {
                 ),
               ),
             ),
-            SizedBox( height: 20 ),
+            const SizedBox( height: 20 ),
             Container(
               height: 50,
               alignment: Alignment.centerLeft,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.all(
                   Radius.circular(5),
@@ -215,7 +171,7 @@ class _DocumentosPageState extends State<DocumentosPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
+                        const Text(
                           'Comprovante de residência',
                           style: TextStyle(
                             color: Colors.black,
@@ -223,7 +179,7 @@ class _DocumentosPageState extends State<DocumentosPage> {
                             fontWeight: FontWeight.normal,
                           ),
                         ),
-                        SizedBox(width: 5,),
+                        const SizedBox(width: 5,),
                         SizedBox(
                           width: 30,
                           child: Icon(
@@ -238,11 +194,11 @@ class _DocumentosPageState extends State<DocumentosPage> {
                 ),
               ),
             ),
-            SizedBox( height: 20 ),
+            const SizedBox( height: 20 ),
             Container(
               height: 50,
               alignment: Alignment.centerLeft,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.all(
                   Radius.circular(5),
@@ -264,7 +220,7 @@ class _DocumentosPageState extends State<DocumentosPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
+                        const Text(
                           'Carteira de habilitação',
                           style: TextStyle(
                             color: Colors.black,
@@ -272,7 +228,7 @@ class _DocumentosPageState extends State<DocumentosPage> {
                             fontWeight: FontWeight.normal,
                           ),
                         ),
-                        SizedBox(width: 5,),
+                        const SizedBox(width: 5,),
                         SizedBox(
                           width: 30,
                           child: Icon(
@@ -287,11 +243,11 @@ class _DocumentosPageState extends State<DocumentosPage> {
                 ),
               ),
             ),
-            SizedBox( height: 20 ),
+            const SizedBox( height: 20 ),
             Container(
               height: 50,
               alignment: Alignment.centerLeft,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.all(
                   Radius.circular(5),
@@ -313,7 +269,7 @@ class _DocumentosPageState extends State<DocumentosPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
+                        const Text(
                           'Boletim de ocorrência',
                           style: TextStyle(
                             color: Colors.black,
@@ -321,7 +277,7 @@ class _DocumentosPageState extends State<DocumentosPage> {
                             fontWeight: FontWeight.normal,
                           ),
                         ),
-                        SizedBox(width: 5,),
+                        const SizedBox(width: 5,),
                         SizedBox(
                           width: 30,
                           child: Icon(
@@ -336,11 +292,11 @@ class _DocumentosPageState extends State<DocumentosPage> {
                 ),
               ),
             ),
-            SizedBox( height: 20 ),
+            const SizedBox( height: 20 ),
             Container(
               height: 50,
               alignment: Alignment.centerLeft,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.all(
                   Radius.circular(5),
@@ -362,7 +318,7 @@ class _DocumentosPageState extends State<DocumentosPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
+                        const Text(
                           'Prontuário médico',
                           style: TextStyle(
                             color: Colors.black,
@@ -370,7 +326,7 @@ class _DocumentosPageState extends State<DocumentosPage> {
                             fontWeight: FontWeight.normal,
                           ),
                         ),
-                        SizedBox(width: 5,),
+                        const SizedBox(width: 5,),
                         SizedBox(
                           width: 30,
                           child: Icon(
@@ -385,11 +341,11 @@ class _DocumentosPageState extends State<DocumentosPage> {
                 ),
               ),
             ),
-            SizedBox( height: 20 ),
+            const SizedBox( height: 20 ),
             Container(
               height: 50,
               alignment: Alignment.centerLeft,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.all(
                   Radius.circular(5),
@@ -411,7 +367,7 @@ class _DocumentosPageState extends State<DocumentosPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
+                        const Text(
                           'Documento do carro',
                           style: TextStyle(
                             color: Colors.black,
@@ -419,7 +375,7 @@ class _DocumentosPageState extends State<DocumentosPage> {
                             fontWeight: FontWeight.normal,
                           ),
                         ),
-                        SizedBox(width: 5,),
+                        const SizedBox(width: 5,),
                         SizedBox(
                           width: 30,
                           child: Icon(
@@ -434,11 +390,11 @@ class _DocumentosPageState extends State<DocumentosPage> {
                 ),
               ),
             ),
-            SizedBox( height: 20 ),
+            const SizedBox( height: 20 ),
             Container(
               height: 50,
               alignment: Alignment.centerLeft,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.all(
                   Radius.circular(5),
@@ -460,7 +416,7 @@ class _DocumentosPageState extends State<DocumentosPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
+                        const Text(
                           'Documento compra e venda',
                           style: TextStyle(
                             color: Colors.black,
@@ -468,7 +424,7 @@ class _DocumentosPageState extends State<DocumentosPage> {
                             fontWeight: FontWeight.normal,
                           ),
                         ),
-                        SizedBox(width: 5,),
+                        const SizedBox(width: 5,),
                         SizedBox(
                           width: 30,
                           child: Icon(
@@ -483,11 +439,11 @@ class _DocumentosPageState extends State<DocumentosPage> {
                 ),
               ),
             ),
-            SizedBox( height: 20 ),
+            const SizedBox( height: 20 ),
             Container(
               height: 50,
               alignment: Alignment.centerLeft,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.all(
                   Radius.circular(5),
@@ -509,7 +465,7 @@ class _DocumentosPageState extends State<DocumentosPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
+                        const Text(
                           'Documento porte obrigatório',
                           style: TextStyle(
                             color: Colors.black,
@@ -517,7 +473,7 @@ class _DocumentosPageState extends State<DocumentosPage> {
                             fontWeight: FontWeight.normal,
                           ),
                         ),
-                        SizedBox(width: 5,),
+                        const SizedBox(width: 5,),
                         SizedBox(
                           width: 30,
                           child: Icon(
@@ -532,7 +488,7 @@ class _DocumentosPageState extends State<DocumentosPage> {
                 ),
               ),
             ),
-            SizedBox(height: 40,)
+            const SizedBox(height: 40,)
           ],
         ),
       ),

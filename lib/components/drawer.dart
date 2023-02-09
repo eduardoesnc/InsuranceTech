@@ -23,42 +23,42 @@ class _AppDrawerState extends State<AppDrawer> {
             ListTile(
               title: const Text("Home"),
               onTap: () {
-                Navigator.of(context).pushReplacementNamed('/home');
+                Navigator.of(context).pushNamed('/home');
               },
             ),
             ListTile(
               title: const Text("Estimar reivindicação"),
               onTap: () {
-                Navigator.of(context).pushReplacementNamed('/estimar');
+                Navigator.of(context).pushNamed('/estimar');
               },
             ),
             ListTile(
               title: const Text("Análises sobre seguros"),
               onTap: () {
-                Navigator.of(context).pushReplacementNamed('/home');
+                Navigator.of(context).pushNamed('/home');
               },
             ),
             ListTile(
               title: const Text("Carros salvos"),
               onTap: () {
-                Navigator.of(context).pushReplacementNamed('/carrosSalvos');
+                Navigator.of(context).pushNamed('/carrosSalvos');
               },
             ),
             ListTile(
               title: const Text("Documentos necessários"),
               onTap: () {
-                Navigator.of(context).pushReplacementNamed('/documentos');
+                Navigator.of(context).pushNamed('/documentos');
               },
             ),
             ListTile(
               title: const Text("Sobre"),
               onTap: () {
-                Navigator.of(context).pushReplacementNamed('/sobre');
+                Navigator.of(context).pushNamed('/sobre');
               },
             ),
             ListTile(
               title: const Text("Sair"),
-              trailing: Icon(Icons.exit_to_app),
+              trailing: const Icon(Icons.exit_to_app),
               onTap: () {
                 sair();
               },
@@ -74,7 +74,7 @@ class _AppDrawerState extends State<AppDrawer> {
           (user) => Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => ChecagemPage(),
+          builder: (context) => const ChecagemPage(),
         ),
       ),
     );
