@@ -31,7 +31,7 @@ class LargeButton extends StatelessWidget {
                   fontSize: 18,
                   fontWeight: FontWeight.normal,
                 ),
-                textAlign: TextAlign.left,
+                textAlign: TextAlign.center,
               ),
             ],
           ),

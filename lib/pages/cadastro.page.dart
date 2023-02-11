@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:insurancetech/models/checagem.page.dart';
+import 'package:insurancetech/models/checagem.model.dart';
 
 import '../components/largeButton.dart';
 

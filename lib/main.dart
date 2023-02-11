@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       title: 'Insurance Tech',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryColor: const Color(0xFF2a5298),
       ),
         initialRoute: '/checar',
         routes: instanceRoutes(context)

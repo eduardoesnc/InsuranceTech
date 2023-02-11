@@ -10,7 +10,7 @@ import 'package:insurancetech/pages/sobre.page.dart';
 import 'package:insurancetech/pages/sugestoes.page.dart';
 import 'package:insurancetech/pages/carrosSalvos.page.dart';
 import 'package:insurancetech/pages/documentos.page.dart';
-import 'package:insurancetech/models/checagem.page.dart';
+import 'package:insurancetech/models/checagem.model.dart';
 
 
 Map<String, Widget Function(dynamic)> instanceRoutes(BuildContext context) => {
