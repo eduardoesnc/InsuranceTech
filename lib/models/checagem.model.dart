@@ -25,14 +25,14 @@ class _ChecagemPageState extends State<ChecagemPage> {
        Navigator.pushReplacement(
            context,
            MaterialPageRoute(
-           builder: (context) => LoginPage()
+           builder: (context) => const LoginPage()
            ),
        );
      } else {
        var pushReplacement = Navigator.pushReplacement(
          context,
          MaterialPageRoute(
-             builder: (context) => HomePage(),
+             builder: (context) => const HomePage(),
          ));
      }
     });
@@ -46,7 +46,7 @@ class _ChecagemPageState extends State<ChecagemPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Center(
         child: CircularProgressIndicator(),
       ),
