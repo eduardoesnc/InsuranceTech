@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:insurancetech/components/drawer.dart';
 
 import '../components/largeButton.dart';
+import '../components/pageTitle.dart';
 
 //Dar um jeito nos tamanhos dos botões e deixar o botão para retornar lá embaixo
 
@@ -37,17 +38,9 @@ class _CarrosSalvosPageState extends State<CarrosSalvosPage> {
         child: ListView(
           children: <Widget>[
             const SizedBox( height: 50 ),
-            Container(
-              alignment: Alignment.center,
-              child: const Text(
-                'Carros salvos',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
+
+            const pageTitle(texto: 'Carros salvos',),
+
             const SizedBox( height: 50 ),
             Container(
               height: 50,

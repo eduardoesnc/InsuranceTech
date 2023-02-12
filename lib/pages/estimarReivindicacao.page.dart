@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../components/drawer.dart';
 import '../components/largeButton.dart';
+import '../components/pageTitle.dart';
 
 class EstimarReivindicacaoPage extends StatefulWidget {
   const EstimarReivindicacaoPage({Key? key}) : super(key: key);
@@ -35,17 +36,9 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
         child: ListView(
           children: <Widget>[
             const SizedBox( height: 50 ),
-            Container(
-              alignment: Alignment.center,
-              child: const Text(
-                'Informe os dados',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
+
+            const pageTitle(texto: 'Informe os dados',),
+
             const SizedBox( height: 50 ),
             Container(
               height: 54,

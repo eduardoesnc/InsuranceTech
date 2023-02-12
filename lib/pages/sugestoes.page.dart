@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:insurancetech/components/drawer.dart';
 
 import '../components/largeButton.dart';
+import '../components/pageTitle.dart';
 
 class SugestoesPage extends StatefulWidget {
   const SugestoesPage({Key? key}) : super(key: key);
@@ -35,17 +36,9 @@ class _SugestoesPageState extends State<SugestoesPage> {
         child: ListView(
           children: <Widget>[
             const SizedBox( height: 50 ),
-            Container(
-              alignment: Alignment.center,
-              child: const Text(
-                'Envie-nos sugestões',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
+
+            const pageTitle(texto: 'Envie-nos sugestões',),
+
             const SizedBox( height: 50 ),
             Container(
               height: 54,

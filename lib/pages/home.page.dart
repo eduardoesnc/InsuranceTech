@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../components/drawer.dart';
 import '../components/largeButton.dart';
+import '../components/pageTitle.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -37,17 +38,8 @@ class _HomePageState extends State<HomePage> {
         child: ListView(
           children: <Widget>[
             const SizedBox( height: 20 ),
-            Container(
-              alignment: Alignment.center,
-              child: const Text(
-                'Como podemos te ajudar?',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
+
+            const pageTitle(texto: 'Como podemos te ajudar?',),
 
             const SizedBox( height: 60 ),
 

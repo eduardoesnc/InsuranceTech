@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 
 import '../components/largeButton.dart';
+import '../components/pageTitle.dart';
 
 class EsqueceuSenhaPage extends StatefulWidget {
   const EsqueceuSenhaPage({Key? key}) : super(key: key);
@@ -29,17 +30,9 @@ class _EsqueceuSenhaPageState extends State<EsqueceuSenhaPage> {
                 child: Image.asset("assets/logo.png"),
               ),
               const SizedBox( height: 60 ),
-              Container(
-                alignment: Alignment.center,
-                child: const Text(
-                  'Esqueceu sua senha?',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
+
+              const pageTitle(texto: 'Esqueceu sua senha?',),
+
               const SizedBox( height: 60 ),
               Container(
                 alignment: Alignment.center,

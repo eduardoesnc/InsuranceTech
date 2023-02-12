@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:insurancetech/models/checagem.model.dart';
 
 import '../components/largeButton.dart';
+import '../components/pageTitle.dart';
 
 class CadastroPage extends StatefulWidget {
   const CadastroPage({Key? key}) : super(key: key);
@@ -38,17 +39,9 @@ class _CadastroPageState extends State<CadastroPage> {
               child: Image.asset("assets/logo.png"),
             ),
             const SizedBox(height: 40),
-            Container(
-              alignment: Alignment.center,
-              child: const Text(
-                'Crie sua conta',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
+
+            const pageTitle(texto: 'Crie sua conta',),
+
             const SizedBox(height: 40),
             Container(
               height: 54,
