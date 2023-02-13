@@ -62,7 +62,7 @@ class _AppDrawerState extends State<AppDrawer> {
               title: const Text("Análises sobre seguros"),
               leading: const Icon(Icons.query_stats),
               onTap: () {
-                Navigator.of(context).pushNamed('/home');
+                Navigator.of(context).pushNamed('/analise');
               },
             ),
             ListTile(

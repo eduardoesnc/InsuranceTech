@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage> {
             LargeButton(
               texto: 'Análises gráficas',
               onPressed: () {
-                Navigator.of(context).pushNamed('/home');
+                Navigator.of(context).pushNamed('/analise');
               },
             ),
 
