@@ -33,7 +33,7 @@ class _AppDrawerState extends State<AppDrawer> {
                 decoration: const BoxDecoration(
                   color: Color(0xFF2a5298),
                   ),
-                currentAccountPicture: CircleAvatar(
+                currentAccountPicture: const CircleAvatar(
                   radius: 52,
                   backgroundImage: NetworkImage('https://cdn-icons-png.flaticon.com/512/149/149071.png'),
                 ),
