@@ -1,38 +1,37 @@
 {
   "project_info": {
-    "project_number": "443531705802",
-    "firebase_url": "https://smdinsurancetech-default-rtdb.firebaseio.com",
-    "project_id": "smdinsurancetech",
-    "storage_bucket": "smdinsurancetech.appspot.com"
+    "project_number": "580194319126",
+    "project_id": "insurancetech-f69e9",
+    "storage_bucket": "insurancetech-f69e9.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:443531705802:android:72a7122be2a35563622333",
+        "mobilesdk_app_id": "1:580194319126:android:496474ca7acdba730c6e37",
         "android_client_info": {
           "package_name": "com.example.insurancetech"
         }
       },
       "oauth_client": [
         {
-          "client_id": "443531705802-48hh5ap4fl0svd9lj9fua0g6efnhudle.apps.googleusercontent.com",
+          "client_id": "580194319126-bf4f91t22teobd40bsu982p9kidetjhn.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB4mJtHcUAefa-layJVU0FPuRCRXX2SzrY"
+          "current_key": "AIzaSyDUnpQbcxrtYM3RWSVQ88MUx_GDBQu7dxY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "443531705802-48hh5ap4fl0svd9lj9fua0g6efnhudle.apps.googleusercontent.com",
+              "client_id": "580194319126-bf4f91t22teobd40bsu982p9kidetjhn.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "443531705802-sagpn8hedg2n6eooni73nms7bghirbdq.apps.googleusercontent.com",
+              "client_id": "580194319126-jdc37432n9i2ngburn6a3b1tkd66ku4b.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
                 "bundle_id": "com.example.insurancetech"

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:insurancetech/models/checagem.model.dart';
@@ -19,6 +20,8 @@ class _CadastroPageState extends State<CadastroPage> {
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
   final _firebaseAuth = FirebaseAuth.instance;
+
+  var db = FirebaseFirestore.instance;
 
   @override
   Widget build(BuildContext context) {

@@ -44,44 +44,40 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDOU_myhCnwrc4Zm0zqUwgQ0DX8bPRNirU',
-    appId: '1:443531705802:web:aca57a7fdf3c90e7622333',
-    messagingSenderId: '443531705802',
-    projectId: 'smdinsurancetech',
-    authDomain: 'smdinsurancetech.firebaseapp.com',
-    databaseURL: 'https://smdinsurancetech-default-rtdb.firebaseio.com',
-    storageBucket: 'smdinsurancetech.appspot.com',
-    measurementId: 'G-RXDK7GKB5B',
+    apiKey: 'AIzaSyCOrYdRyllVGAIsu0RULt-m2aR0m4iuyOA',
+    appId: '1:580194319126:web:a9543538c537f3de0c6e37',
+    messagingSenderId: '580194319126',
+    projectId: 'insurancetech-f69e9',
+    authDomain: 'insurancetech-f69e9.firebaseapp.com',
+    storageBucket: 'insurancetech-f69e9.appspot.com',
+    measurementId: 'G-NLCLFPCNXN',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyB4mJtHcUAefa-layJVU0FPuRCRXX2SzrY',
-    appId: '1:443531705802:android:72a7122be2a35563622333',
-    messagingSenderId: '443531705802',
-    projectId: 'smdinsurancetech',
-    databaseURL: 'https://smdinsurancetech-default-rtdb.firebaseio.com',
-    storageBucket: 'smdinsurancetech.appspot.com',
+    apiKey: 'AIzaSyDUnpQbcxrtYM3RWSVQ88MUx_GDBQu7dxY',
+    appId: '1:580194319126:android:496474ca7acdba730c6e37',
+    messagingSenderId: '580194319126',
+    projectId: 'insurancetech-f69e9',
+    storageBucket: 'insurancetech-f69e9.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCK3YiGZ_ejfUexSzATajI9hGfTMjGFqlU',
-    appId: '1:443531705802:ios:fa2bdf0a5b01385e622333',
-    messagingSenderId: '443531705802',
-    projectId: 'smdinsurancetech',
-    databaseURL: 'https://smdinsurancetech-default-rtdb.firebaseio.com',
-    storageBucket: 'smdinsurancetech.appspot.com',
-    iosClientId: '443531705802-sagpn8hedg2n6eooni73nms7bghirbdq.apps.googleusercontent.com',
+    apiKey: 'AIzaSyAElwlASNwx4xnyCLPO9rOZ0ZymX6Husxw',
+    appId: '1:580194319126:ios:04b4ca74c593ce660c6e37',
+    messagingSenderId: '580194319126',
+    projectId: 'insurancetech-f69e9',
+    storageBucket: 'insurancetech-f69e9.appspot.com',
+    iosClientId: '580194319126-jdc37432n9i2ngburn6a3b1tkd66ku4b.apps.googleusercontent.com',
     iosBundleId: 'com.example.insurancetech',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyCK3YiGZ_ejfUexSzATajI9hGfTMjGFqlU',
-    appId: '1:443531705802:ios:fa2bdf0a5b01385e622333',
-    messagingSenderId: '443531705802',
-    projectId: 'smdinsurancetech',
-    databaseURL: 'https://smdinsurancetech-default-rtdb.firebaseio.com',
-    storageBucket: 'smdinsurancetech.appspot.com',
-    iosClientId: '443531705802-sagpn8hedg2n6eooni73nms7bghirbdq.apps.googleusercontent.com',
+    apiKey: 'AIzaSyAElwlASNwx4xnyCLPO9rOZ0ZymX6Husxw',
+    appId: '1:580194319126:ios:04b4ca74c593ce660c6e37',
+    messagingSenderId: '580194319126',
+    projectId: 'insurancetech-f69e9',
+    storageBucket: 'insurancetech-f69e9.appspot.com',
+    iosClientId: '580194319126-jdc37432n9i2ngburn6a3b1tkd66ku4b.apps.googleusercontent.com',
     iosBundleId: 'com.example.insurancetech',
   );
 }
