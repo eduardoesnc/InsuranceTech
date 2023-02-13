@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../components/largeButton.dart';
+import '../components/pageTitle.dart';
 
 class RedefinirSenhaPage extends StatefulWidget {
   const RedefinirSenhaPage({Key? key}) : super(key: key);
@@ -27,17 +28,9 @@ class _RedefinirSenhaPageState extends State<RedefinirSenhaPage> {
               child: Image.asset("assets/logo.png"),
             ),
             const SizedBox( height: 60 ),
-            Container(
-              alignment: Alignment.center,
-              child: const Text(
-                'Redefinir senha',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
+
+            const pageTitle(texto: 'Redefinir senha',),
+
             const SizedBox( height: 60 ),
             Container(
               height: 54,

@@ -11,6 +11,14 @@ class AppDrawer extends StatefulWidget {
 
 class _AppDrawerState extends State<AppDrawer> {
   final _firebaseAuth = FirebaseAuth.instance;
+  String nome = '';
+  String email = '';
+
+  @override
+  initState(){
+    getUser();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -18,21 +26,23 @@ class _AppDrawerState extends State<AppDrawer> {
       backgroundColor: Colors.white,
       child: Padding(
         padding: const EdgeInsets.fromLTRB(0,0,0,0),
-        child: Column(
+        child: ListView(
+          padding: EdgeInsets.zero,
           children: [
-            const UserAccountsDrawerHeader(
-                decoration: BoxDecoration(
+            UserAccountsDrawerHeader(
+                decoration: const BoxDecoration(
                   color: Color(0xFF2a5298),
                   ),
                 currentAccountPicture: CircleAvatar(
                   radius: 52,
                   backgroundImage: NetworkImage('https://cdn-icons-png.flaticon.com/512/149/149071.png'),
                 ),
-                accountName: Text('Nome usuario'),
-                accountEmail: Text('Email usuario'),
+                accountName: Text(nome),
+                accountEmail: Text(email),
             ),
 
             ListTile(
+              dense: true,
               title: const Text("Home"),
               leading: const Icon(Icons.home),
               onTap: () {
@@ -40,6 +50,7 @@ class _AppDrawerState extends State<AppDrawer> {
               },
             ),
             ListTile(
+              dense: true,
               title: const Text("Estimar reivindicação"),
               leading: const Icon(Icons.analytics),
               onTap: () {
@@ -47,13 +58,15 @@ class _AppDrawerState extends State<AppDrawer> {
               },
             ),
             ListTile(
+              dense: true,
               title: const Text("Análises sobre seguros"),
               leading: const Icon(Icons.query_stats),
               onTap: () {
-                Navigator.of(context).pushNamed('/home');
+                Navigator.of(context).pushNamed('/analise');
               },
             ),
             ListTile(
+              dense: true,
               title: const Text("Carros salvos"),
               leading: const Icon(Icons.stars),
               onTap: () {
@@ -61,6 +74,7 @@ class _AppDrawerState extends State<AppDrawer> {
               },
             ),
             ListTile(
+              dense: true,
               title: const Text("Documentos necessários"),
               leading: const Icon(Icons.description),
               onTap: () {
@@ -68,6 +82,7 @@ class _AppDrawerState extends State<AppDrawer> {
               },
             ),
             ListTile(
+              dense: true,
               title: const Text("Sobre"),
               leading: const Icon(Icons.help),
               onTap: () {
@@ -75,6 +90,7 @@ class _AppDrawerState extends State<AppDrawer> {
               },
             ),
             ListTile(
+              dense: true,
               title: const Text("Sair"),
               leading: const Icon(Icons.exit_to_app),
               onTap: () {
@@ -85,6 +101,16 @@ class _AppDrawerState extends State<AppDrawer> {
         ),
       ),
     );
+  }
+
+  getUser() async{
+    User? usuario = await _firebaseAuth.currentUser;
+    if (usuario != null){
+        setState(() {
+          nome = usuario.displayName!;
+          email = usuario.email!;
+        });
+    }
   }
 
   sair() async {

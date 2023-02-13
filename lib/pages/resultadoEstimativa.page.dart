@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:insurancetech/components/drawer.dart';
 
 import '../components/largeButton.dart';
+import '../components/pageTitle.dart';
 
 class ResultadoEstimativaPage extends StatefulWidget {
   const ResultadoEstimativaPage({Key? key}) : super(key: key);
@@ -35,17 +36,9 @@ class _ResultadoEstimativaPageState extends State<ResultadoEstimativaPage> {
         child: ListView(
           children: <Widget>[
             const SizedBox( height: 50 ),
-            Container(
-              alignment: Alignment.center,
-              child: const Text(
-                'Estimativa',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
+
+            const pageTitle(texto: 'Estimativa',),
+
             const SizedBox( height: 50 ),
             Container(
               alignment: Alignment.center,

@@ -11,6 +11,7 @@ import 'package:insurancetech/pages/sugestoes.page.dart';
 import 'package:insurancetech/pages/carrosSalvos.page.dart';
 import 'package:insurancetech/pages/documentos.page.dart';
 import 'package:insurancetech/models/checagem.model.dart';
+import 'package:insurancetech/pages/analises.page.dart';
 
 
 Map<String, Widget Function(dynamic)> instanceRoutes(BuildContext context) => {
@@ -26,5 +27,6 @@ Map<String, Widget Function(dynamic)> instanceRoutes(BuildContext context) => {
   SugestoesPage.routeName: (context) => const SugestoesPage(),
   CarrosSalvosPage.routeName: (context) => const CarrosSalvosPage(),
   DocumentosPage.routeName: (context) => const DocumentosPage(),
+  AnalisePage.routeName: (context) => const AnalisePage(),
 
 };

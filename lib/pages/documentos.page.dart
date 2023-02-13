@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:insurancetech/components/drawer.dart';
 
+import '../components/pageTitle.dart';
+
 
 class DocumentosPage extends StatefulWidget {
   const DocumentosPage({Key? key}) : super(key: key);
@@ -35,18 +37,9 @@ class _DocumentosPageState extends State<DocumentosPage> {
         child: ListView(
           children: <Widget>[
             const SizedBox( height: 50 ),
-            Container(
-              alignment: Alignment.center,
-              child: const Text(
-                'Documentos necessários para reivindicar o seguro',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
+
+            const pageTitle(texto: 'Documentos necessários para reivindicar o seguro',),
+
             const SizedBox( height: 50 ),
             Container(
               height: 50,
