@@ -17,6 +17,7 @@ class _AppDrawerState extends State<AppDrawer> {
   @override
   initState(){
     getUser();
+
   }
 
   @override
