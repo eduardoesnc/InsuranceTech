@@ -16,6 +16,7 @@ class _AppDrawerState extends State<AppDrawer> {
 
   @override
   initState(){
+    super.initState();
     getUser();
 
   }
@@ -105,7 +106,7 @@ class _AppDrawerState extends State<AppDrawer> {
   }
 
   getUser() async{
-    User? usuario = await _firebaseAuth.currentUser;
+    User? usuario = _firebaseAuth.currentUser;
     if (usuario != null){
         setState(() {
           nome = usuario.displayName!;

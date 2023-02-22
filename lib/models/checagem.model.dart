@@ -29,7 +29,7 @@ class _ChecagemPageState extends State<ChecagemPage> {
            ),
        );
      } else {
-       var pushReplacement = Navigator.pushReplacement(
+      Navigator.pushReplacement(
          context,
          MaterialPageRoute(
              builder: (context) => const HomePage(),

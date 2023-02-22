@@ -14,7 +14,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-
   final _emailcontroller = TextEditingController();
   final _passwordcontroller = TextEditingController();
   final _firebaseAuth = FirebaseAuth.instance;
@@ -143,8 +142,7 @@ class _LoginPageState extends State<LoginPage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const CadastroPage()
-                    ),
+                        builder: (context) => const CadastroPage()),
                   );
                 },
                 child: const Text(
@@ -165,27 +163,24 @@ class _LoginPageState extends State<LoginPage> {
 
   login() async {
     try {
-      UserCredential userCredential =
-          await _firebaseAuth.signInWithEmailAndPassword(
+      await _firebaseAuth.signInWithEmailAndPassword(
         email: _emailcontroller.text,
         password: _passwordcontroller.text,
       );
-      if (userCredential != null) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const HomePage(),
-          ),
-        );
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Logado'),
-            backgroundColor: Colors.greenAccent,
-          ),
-        );
-      }
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const HomePage(),
+        ),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Logado'),
+          backgroundColor: Colors.greenAccent,
+        ),
+      );
     } on FirebaseAuthException catch (e) {
-      if(e.code == 'user-not-found') {
+      if (e.code == 'user-not-found') {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Usuário não encontrado. Cadastre-se.'),
@@ -194,10 +189,10 @@ class _LoginPageState extends State<LoginPage> {
         );
       } else if (e.code == 'wrong-password') {
         ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Senha incorreta.'),
-              backgroundColor: Colors.redAccent,
-            ),
+          const SnackBar(
+            content: Text('Senha incorreta.'),
+            backgroundColor: Colors.redAccent,
+          ),
         );
       }
     }
