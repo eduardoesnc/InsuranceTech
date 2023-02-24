@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:insurancetech/models/checagem.model.dart';
-
 import '../components/largeButton.dart';
 import '../components/pageTitle.dart';
 
@@ -57,6 +56,11 @@ class _CadastroPageState extends State<CadastroPage> {
               child: TextFormField(
                 //autofocus: true,
                 controller: _nomeController,
+                validator:(value){
+                  if(value!.isEmpty){
+                    return 'Campo obrigatório';
+                  }
+                },
                 onChanged: (text) {},
                 keyboardType: TextInputType.text,
                 obscureText: false,
