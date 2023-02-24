@@ -41,9 +41,9 @@ class _CadastroPageState extends State<CadastroPage> {
               child: Image.asset("assets/logo.png"),
             ),
             const SizedBox(height: 40),
-
-            const pageTitle(texto: 'Crie sua conta',),
-
+            const pageTitle(
+              texto: 'Crie sua conta',
+            ),
             const SizedBox(height: 40),
             Container(
               height: 54,
@@ -186,11 +186,11 @@ class _CadastroPageState extends State<CadastroPage> {
               ),
             ),
             const SizedBox(height: 40),
-
             LargeButton(
               texto: 'Cadastrar',
               onPressed: () {
-                if (_confirmPasswordController.text == _passwordController.text) {
+                if (_confirmPasswordController.text ==
+                    _passwordController.text) {
                   cadastrar();
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
@@ -202,7 +202,6 @@ class _CadastroPageState extends State<CadastroPage> {
                 }
               },
             ),
-
             const SizedBox(
               height: 40,
             ),
@@ -233,21 +232,20 @@ class _CadastroPageState extends State<CadastroPage> {
       UserCredential userCredential =
           await _firebaseAuth.createUserWithEmailAndPassword(
               email: _emailController.text, password: _passwordController.text);
-      if (userCredential != null) {
-        userCredential.user!.updateDisplayName(_nomeController.text);
-        Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const ChecagemPage(),
-            ),
-            (route) => false);
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Cadastro realizado.'),
-            backgroundColor: Colors.greenAccent,
+
+      userCredential.user!.updateDisplayName(_nomeController.text);
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const ChecagemPage(),
           ),
-        );
-      }
+          (route) => false);
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Cadastro realizado.'),
+          backgroundColor: Colors.greenAccent,
+        ),
+      );
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -264,6 +262,4 @@ class _CadastroPageState extends State<CadastroPage> {
       }
     }
   }
-
-
 }
