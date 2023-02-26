@@ -28,11 +28,23 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
   String? tipoTransmissao;
   final List<String> tiposTransmissao = ["Automático", "Manual"];
   String? densidade;
-  final List<String> densidadePopulacional = ["0 - 290 hab/km²", "291 - 3.947 hab/km²", 
-  "3.948 - 7.604 hab/km²", "7.605 - 11.261 hab/km²", "11.262 - 14.918 hab/km²", "14.919 - 18.575 hab/km²", 
-  "18.576 - 22.232 hab/km²", "22.233 - 29.546 hab/km²", "29.547 - 33.203 hab/km²", "33.204 - 36.860 hab/km²", 
-  "36.861 - 62.459 hab/km²", "62.460 - 66.116 hab/km²", "66.117 - 69.773 hab/km²", "69.774 - 73.430 hab/km²", 
-  "Mais de 73.430 hab/km²"];
+  final List<String> densidadePopulacional = [
+    "0 - 290 hab/km²",
+    "291 - 3.947 hab/km²",
+    "3.948 - 7.604 hab/km²",
+    "7.605 - 11.261 hab/km²",
+    "11.262 - 14.918 hab/km²",
+    "14.919 - 18.575 hab/km²",
+    "18.576 - 22.232 hab/km²",
+    "22.233 - 29.546 hab/km²",
+    "29.547 - 33.203 hab/km²",
+    "33.204 - 36.860 hab/km²",
+    "36.861 - 62.459 hab/km²",
+    "62.460 - 66.116 hab/km²",
+    "66.117 - 69.773 hab/km²",
+    "69.774 - 73.430 hab/km²",
+    "Mais de 73.430 hab/km²"
+  ];
   bool salvarInfo = false;
 
   @override
@@ -603,8 +615,9 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                           value,
                           style: TextStyle(
                             fontSize: 18,
-                            color:
-                                value == tipoTransmissao ? Colors.white : Colors.black,
+                            color: value == tipoTransmissao
+                                ? Colors.white
+                                : Colors.black,
                           ),
                         ),
                       );
@@ -670,8 +683,9 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                           value,
                           style: TextStyle(
                             fontSize: 18,
-                            color:
-                                value == densidade ? Colors.white : Colors.black,
+                            color: value == densidade
+                                ? Colors.white
+                                : Colors.black,
                           ),
                         ),
                       );
