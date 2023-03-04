@@ -117,6 +117,7 @@ class _LoginPageState extends State<LoginPage> {
                     color: Colors.white,
                     fontSize: 18,
                   ),
+                  textAlign: TextAlign.center,
                 ),
                 onPressed: () {
                   Navigator.of(context).pushNamed('/esqueceuSenhaEnviar');

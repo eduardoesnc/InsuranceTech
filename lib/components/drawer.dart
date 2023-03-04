@@ -99,6 +99,14 @@ class _AppDrawerState extends State<AppDrawer> {
                 sair();
               },
             ),
+            ListTile(
+              dense: true,
+              title: const Text("Conta"),
+              leading: const Icon(Icons.account_circle_outlined),
+              onTap: () {
+                Navigator.of(context).pushNamed('/conta');
+              },
+            ),
           ],
         ),
       ),
