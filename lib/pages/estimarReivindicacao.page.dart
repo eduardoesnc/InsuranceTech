@@ -65,7 +65,6 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
         ),
         body: Form(
           key: formKey,
-          autovalidateMode: AutovalidateMode.onUserInteraction,
           child: Container(
             padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
             color: const Color(0xFF2a5298),
@@ -88,6 +87,7 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                   ),
                   child: TextFormField(
                     controller: nomeController,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Este campo é obrigatório';
@@ -130,6 +130,7 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     ),
                   ),
                   child: DropdownButtonFormField<int>(
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     value: idadeCondutor,
                     validator: (value) {
                       if (value == null) {
@@ -205,6 +206,7 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     ),
                   ),
                   child: DropdownButtonFormField<int>(
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) {
                       if (value == null) {
                         return 'Este campo é obrigatório';
@@ -280,6 +282,7 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     ),
                   ),
                   child: DropdownButtonFormField<String>(
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) {
                       if (value == null) {
                         return 'Este campo é obrigatório';
@@ -355,6 +358,7 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     ),
                   ),
                   child: DropdownButtonFormField<String>(
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) {
                       if (value == null) {
                         return 'Este campo é obrigatório';
@@ -429,6 +433,7 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     ),
                   ),
                   child: DropdownButtonFormField<String>(
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) {
                       if (value == null) {
                         return 'Este campo é obrigatório';
@@ -503,6 +508,7 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     ),
                   ),
                   child: DropdownButtonFormField<String>(
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) {
                       if (value == null) {
                         return 'Este campo é obrigatório';
@@ -577,6 +583,7 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     ),
                   ),
                   child: DropdownButtonFormField<String>(
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) {
                       if (value == null) {
                         return 'Este campo é obrigatório';
@@ -651,6 +658,7 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     ),
                   ),
                   child: DropdownButtonFormField<String>(
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) {
                       if (value == null) {
                         return 'Este campo é obrigatório';
@@ -725,6 +733,7 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     ),
                   ),
                   child: DropdownButtonFormField<String>(
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) {
                       if (value == null) {
                         return 'Este campo é obrigatório';
@@ -800,6 +809,7 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                   ),
                   child: TextFormField(
                     controller: nomeController1,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Este campo é obrigatório';
