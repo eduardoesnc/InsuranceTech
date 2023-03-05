@@ -17,8 +17,6 @@ class CarrosSalvosPage extends StatefulWidget {
 }
 
 class _CarrosSalvosPageState extends State<CarrosSalvosPage> {
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,11 +35,11 @@ class _CarrosSalvosPageState extends State<CarrosSalvosPage> {
         color: const Color(0xFF2a5298),
         child: ListView(
           children: <Widget>[
-            const SizedBox( height: 50 ),
-
-            const pageTitle(texto: 'Carros salvos',),
-
-            const SizedBox( height: 50 ),
+            const SizedBox(height: 50),
+            const pageTitle(
+              texto: 'Carros salvos',
+            ),
+            const SizedBox(height: 50),
             Container(
               height: 50,
               alignment: Alignment.centerLeft,
@@ -53,9 +51,7 @@ class _CarrosSalvosPageState extends State<CarrosSalvosPage> {
               ),
               child: SizedBox.expand(
                 child: TextButton(
-                  onPressed: () {
-
-                  },
+                  onPressed: () {},
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const <Widget>[
@@ -73,7 +69,7 @@ class _CarrosSalvosPageState extends State<CarrosSalvosPage> {
                 ),
               ),
             ),
-            const SizedBox( height: 20 ),
+            const SizedBox(height: 20),
             Container(
               height: 50,
               alignment: Alignment.centerLeft,
@@ -85,9 +81,7 @@ class _CarrosSalvosPageState extends State<CarrosSalvosPage> {
               ),
               child: SizedBox.expand(
                 child: TextButton(
-                  onPressed: () {
-
-                  },
+                  onPressed: () {},
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const <Widget>[
@@ -105,7 +99,7 @@ class _CarrosSalvosPageState extends State<CarrosSalvosPage> {
                 ),
               ),
             ),
-            const SizedBox( height: 20 ),
+            const SizedBox(height: 20),
             Container(
               height: 50,
               alignment: Alignment.centerLeft,
@@ -117,9 +111,7 @@ class _CarrosSalvosPageState extends State<CarrosSalvosPage> {
               ),
               child: SizedBox.expand(
                 child: TextButton(
-                  onPressed: () {
-
-                  },
+                  onPressed: () {},
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const <Widget>[
@@ -137,16 +129,16 @@ class _CarrosSalvosPageState extends State<CarrosSalvosPage> {
                 ),
               ),
             ),
-            const SizedBox( height: 20 ),
-
+            const SizedBox(height: 20),
             LargeButton(
               texto: 'Retornar para página inicial',
               onPressed: () {
                 Navigator.of(context).pushNamed('/home');
               },
             ),
-
-            const SizedBox(height: 40,)
+            const SizedBox(
+              height: 40,
+            )
           ],
         ),
       ),

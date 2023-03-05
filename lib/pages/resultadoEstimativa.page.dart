@@ -11,14 +11,15 @@ class ResultadoEstimativaPage extends StatefulWidget {
   static const routeName = '/resultado';
 
   @override
-  State<ResultadoEstimativaPage> createState() => _ResultadoEstimativaPageState();
+  State<ResultadoEstimativaPage> createState() =>
+      _ResultadoEstimativaPageState();
 }
 
 class _ResultadoEstimativaPageState extends State<ResultadoEstimativaPage> {
-
-
   @override
   Widget build(BuildContext context) {
+    Map<String, dynamic> args =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     return Scaffold(
       drawer: const AppDrawer(),
       appBar: AppBar(
@@ -35,11 +36,11 @@ class _ResultadoEstimativaPageState extends State<ResultadoEstimativaPage> {
         color: const Color(0xFF2a5298),
         child: ListView(
           children: <Widget>[
-            const SizedBox( height: 50 ),
-
-            const pageTitle(texto: 'Estimativa',),
-
-            const SizedBox( height: 50 ),
+            const SizedBox(height: 50),
+            const pageTitle(
+              texto: 'Estimativa',
+            ),
+            const SizedBox(height: 50),
             Container(
               alignment: Alignment.center,
               child: const Text(
@@ -51,7 +52,7 @@ class _ResultadoEstimativaPageState extends State<ResultadoEstimativaPage> {
                 ),
               ),
             ),
-            const SizedBox( height: 50 ),
+            const SizedBox(height: 50),
             Container(
               alignment: Alignment.topLeft,
               child: Column(
@@ -139,16 +140,16 @@ class _ResultadoEstimativaPageState extends State<ResultadoEstimativaPage> {
                 ],
               ),
             ),
-            const SizedBox( height: 20 ),
-
+            const SizedBox(height: 20),
             LargeButton(
               texto: "Retornar para página inicial",
               onPressed: () {
                 Navigator.of(context).pushReplacementNamed('/home');
               },
             ),
-
-            const SizedBox(height: 40,)
+            const SizedBox(
+              height: 40,
+            )
           ],
         ),
       ),
