@@ -12,8 +12,6 @@ class SobrePage extends StatefulWidget {
 }
 
 class _SobrePageState extends State<SobrePage> {
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +30,7 @@ class _SobrePageState extends State<SobrePage> {
         color: const Color(0xFF2a5298),
         child: ListView(
           children: <Widget>[
-            const SizedBox( height: 25 ),
+            const SizedBox(height: 25),
             Container(
               alignment: Alignment.topLeft,
               child: Column(
@@ -49,12 +47,9 @@ class _SobrePageState extends State<SobrePage> {
                   ),
                   const SizedBox(height: 20),
                   const Text(
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. '
-                        'Donec nec mauris elit. Morbi in bibendum quam. Vivamus '
-                        'ac interdum ligula, egestas convallis ex. Mauris posuere'
-                        ' enim sed congue maximus. Curabitur at tempus orci, non'
-                        ' lacinia eros. Donec nunc turpis, euismod eget dolor '
-                        'aliquam, posuere faucibus turpis. Donec et semper ex. ',
+                    """Bem-vindo ao nosso aplicativo! Nós somos um grupo de estudantes da UFRPE que desenvolveu um aplicativo de previsão de reivindicação de seguro automotivo nos próximos seis meses usando o conjunto de dados Car Insurance Claim Prediction. O objetivo do aplicativo é ajudar os usuários a tomar decisões informadas sobre a contratação e renovação de seus seguros, fornecendo informações precisas sobre os fatores que influenciam a probabilidade de reivindicação.
+
+Além de beneficiar os usuários, nosso aplicativo também contribui para a área de análise de dados e machine learning por meio da aplicação dessas técnicas em um contexto real. Estamos sempre abertos a comentários e sugestões para melhorar nosso trabalho e agradecemos pelo interesse em nosso aplicativo.""",
                     textAlign: TextAlign.justify,
                     style: TextStyle(
                       color: Colors.white,
@@ -64,7 +59,7 @@ class _SobrePageState extends State<SobrePage> {
                   ),
                   const SizedBox(height: 25),
                   const Text(
-                    'Nós realizamos estimavas!',
+                    'Nós realizamos estimativas!',
                     textAlign: TextAlign.left,
                     style: TextStyle(
                       color: Colors.white,
@@ -74,9 +69,7 @@ class _SobrePageState extends State<SobrePage> {
                   ),
                   const SizedBox(height: 20),
                   const Text(
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. '
-                        'Donec nec mauris elit. Morbi in bibendum quam. Vivamus '
-                        'ac interdum ligula, egestas convallis ex.',
+                    """As informações do nosso aplicativo são baseadas apenas no conjunto de dados Car Insurance Claim Prediction, e por isso, são apenas estimativas. Embora tenhamos usado técnicas de análise de dados e machine learning para criar o aplicativo e tentado garantir a precisão das informações, não podemos garantir sua veracidade ou exatidão. Os usuários devem sempre consultar profissionais antes de tomar decisões importantes sobre seus seguros automotivos.""",
                     textAlign: TextAlign.justify,
                     style: TextStyle(
                       color: Colors.white,
@@ -96,8 +89,7 @@ class _SobrePageState extends State<SobrePage> {
                   ),
                   const SizedBox(height: 20),
                   const Text(
-                    'Flutter: Lorem ipsum dolor sit amet, consectetur adipiscing'
-                        ' elit. Donec nec mauris elit. Morbi in bibendum quam.',
+                    """Flutter: Todo nosso aplicativo foi desenvolvido utilizando o framework Flutter, que é uma tecnologia de código aberto criada pelo Google para construção de aplicativos móveis de alta performance.""",
                     textAlign: TextAlign.justify,
                     style: TextStyle(
                       color: Colors.white,
@@ -107,8 +99,7 @@ class _SobrePageState extends State<SobrePage> {
                   ),
                   const SizedBox(height: 20),
                   const Text(
-                    'Python: Lorem ipsum dolor sit amet, consectetur adipiscing '
-                        'elit. Donec nec mauris elit. Morbi in bibendum quam.',
+                    """Firebase: Utilizamos o Firebase como banco de dados para armazenar e gerenciar todas as informações do nosso aplicativo.""",
                     textAlign: TextAlign.justify,
                     style: TextStyle(
                       color: Colors.white,
@@ -118,8 +109,7 @@ class _SobrePageState extends State<SobrePage> {
                   ),
                   const SizedBox(height: 20),
                   const Text(
-                    'MySQL: Lorem ipsum dolor sit amet, consectetur adipiscing '
-                        'elit. Donec nec mauris elit. Morbi in bibendum quam.',
+                    """Python: Utilizamos a linguagem de programação Python para fazer o tratamento e análise do conjunto de dados Car Insurance Claim Prediction, além de desenvolver as técnicas de Machine Learning utilizadas em nosso aplicativo.""",
                     textAlign: TextAlign.justify,
                     style: TextStyle(
                       color: Colors.white,
@@ -127,10 +117,10 @@ class _SobrePageState extends State<SobrePage> {
                       fontWeight: FontWeight.normal,
                     ),
                   ),
+
                   const SizedBox(height: 20),
                   const Text(
-                    'Streamlit: Lorem ipsum dolor sit amet, consectetur adipiscing'
-                        ' elit. Donec nec mauris elit. Morbi in bibendum quam.',
+                    """Streamlit: Desenvolvemos um dashboard com Streamlit para exibir tratamento e análise de dados no nosso aplicativo. Essa tecnologia open-source facilitou a criação de uma interface intuitiva e interativa para os usuários explorarem a análise de dados.""",
                     textAlign: TextAlign.justify,
                     style: TextStyle(
                       color: Colors.white,
@@ -144,7 +134,8 @@ class _SobrePageState extends State<SobrePage> {
                     child: SizedBox(
                       child: TextButton(
                         onPressed: () {
-                          Navigator.of(context).pushReplacementNamed('/sugestoes');
+                          Navigator.of(context)
+                              .pushReplacementNamed('/sugestoes');
                         },
                         child: Row(
                           children: const [
@@ -155,7 +146,9 @@ class _SobrePageState extends State<SobrePage> {
                                 color: Colors.white,
                               ),
                             ),
-                            SizedBox(width: 5,),
+                            SizedBox(
+                              width: 5,
+                            ),
                             Text(
                               'Envie-nos sugestões',
                               style: TextStyle(
