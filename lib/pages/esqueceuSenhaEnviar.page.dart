@@ -1,5 +1,3 @@
-//1* - FALTA CRIAR A NOTIFICAÇÃO DE QUE O EMAIL FOI ENVIADO COM SUCESSO
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../components/largeButton.dart';
@@ -119,6 +117,25 @@ class _EsqueceuSenhaPageState extends State<EsqueceuSenhaPage> {
                 onPressed: () {
                   resetPassword();
                 },
+              ),
+
+              const SizedBox(height: 40),
+
+              SizedBox(
+                height: 40,
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pushNamed('/');
+                  },
+                  child: const Text(
+                    "Eu lembro minha senha!",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                    ),
+                  ),
+                ),
               ),
 
             ],
