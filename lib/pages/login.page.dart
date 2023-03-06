@@ -16,6 +16,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _emailcontroller = TextEditingController();
   final _passwordcontroller = TextEditingController();
+  bool _showPassword = true;
   final _firebaseAuth = FirebaseAuth.instance;
 
   @override
@@ -84,15 +85,26 @@ class _LoginPageState extends State<LoginPage> {
                 //autofocus: true,
                 controller: _passwordcontroller,
                 keyboardType: TextInputType.text,
-                obscureText: true,
-                decoration: const InputDecoration(
+                obscureText: _showPassword,
+                decoration:  InputDecoration(
+                  suffixIcon: GestureDetector(
+                      child: Icon(
+                        _showPassword == true ? Icons.visibility_off : Icons.visibility,
+                        color: Colors.white,
+                      ),
+                    onTap: (){
+                        setState(() {
+                          _showPassword = !_showPassword;
+                        });
+                    },
+                  ),
                   labelText: "Senha",
-                  border: OutlineInputBorder(
+                  border: const OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(8),
                     ),
                   ),
-                  labelStyle: TextStyle(
+                  labelStyle: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w400,
                     fontSize: 18,
