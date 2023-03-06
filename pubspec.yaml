@@ -104,6 +104,7 @@ flutter:
   assets:
     - assets/logo.png
     - assets/img-teste.png
+<<<<<<< HEAD
     - assets/analises/ncap-x-claim.png
     - assets/analises/agecarro-x-combustivel.png
     - assets/analises/agesegurado-x-agecarro.png
@@ -112,3 +113,13 @@ flutter:
     - assets/analises/densidade-x-area.png
     - assets/analises/distribuicao-geografica.png
     - assets/analises/segmento-x-claim.png
+=======
+
+  ependencies:
+    flutter:
+      sdk: flutter
+  cloud_firestore: ^2.5.4
+  firebase_storage: ^10.1.1
+  image_picker: ^0.8.4+4
+  permission_handler: ^8.3.0
+>>>>>>> 3b0954c (Craição da tela de checklist)
