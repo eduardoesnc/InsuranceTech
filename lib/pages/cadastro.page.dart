@@ -19,6 +19,8 @@ class _CadastroPageState extends State<CadastroPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
+  bool _showPassword = true;
+  bool _showconfirmPassword = true;
   final _firebaseAuth = FirebaseAuth.instance;
 
   var db = FirebaseFirestore.instance;
@@ -131,15 +133,26 @@ class _CadastroPageState extends State<CadastroPage> {
                 controller: _passwordController,
                 onChanged: (text) {},
                 keyboardType: TextInputType.text,
-                obscureText: true,
-                decoration: const InputDecoration(
+                obscureText: _showPassword,
+                decoration: InputDecoration(
+                  suffixIcon: GestureDetector(
+                    child: Icon(
+                      _showPassword == true ? Icons.visibility_off : Icons.visibility,
+                      color: Colors.white,
+                    ),
+                    onTap: (){
+                      setState(() {
+                        _showPassword = !_showPassword;
+                      });
+                    },
+                  ),
                   labelText: "Senha",
-                  border: OutlineInputBorder(
+                  border: const OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(8),
                     ),
                   ),
-                  labelStyle: TextStyle(
+                  labelStyle: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w400,
                     fontSize: 18,
@@ -165,15 +178,26 @@ class _CadastroPageState extends State<CadastroPage> {
                 controller: _confirmPasswordController,
                 onChanged: (text) {},
                 keyboardType: TextInputType.text,
-                obscureText: true,
-                decoration: const InputDecoration(
+                obscureText: _showconfirmPassword,
+                decoration: InputDecoration(
+                  suffixIcon: GestureDetector(
+                    child: Icon(
+                      _showconfirmPassword == true ? Icons.visibility_off : Icons.visibility,
+                      color: Colors.white,
+                    ),
+                    onTap: (){
+                      setState(() {
+                        _showconfirmPassword = !_showconfirmPassword;
+                      });
+                    },
+                  ),
                   labelText: "Confirmar senha",
-                  border: OutlineInputBorder(
+                  border: const OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(8),
                     ),
                   ),
-                  labelStyle: TextStyle(
+                  labelStyle: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w400,
                     fontSize: 18,
