@@ -31,17 +31,25 @@ class _AppDrawerState extends State<AppDrawer> {
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            UserAccountsDrawerHeader(
-                decoration: const BoxDecoration(
-                  color: Color(0xFF2a5298),
+             UserAccountsDrawerHeader(
+                  decoration: const BoxDecoration(
+                    color: Color(0xFF2a5298),
+                    ),
+                  currentAccountPicture: const CircleAvatar(
+                    radius: 52,
+                    backgroundImage: NetworkImage('https://cdn-icons-png.flaticon.com/512/149/149071.png'),
                   ),
-                currentAccountPicture: const CircleAvatar(
-                  radius: 52,
-                  backgroundImage: NetworkImage('https://cdn-icons-png.flaticon.com/512/149/149071.png'),
-                ),
-                accountName: Text(nome),
-                accountEmail: Text(email),
-            ),
+                  otherAccountsPictures: [
+                    GestureDetector(
+                        child: const Icon(Icons.account_circle_outlined, color: Colors.white,),
+                      onTap: () {
+                        Navigator.of(context).pushNamed('/conta');
+                      },
+                    )
+                  ],
+                  accountName: Text(nome),
+                  accountEmail: Text(email),
+              ),
 
             ListTile(
               dense: true,
