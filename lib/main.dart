@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
           primaryColor: const Color(0xFF2a5298),
         ),
         initialRoute: '/checar',
-        routes: instanceRoutes(context));
+        routes: instanceRoutes(context)
+    );
   }
 }

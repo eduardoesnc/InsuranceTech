@@ -104,3 +104,11 @@ flutter:
   assets:
     - assets/logo.png
     - assets/img-teste.png
+    - assets/analises/ncap-x-claim.png
+    - assets/analises/agecarro-x-combustivel.png
+    - assets/analises/agesegurado-x-agecarro.png
+    - assets/analises/agesegurado-x-claim.png
+    - assets/analises/combustivel-x-segurado.png
+    - assets/analises/densidade-x-area.png
+    - assets/analises/distribuicao-geografica.png
+    - assets/analises/segmento-x-claim.png
