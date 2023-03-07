@@ -31,13 +31,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  firebase_auth: ^4.2.9
   provider:
   google_sign_in:
   email_validator: ^2.1.16
   basic_utils: ^5.5.1
 
 #Firebase Database
+  firebase_auth: ^4.2.9
   cloud_firestore: ^4.4.3
   firebase_core: ^2.7.0
   firebase_core_web: ^2.2.1
@@ -104,7 +104,6 @@ flutter:
   assets:
     - assets/logo.png
     - assets/img-teste.png
-<<<<<<< HEAD
     - assets/analises/ncap-x-claim.png
     - assets/analises/agecarro-x-combustivel.png
     - assets/analises/agesegurado-x-agecarro.png
@@ -113,13 +112,3 @@ flutter:
     - assets/analises/densidade-x-area.png
     - assets/analises/distribuicao-geografica.png
     - assets/analises/segmento-x-claim.png
-=======
-
-  ependencies:
-    flutter:
-      sdk: flutter
-  cloud_firestore: ^2.5.4
-  firebase_storage: ^10.1.1
-  image_picker: ^0.8.4+4
-  permission_handler: ^8.3.0
->>>>>>> 3b0954c (Craição da tela de checklist)
