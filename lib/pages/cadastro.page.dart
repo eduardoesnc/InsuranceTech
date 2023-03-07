@@ -261,7 +261,8 @@ class _CadastroPageState extends State<CadastroPage> {
 
       userCredential.user!.updateDisplayName(_nomeController.text);
 
-      FirebaseFirestore.instance.collection('usuarios/${_emailController.text}/conta')
+      FirebaseFirestore.instance
+      .collection('usuarios/${_emailController.text}/conta')
           .doc('informacoes')
           .set({
         'nomeUsuario': _nomeController.text,

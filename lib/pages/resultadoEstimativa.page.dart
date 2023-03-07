@@ -18,8 +18,6 @@ class ResultadoEstimativaPage extends StatefulWidget {
 class _ResultadoEstimativaPageState extends State<ResultadoEstimativaPage> {
   @override
   Widget build(BuildContext context) {
-    Map<String, dynamic> args =
-        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     return Scaffold(
       drawer: const AppDrawer(),
       appBar: AppBar(

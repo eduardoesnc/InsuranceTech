@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import '../components/drawer.dart';
 import '../components/largeButton.dart';
 import '../components/pageTitle.dart';
@@ -45,10 +46,18 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
     "69.774 - 73.430 hab/km²",
     "Mais de 73.430 hab/km²"
   ];
-  final nomeController = TextEditingController();
-  final nomeController1 = TextEditingController();
+  final nomeControllerIdentificacao = TextEditingController();
+  final nomeControllerBairro = TextEditingController();
   final formKey = GlobalKey<FormState>();
+  final _firebaseAuth = FirebaseAuth.instance;
+  String email = '';
   bool salvarInfo = false;
+
+  @override
+  initState() {
+    super.initState();
+    getUser();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +95,7 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     ),
                   ),
                   child: TextFormField(
-                    controller: nomeController,
+                    controller: nomeControllerIdentificacao,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -808,7 +817,7 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     ),
                   ),
                   child: TextFormField(
-                    controller: nomeController1,
+                    controller: nomeControllerBairro,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -901,22 +910,28 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                   texto: 'Enviar',
                   onPressed: () {
                     if (formKey.currentState!.validate() &&
-                        nomeController.text.isNotEmpty) {
-                      String nomeControllerIdentificacao = nomeController.text;
-                      String nomeControllerStringBairro = nomeController1.text;
-                      Navigator.of(context).pushNamed('/resultado', arguments: {
-                        'nomeIdentificacao': nomeControllerIdentificacao,
-                        'idadeCondutor': idadeCondutor,
-                        'idadeCarro': idadeCarro,
-                        'modeloCarro': modelo,
-                        'combustivel': combustivel,
-                        'segmento': segmento,
-                        'freio': opcaoFreio,
-                        're': opcaoRe,
-                        'transmissao': transmissao,
-                        'densidade': densidade,
-                        'nomeBairro': nomeControllerStringBairro,
-                      });
+                        nomeControllerIdentificacao.text.isNotEmpty) {
+
+                      if (salvarInfo) {
+                        FirebaseFirestore.instance
+                        .collection('usuarios/$email/conta/reivindicacao/carros_salvos')
+                            .doc(nomeControllerIdentificacao.text)
+                            .set({
+                          'nomeIdentificacao': nomeControllerIdentificacao.text,
+                          'idadeCondutor': idadeCondutor,
+                          'idadeCarro': idadeCarro,
+                          'modeloCarro': modelo,
+                          'combustivel': combustivel,
+                          'segmento': segmento,
+                          'freio': opcaoFreio,
+                          're': opcaoRe,
+                          'transmissao': transmissao,
+                          'densidade': densidade,
+                          'nomeBairro': nomeControllerBairro.text,
+                        });
+                      }
+
+                      Navigator.of(context).pushNamed('/resultado');
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                         content: Text('Preencha todos os campos obrigatórios'),
@@ -931,5 +946,14 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
             ),
           ),
         ));
+  }
+
+  getUser() async {
+    User? usuario = _firebaseAuth.currentUser;
+    if (usuario != null) {
+      setState(() {
+        email = usuario.email!;
+      });
+    }
   }
 }
