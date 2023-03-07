@@ -23,8 +23,6 @@ class _CadastroPageState extends State<CadastroPage> {
   bool _showconfirmPassword = true;
   final _firebaseAuth = FirebaseAuth.instance;
 
-  var db = FirebaseFirestore.instance;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,8 +56,8 @@ class _CadastroPageState extends State<CadastroPage> {
               child: TextFormField(
                 //autofocus: true,
                 controller: _nomeController,
-                validator:(value){
-                  if(value!.isEmpty){
+                validator: (value) {
+                  if (value!.isEmpty) {
                     return 'Campo obrigatório';
                   }
                 },
@@ -137,10 +135,12 @@ class _CadastroPageState extends State<CadastroPage> {
                 decoration: InputDecoration(
                   suffixIcon: GestureDetector(
                     child: Icon(
-                      _showPassword == true ? Icons.visibility_off : Icons.visibility,
+                      _showPassword == true
+                          ? Icons.visibility_off
+                          : Icons.visibility,
                       color: Colors.white,
                     ),
-                    onTap: (){
+                    onTap: () {
                       setState(() {
                         _showPassword = !_showPassword;
                       });
@@ -182,10 +182,12 @@ class _CadastroPageState extends State<CadastroPage> {
                 decoration: InputDecoration(
                   suffixIcon: GestureDetector(
                     child: Icon(
-                      _showconfirmPassword == true ? Icons.visibility_off : Icons.visibility,
+                      _showconfirmPassword == true
+                          ? Icons.visibility_off
+                          : Icons.visibility,
                       color: Colors.white,
                     ),
-                    onTap: (){
+                    onTap: () {
                       setState(() {
                         _showconfirmPassword = !_showconfirmPassword;
                       });
@@ -258,6 +260,13 @@ class _CadastroPageState extends State<CadastroPage> {
               email: _emailController.text, password: _passwordController.text);
 
       userCredential.user!.updateDisplayName(_nomeController.text);
+
+      FirebaseFirestore.instance.collection('usuarios/${_emailController.text}/conta')
+          .doc('informacoes')
+          .set({
+        'nomeUsuario': _nomeController.text,
+        'email': _emailController.text,
+      });
       Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(

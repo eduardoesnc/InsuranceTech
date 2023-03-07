@@ -3,10 +3,9 @@ import 'package:insurancetech/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:insurancetech/routes.dart';
 
-
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options:DefaultFirebaseOptions.currentPlatform);
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   runApp(const MyApp());
 }
@@ -16,15 +15,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Insurance Tech',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primaryColor: const Color(0xFF2a5298),
-      ),
+        title: 'Insurance Tech',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primaryColor: const Color(0xFF2a5298),
+        ),
         initialRoute: '/checar',
-        routes: instanceRoutes(context)
-
-    );
+        routes: instanceRoutes(context));
   }
 }
-
