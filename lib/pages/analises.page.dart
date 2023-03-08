@@ -69,6 +69,34 @@ class _AnalisePageState extends State<AnalisePage> {
     final String urlImg = analise.img;
     final String texto = analise.texto;
 
+    void showFullscreenImage(BuildContext context) {
+      Navigator.of(context).push(
+        PageRouteBuilder(
+          opaque: false,
+          pageBuilder: (BuildContext context, _, __) {
+            return Stack(
+              children: <Widget>[
+                Positioned.fill(
+                  child: Container(
+                    color: const Color(0xFF2a5298),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Image.asset(
+                        urlImg,
+                        fit: BoxFit.contain,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            );
+          },
+        ),
+      );
+    }
+
     return Scaffold(
       drawer: const AppDrawer(),
       appBar: AppBar(
@@ -150,7 +178,12 @@ class _AnalisePageState extends State<AnalisePage> {
 
             const SizedBox(height: 40,),
 
-            Image.asset(urlImg),
+            GestureDetector(
+              onTap: () {
+                showFullscreenImage(context);
+              },
+              child: Image.asset(urlImg),
+            ),
 
             const SizedBox(height: 20,),
 
