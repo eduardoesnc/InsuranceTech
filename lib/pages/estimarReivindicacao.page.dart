@@ -47,7 +47,7 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
     "Mais de 73.430 hab/km²"
   ];
   final nomeControllerIdentificacao = TextEditingController();
-  final nomeControllerBairro = TextEditingController();
+  final nomeControllerMunicipio = TextEditingController();
   final formKey = GlobalKey<FormState>();
   final _firebaseAuth = FirebaseAuth.instance;
   String email = '';
@@ -107,7 +107,7 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     //autofocus: true,
                     keyboardType: TextInputType.text,
                     decoration: const InputDecoration(
-                      labelText: "Nome para identificação *",
+                      labelText: "Nome para identificação de seu carro *",
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(
                           Radius.circular(8),
@@ -807,7 +807,7 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                 ),
                 const SizedBox(height: 20),
 
-                //Box do Bairro/Cidade
+                //Box do Município
                 Container(
                   height: 54,
                   decoration: const BoxDecoration(
@@ -817,7 +817,7 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     ),
                   ),
                   child: TextFormField(
-                    controller: nomeControllerBairro,
+                    controller: nomeControllerMunicipio,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -829,7 +829,7 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     //autofocus: true,
                     keyboardType: TextInputType.text,
                     decoration: const InputDecoration(
-                      labelText: "Bairro/Cidade *",
+                      labelText: "Município *",
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(
                           Radius.circular(8),
@@ -911,10 +911,9 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                   onPressed: () {
                     if (formKey.currentState!.validate() &&
                         nomeControllerIdentificacao.text.isNotEmpty) {
-
                       if (salvarInfo) {
                         FirebaseFirestore.instance
-                        .collection('usuarios/$email/conta/reivindicacao/carros_salvos')
+                            .collection('usuarios/$email/conta/reivindicacao/carros_salvos')
                             .doc(nomeControllerIdentificacao.text)
                             .set({
                           'nomeIdentificacao': nomeControllerIdentificacao.text,
@@ -927,7 +926,7 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                           're': opcaoRe,
                           'transmissao': transmissao,
                           'densidade': densidade,
-                          'nomeBairro': nomeControllerBairro.text,
+                          'nomeMunicípio': nomeControllerMunicipio.text,
                         });
                       }
 
