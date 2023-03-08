@@ -39,14 +39,14 @@ class _AppDrawerState extends State<AppDrawer> {
                     radius: 52,
                     backgroundImage: NetworkImage('https://cdn-icons-png.flaticon.com/512/149/149071.png'),
                   ),
-                  otherAccountsPictures: [
-                    GestureDetector(
-                        child: const Icon(Icons.account_circle_outlined, color: Colors.white,),
-                      onTap: () {
-                        Navigator.of(context).pushNamed('/conta');
-                      },
-                    )
-                  ],
+                  //otherAccountsPictures: [
+                  //  GestureDetector(
+                   //     child: const Icon(Icons.account_circle_outlined, color: Colors.white,),
+                   //   onTap: () {
+                   //     Navigator.of(context).pushNamed('/conta');
+                   //   },
+                  //  )
+                //  ],
                   accountName: Text(nome),
                   accountEmail: Text(email),
               ),
@@ -101,20 +101,20 @@ class _AppDrawerState extends State<AppDrawer> {
             ),
             ListTile(
               dense: true,
+              title: const Text("Conta"),
+              leading: const Icon(Icons.account_circle_outlined),
+              onTap: () {
+                Navigator.of(context).pushNamed('/editarPerfil');
+              },
+            ),
+            ListTile(
+              dense: true,
               title: const Text("Sair"),
               leading: const Icon(Icons.exit_to_app),
               onTap: () {
                 sair();
               },
             ),
-            // ListTile(
-            //   dense: true,
-            //   title: const Text("Conta"),
-            //   leading: const Icon(Icons.account_circle_outlined),
-            //   onTap: () {
-            //     Navigator.of(context).pushNamed('/conta');
-            //   },
-            // ),
           ],
         ),
       ),
