@@ -196,7 +196,7 @@ class _LoginPageState extends State<LoginPage> {
       if (e.code == 'user-not-found') {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-            content: Text('Usuário não encontrado. Cadastre-se.'),
+            content: Text('Usuário e/ou senha inválidos'),
             backgroundColor: Colors.redAccent,
           ),
         );
