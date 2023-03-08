@@ -11,11 +11,18 @@ class EditarPerfilPage extends StatefulWidget {
 }
 
 class _EditarPerfilPageState extends State<EditarPerfilPage> {
-
+  final _emailController = TextEditingController();
   bool isObscurePassword = true;
   final _firebaseAuth = FirebaseAuth.instance;
   String nome = '';
   String email = '';
+
+
+  @override
+  void dispose(){
+    _emailController.dispose();
+    super.dispose();
+  }
 
   @override
   initState(){
@@ -27,18 +34,21 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xFF2a5298),
         title: Text('Editar perfil'),
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
             color: Colors.white,
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pushNamed('/home');
+          },
         ),
         actions: [
           IconButton(
             icon: Icon(
-                Icons.settings,
+                Icons.check,
                 color: Colors.white),
             onPressed: () {},
           )
@@ -92,7 +102,7 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
                           ),
                           child: Icon(
                             Icons.edit,
-                            color: Colors.white,
+                            color: Color(0xFF2a5298),
                           ),
                         )
                     )
@@ -102,36 +112,50 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
               SizedBox(height: 30),
               buildTextField('Nome', nome, false),
               buildTextField('Email', email, false),
-              buildTextField('Senha', '*********', true),
+              //buildTextField('Senha', '*********', true),
               SizedBox(height: 30),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  OutlinedButton(onPressed: () {},
-                      child: Text('CANCEL',
+                  TextButton(
+                    child: const Text(
+                      "Alterar senha ",
                       style: TextStyle(
-                        fontSize: 15,
-                        letterSpacing: 2,
-                        color: Colors.black
-                      )),
-                    style: OutlinedButton.styleFrom(
-                      padding: EdgeInsets.symmetric(horizontal: 50),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
+                        color: Color(0xFF2a5298),
+                        fontSize: 18,
+                      ),
+                      textAlign: TextAlign.center,
                     ),
+                    onPressed: () {
+                      resetPassword();
+                    },
                   ),
-                  ElevatedButton(onPressed: () {},
-                      child: Text('Salvar', style: TextStyle(
-                        fontSize: 15,
-                        letterSpacing: 2,
-                        color: Colors.white
-                      )),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue,
-                      padding: EdgeInsets.symmetric(horizontal: 50),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20) )
-                    )
-                      )
-                ],
+              ]
+
+                //   OutlinedButton(onPressed: () {},
+                //       child: Text('Cancelar',
+                //       style: TextStyle(
+                //         fontSize: 15,
+                //         letterSpacing: 2,
+                //         color: Colors.black
+                //       )),
+                //     style: OutlinedButton.styleFrom(
+                //       padding: EdgeInsets.symmetric(horizontal: 50),
+                //       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
+                //     ),
+                //   ),
+                  // ElevatedButton(onPressed: () {},
+                  //     child: Text('Salvar', style: TextStyle(
+                  //       fontSize: 15,
+                  //       letterSpacing: 2,
+                  //       color: Colors.white
+                  //     )),
+                  //   style: ElevatedButton.styleFrom(
+                  //     backgroundColor: Colors.blue,
+                  //     padding: EdgeInsets.symmetric(horizontal: 50),
+                  //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20) )
+                  //   )
+                  //     )
+                //],
               )
             ],
           ),
@@ -140,7 +164,7 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
     );
   }
 
-  Widget buildTextField(String labelText, String placeholder, bool isPasswordTextField) {
+  Widget buildTextField(String? labelText, String? placeholder, bool isPasswordTextField) {
   return Padding(
     padding: EdgeInsets.only(bottom: 30),
     child: TextField(
@@ -176,6 +200,26 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
         nome = usuario.displayName!;
         email = usuario.email!;
       });
+    }
+  }
+  Future resetPassword() async {
+
+    try {
+      await FirebaseAuth.instance
+          .sendPasswordResetEmail(email: email);
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Email de  alteração de senha enviado. Verifique sua caixa de entrada e spam'),
+          backgroundColor: Colors.blueAccent,
+        ),
+      );
+    } on FirebaseAuthException {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Email não cadastrado'),
+          backgroundColor: Colors.redAccent,
+        ),
+      );
     }
   }
 }
