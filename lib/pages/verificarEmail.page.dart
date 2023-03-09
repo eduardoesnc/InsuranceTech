@@ -2,10 +2,7 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:insurancetech/components/largeButton.dart';
-import 'package:insurancetech/pages/cadastro.page.dart';
 import 'package:insurancetech/pages/home.page.dart';
 import 'package:insurancetech/pages/login.page.dart';
 

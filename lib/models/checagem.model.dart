@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:insurancetech/pages/home.page.dart';
 import 'package:insurancetech/pages/login.page.dart';
-//import 'package:insurancetech/pages/verificar.email.page.dart';
+//import 'package:insurancetech/pages/verificarEmail.page.dart';
 
 class ChecagemPage extends StatefulWidget {
   const ChecagemPage({Key? key}) : super(key: key);
