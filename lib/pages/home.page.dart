@@ -31,6 +31,15 @@ class _HomePageState extends State<HomePage> {
           height: 90,
           child: Image.asset("assets/logo.png"),
         ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.account_circle_outlined),
+            tooltip: 'Editar Perfil',
+            onPressed: () {
+              Navigator.of(context).pushNamed('/editarPerfil');
+            },
+          ),
+        ],
       ),
       body: Container(
         padding: const EdgeInsets.only(top: 60, left: 40, right: 40,),

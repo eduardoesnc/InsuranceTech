@@ -47,6 +47,7 @@ class _CarrosSalvosPageState extends State<CarrosSalvosPage> {
                 texto: 'Carros salvos',
               ),
               const SizedBox(height: 50),
+
               StreamBuilder<QuerySnapshot>(
                 stream: FirebaseFirestore.instance
                     .collection('usuarios/$email/conta/reivindicacao/carros_salvos')
@@ -58,7 +59,7 @@ class _CarrosSalvosPageState extends State<CarrosSalvosPage> {
                   return Column(
                     children: snapshot.data!.docs
                         .map((doc) => Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 10),
+                              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 80),
                               child: Container(
                                 height: 50,
                                 alignment: Alignment.centerLeft,
