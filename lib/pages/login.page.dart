@@ -86,16 +86,18 @@ class _LoginPageState extends State<LoginPage> {
                 controller: _passwordcontroller,
                 keyboardType: TextInputType.text,
                 obscureText: _showPassword,
-                decoration:  InputDecoration(
+                decoration: InputDecoration(
                   suffixIcon: GestureDetector(
-                      child: Icon(
-                        _showPassword == true ? Icons.visibility_off : Icons.visibility,
-                        color: Colors.white,
-                      ),
-                    onTap: (){
-                        setState(() {
-                          _showPassword = !_showPassword;
-                        });
+                    child: Icon(
+                      _showPassword == true
+                          ? Icons.visibility_off
+                          : Icons.visibility,
+                      color: Colors.white,
+                    ),
+                    onTap: () {
+                      setState(() {
+                        _showPassword = !_showPassword;
+                      });
                     },
                   ),
                   labelText: "Senha",

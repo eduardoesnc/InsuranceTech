@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:insurancetech/models/checagem.model.dart';
+import 'package:insurancetech/pages/login.page.dart';
+import 'package:insurancetech/pages/verificar.email.page.dart';
 import '../components/largeButton.dart';
 import '../components/pageTitle.dart';
 
@@ -262,7 +264,7 @@ class _CadastroPageState extends State<CadastroPage> {
       userCredential.user!.updateDisplayName(_nomeController.text);
 
       FirebaseFirestore.instance
-      .collection('usuarios/${_emailController.text}/conta')
+          .collection('usuarios/${_emailController.text}/conta')
           .doc('informacoes')
           .set({
         'nomeUsuario': _nomeController.text,
@@ -296,4 +298,20 @@ class _CadastroPageState extends State<CadastroPage> {
       }
     }
   }
+}
+
+class Registro extends CadastroPage {
+  const Registro({super.key});
+  Widget build(BuildContext context) => Scaffold(
+        body: StreamBuilder<User?>(
+          stream: FirebaseAuth.instance.authStateChanges(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return const VerifyEmail();
+            } else {
+              return const LoginPage();
+            }
+          },
+        ),
+      );
 }

@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:insurancetech/pages/home.page.dart';
 import 'package:insurancetech/pages/login.page.dart';
+import 'package:insurancetech/pages/verificar.email.page.dart';
 
-class ChecagemPage extends StatefulWidget{
-  const ChecagemPage({Key? key}) : super (key:key);
+class ChecagemPage extends StatefulWidget {
+  const ChecagemPage({Key? key}) : super(key: key);
 
   static const routeName = '/checar';
 
@@ -14,32 +15,30 @@ class ChecagemPage extends StatefulWidget{
 }
 
 class _ChecagemPageState extends State<ChecagemPage> {
-
   StreamSubscription? streamSubscription;
 
   @override
-  initState(){
+  initState() {
     super.initState();
-    streamSubscription = FirebaseAuth.instance.authStateChanges().listen((User? user) {
-     if (user == null) {
-       Navigator.pushReplacement(
-           context,
-           MaterialPageRoute(
-           builder: (context) => const LoginPage()
-           ),
-       );
-     } else {
-      Navigator.pushReplacement(
-         context,
-         MaterialPageRoute(
-             builder: (context) => const HomePage(),
-         ));
-     }
+    streamSubscription =
+        FirebaseAuth.instance.authStateChanges().listen((User? user) {
+      if (user == null) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const LoginPage()),
+        );
+      } else {
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const VerifyEmail(),
+            ));
+      }
     });
   }
 
   @override
-  void dispose(){
+  void dispose() {
     streamSubscription!.cancel();
     super.dispose();
   }
