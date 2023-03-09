@@ -7,6 +7,7 @@ import 'package:insurancetech/pages/verificar.email.page.dart';
 import '../components/largeButton.dart';
 import '../components/pageTitle.dart';
 
+
 class CadastroPage extends StatefulWidget {
   const CadastroPage({Key? key}) : super(key: key);
 
@@ -24,6 +25,13 @@ class _CadastroPageState extends State<CadastroPage> {
   bool _showPassword = true;
   bool _showconfirmPassword = true;
   final _firebaseAuth = FirebaseAuth.instance;
+
+  Future<void> createUser(String name, String email) async {
+    await FirebaseFirestore.instance.collection('users').add({
+      'nomeUser': name,
+      'emailUser': email,
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -262,6 +270,8 @@ class _CadastroPageState extends State<CadastroPage> {
               email: _emailController.text, password: _passwordController.text);
 
       userCredential.user!.updateDisplayName(_nomeController.text);
+
+      createUser(_nomeController.text, _emailController.text);
 
       FirebaseFirestore.instance
           .collection('usuarios/${_emailController.text}/conta')

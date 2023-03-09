@@ -1,6 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../profile/alterarNomeUsuario.dart';
+
+//import '../profile/alterarNomeUsuario.dart';
+
 class EditarPerfilPage extends StatefulWidget {
   const EditarPerfilPage({Key? key}) : super(key: key);
 
@@ -11,24 +15,28 @@ class EditarPerfilPage extends StatefulWidget {
 }
 
 class _EditarPerfilPageState extends State<EditarPerfilPage> {
-  final _emailController = TextEditingController();
-  bool isObscurePassword = true;
-  final _firebaseAuth = FirebaseAuth.instance;
-  String nome = '';
-  String email = '';
-
-
-  @override
-  void dispose(){
-    _emailController.dispose();
-    super.dispose();
-  }
 
   @override
   initState(){
     super.initState();
     getUser();
   }
+
+  final _emailController = TextEditingController();
+  final _emailUserController = TextEditingController();
+  final _nomeUserController = TextEditingController();
+  bool isObscurePassword = true;
+  final _firebaseAuth = FirebaseAuth.instance;
+  String nome = '';
+  String email = '';
+
+
+   @override
+   void dispose(){
+    _emailController.dispose();
+     super.dispose();
+   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +58,10 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
             icon: Icon(
                 Icons.check,
                 color: Colors.white),
-            onPressed: () {},
+            onPressed: () {
+              updateUserName(_nomeUserController.text);
+              Navigator.of(context).popAndPushNamed('/editarPerfil');
+            },
           )
         ],
       ),
@@ -111,12 +122,10 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
               ),
               SizedBox(height: 30),
               buildTextField('Nome', nome, false),
-              buildTextField('Email', email, false),
+              buildTextField2('Email', email, false),
               //buildTextField('Senha', '*********', true),
               SizedBox(height: 30),
-              Row(
-                children: [
-                  TextButton(
+              TextButton(
                     child: const Text(
                       "Alterar senha ",
                       style: TextStyle(
@@ -131,33 +140,6 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
                   ),
               ]
 
-                //   OutlinedButton(onPressed: () {},
-                //       child: Text('Cancelar',
-                //       style: TextStyle(
-                //         fontSize: 15,
-                //         letterSpacing: 2,
-                //         color: Colors.black
-                //       )),
-                //     style: OutlinedButton.styleFrom(
-                //       padding: EdgeInsets.symmetric(horizontal: 50),
-                //       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
-                //     ),
-                //   ),
-                  // ElevatedButton(onPressed: () {},
-                  //     child: Text('Salvar', style: TextStyle(
-                  //       fontSize: 15,
-                  //       letterSpacing: 2,
-                  //       color: Colors.white
-                  //     )),
-                  //   style: ElevatedButton.styleFrom(
-                  //     backgroundColor: Colors.blue,
-                  //     padding: EdgeInsets.symmetric(horizontal: 50),
-                  //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20) )
-                  //   )
-                  //     )
-                //],
-              )
-            ],
           ),
         ),
       ),
@@ -168,6 +150,7 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
   return Padding(
     padding: EdgeInsets.only(bottom: 30),
     child: TextField(
+      controller: _nomeUserController,
       obscureText: isPasswordTextField ? isObscurePassword : false,
       decoration: InputDecoration(
         suffixIcon: isPasswordTextField ?
@@ -192,6 +175,36 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
     ),
   );
 }
+
+  Widget buildTextField2(String? labelText, String? placeholder, bool isPasswordTextField) {
+    return Padding(
+      padding: EdgeInsets.only(bottom: 30),
+      child: TextField(
+        controller: _emailUserController,
+        obscureText: isPasswordTextField ? isObscurePassword : false,
+        decoration: InputDecoration(
+            suffixIcon: isPasswordTextField ?
+            IconButton(
+                icon: Icon(Icons.remove_red_eye, color: Colors.grey),
+                onPressed: () {
+                  setState(() {
+                    isObscurePassword = !isObscurePassword;
+                  });
+                }
+            ): null,
+            contentPadding: EdgeInsets.only(bottom: 5),
+            labelText: labelText,
+            floatingLabelBehavior: FloatingLabelBehavior.always,
+            hintText: placeholder,
+            hintStyle: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.grey,
+            )
+        ),
+      ),
+    );
+  }
 
   getUser() async{
     User? usuario = _firebaseAuth.currentUser;
@@ -223,4 +236,5 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
     }
   }
 }
+
 
