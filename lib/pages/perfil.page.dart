@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import '../profile/alterarNomeUsuario.dart';
+import '../services/alterarNomeUsuario.dart';
 
 //import '../profile/alterarNomeUsuario.dart';
 
