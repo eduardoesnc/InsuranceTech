@@ -1,7 +1,4 @@
-//TROCAR DESTINO DOS BOTÕES
-
 import 'package:flutter/material.dart';
-
 import '../components/drawer.dart';
 import '../components/largeButton.dart';
 import '../components/pageTitle.dart';

@@ -1,9 +1,12 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../models/checagem.model.dart';
+import '../pages/perfil.page.dart';
 
 class AppDrawer extends StatefulWidget {
   const AppDrawer({Key? key}) : super(key: key);
+
 
   @override
   State<AppDrawer> createState() => _AppDrawerState();
@@ -13,6 +16,9 @@ class _AppDrawerState extends State<AppDrawer> {
   final _firebaseAuth = FirebaseAuth.instance;
   String nome = '';
   String email = '';
+  String fotoPerfil = EditarPerfilPage().getFotoPerfil();
+
+
 
   @override
   initState(){
@@ -35,9 +41,11 @@ class _AppDrawerState extends State<AppDrawer> {
                   decoration: const BoxDecoration(
                     color: Color(0xFF2a5298),
                     ),
-                  currentAccountPicture: const CircleAvatar(
+                  currentAccountPicture: CircleAvatar(
                     radius: 52,
-                    backgroundImage: NetworkImage('https://cdn-icons-png.flaticon.com/512/149/149071.png'),
+                    backgroundImage: (fotoPerfil.isEmpty)
+                        ?AssetImage('assets/profile.jpeg')
+                        :FileImage(File(fotoPerfil)) as ImageProvider,
                   ),
                   accountName: Text(nome),
                   accountEmail: Text(email),
