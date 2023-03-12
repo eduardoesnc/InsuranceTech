@@ -48,10 +48,10 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFF2a5298),
-        title: Text('Editar perfil'),
+        backgroundColor: const Color(0xFF2a5298),
+        title: const Text('Editar perfil'),
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back,
             color: Colors.white,
           ),
@@ -61,16 +61,24 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.check, color: Colors.white),
+            icon: const Icon(Icons.check, color: Colors.white),
             onPressed: () {
-              updateUserName(_nomeUserController.text);
-              Navigator.of(context).popAndPushNamed('/editarPerfil');
+              if(_nomeUserController.text != '') {
+                updateUserName(_nomeUserController.text);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Nome de usuário alterado com sucesso'),
+                    backgroundColor: Colors.greenAccent,
+                  ),
+                );
+              }
+              Navigator.of(context).popAndPushNamed('/home');
             },
           )
         ],
       ),
       body: Container(
-        padding: EdgeInsets.only(left: 15, top: 20, right: 15),
+        padding: const EdgeInsets.only(left: 15, top: 20, right: 15),
         child: GestureDetector(
           onTap: () {
             FocusScope.of(context).unfocus();
@@ -83,11 +91,11 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
                 ],
               ),
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             buildTextField('Nome', nome, false),
-            buildTextField2('Email', email, false),
+            //buildTextField2('Email', email, false),
             //buildTextField('Senha', '*********', true),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             TextButton(
               child: const Text(
                 "Alterar senha ",
@@ -110,25 +118,25 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
   Widget buildTextField(
       String? labelText, String? placeholder, bool isPasswordTextField) {
     return Padding(
-      padding: EdgeInsets.only(bottom: 30),
+      padding: const EdgeInsets.only(bottom: 30),
       child: TextField(
         controller: _nomeUserController,
         obscureText: isPasswordTextField ? isObscurePassword : false,
         decoration: InputDecoration(
             suffixIcon: isPasswordTextField
                 ? IconButton(
-                    icon: Icon(Icons.remove_red_eye, color: Colors.grey),
+                    icon: const Icon(Icons.remove_red_eye, color: Colors.blue),
                     onPressed: () {
                       setState(() {
                         isObscurePassword = !isObscurePassword;
                       });
                     })
                 : null,
-            contentPadding: EdgeInsets.only(bottom: 5),
+            contentPadding: const EdgeInsets.only(bottom: 5),
             labelText: labelText,
             floatingLabelBehavior: FloatingLabelBehavior.always,
             hintText: placeholder,
-            hintStyle: TextStyle(
+            hintStyle: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
               color: Colors.grey,
@@ -140,25 +148,25 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
   Widget buildTextField2(
       String? labelText, String? placeholder, bool isPasswordTextField) {
     return Padding(
-      padding: EdgeInsets.only(bottom: 30),
+      padding: const EdgeInsets.only(bottom: 30),
       child: TextField(
         controller: _emailUserController,
         obscureText: isPasswordTextField ? isObscurePassword : false,
         decoration: InputDecoration(
             suffixIcon: isPasswordTextField
                 ? IconButton(
-                    icon: Icon(Icons.remove_red_eye, color: Colors.grey),
+                    icon: const Icon(Icons.remove_red_eye, color: Colors.grey),
                     onPressed: () {
                       setState(() {
                         isObscurePassword = !isObscurePassword;
                       });
                     })
                 : null,
-            contentPadding: EdgeInsets.only(bottom: 5),
+            contentPadding: const EdgeInsets.only(bottom: 5),
             labelText: labelText,
             floatingLabelBehavior: FloatingLabelBehavior.always,
             hintText: placeholder,
-            hintStyle: TextStyle(
+            hintStyle: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
               color: Colors.grey,
@@ -175,7 +183,7 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
         CircleAvatar(
           radius: 80,
           backgroundImage: (_imageFile.path.isEmpty)
-              ?AssetImage('assets/profile.jpeg')
+              ?const AssetImage('assets/profile.jpeg')
               :FileImage(File(_imageFile.path)) as ImageProvider,
         ),
         Positioned(
@@ -187,7 +195,7 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
                     builder: ((builder) => bottomSheet()),
                 );
               },
-              child: Icon(
+              child: const Icon(
                 Icons.edit,
                 color: Color(0xFF2a5298),
                 size: 28,
@@ -201,37 +209,37 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
     return Container(
         height: 100,
         width: MediaQuery.of(context).size.width,
-        margin: EdgeInsets.symmetric(
+        margin: const EdgeInsets.symmetric(
           horizontal: 20,
           vertical: 20,
         ),
         child: Column(
           children: <Widget>[
-            Text(
+            const Text(
               "Escolha sua foto de perfil",
               style: TextStyle(
                 fontSize: 20,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 TextButton.icon(
-                  icon:Icon(Icons.camera_alt_outlined),
+                  icon:const Icon(Icons.camera_alt_outlined),
                   onPressed: (){
                     takeImage(ImageSource.camera);
                   },
-                  label: Text('Camera'),
+                  label: const Text('Camera'),
                 ),
                 TextButton.icon(
-                  icon:Icon(Icons.image_outlined),
+                  icon:const Icon(Icons.image_outlined),
                   onPressed: (){
                       takeImage(ImageSource.gallery);
                   },
-                  label: Text('Galeria'),
+                  label: const Text('Galeria'),
                 ),
               ],
             )
@@ -252,14 +260,14 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: Text('Nenhum arquivo carregado'),
-              content: Text('Por favor, selecione um arquivo para continuar.'),
+              title: const Text('Nenhum arquivo carregado'),
+              content: const Text('Por favor, selecione um arquivo para continuar.'),
               actions: [
                 TextButton(
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: Text('OK'),
+                  child: const Text('OK'),
                 ),
               ],
             );
