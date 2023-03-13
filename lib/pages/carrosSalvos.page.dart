@@ -29,6 +29,7 @@ class _CarrosSalvosPageState extends State<CarrosSalvosPage> {
     return Scaffold(
         drawer: const AppDrawer(),
         appBar: AppBar(
+          toolbarHeight: 80,
           elevation: 0,
           backgroundColor: const Color(0xFF2a5298),
           centerTitle: true,

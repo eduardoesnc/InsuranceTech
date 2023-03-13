@@ -30,9 +30,9 @@ class _AnalisePageState extends State<AnalisePage> {
 
   final Analise analise = const Analise('', '');
 
-
   late TextEditingController controller;
   late FixedExtentScrollController scrollController;
+
   final titulo = [
     'Classificação de segurança pela NCAP entre os carros com chance de reivindicar o seguro',
     'Probabilidade de Sinistro por Segmento do Veículo',
@@ -45,7 +45,6 @@ class _AnalisePageState extends State<AnalisePage> {
   ];
 
   int index = 0;
-
 
   @override
   void initState(){
@@ -100,6 +99,7 @@ class _AnalisePageState extends State<AnalisePage> {
     return Scaffold(
       drawer: const AppDrawer(),
       appBar: AppBar(
+        toolbarHeight: 80,
         elevation: 0,
         backgroundColor: const Color(0xFF2a5298),
         centerTitle: true,

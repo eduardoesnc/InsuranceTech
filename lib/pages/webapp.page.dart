@@ -39,6 +39,7 @@ class _WebAppPageState extends State<WebAppPage> {
     return Scaffold(
       drawer: const AppDrawer(),
       appBar: AppBar(
+          toolbarHeight: 80,
           elevation: 0,
           backgroundColor: const Color(0xFF2a5298),
           centerTitle: true,
@@ -46,6 +47,14 @@ class _WebAppPageState extends State<WebAppPage> {
             width: 90,
             child: Image.asset("assets/logo.png"),
           ),
+          actions: [
+            IconButton(
+              tooltip: 'Refresh',
+              onPressed: (){
+                controller.reload();
+              },
+              icon: const Icon(Icons.refresh_outlined)),
+          ],
         ),
       body: WebViewWidget(controller: controller)
     );

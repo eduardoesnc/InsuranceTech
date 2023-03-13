@@ -93,7 +93,7 @@ class _VerifyEmailState extends State<VerifyEmail> {
                       textAlign: TextAlign.center,
                     ),
                     onPressed: () {
-                      Navigator.of(context).pushNamed('//verificaEmail');
+                      Navigator.of(context).pushNamed('/verificaEmail');
                     },
                   ),
                 ),
