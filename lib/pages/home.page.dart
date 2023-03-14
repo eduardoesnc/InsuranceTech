@@ -19,7 +19,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       drawer: const AppDrawer(),
       appBar: AppBar(
-        toolbarHeight: 100,
+        toolbarHeight: 80,
         elevation: 0,
         backgroundColor: const Color(0xFF2a5298),
         centerTitle: true,
@@ -28,15 +28,6 @@ class _HomePageState extends State<HomePage> {
           height: 90,
           child: Image.asset("assets/logo.png"),
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.account_circle_outlined),
-            tooltip: 'Editar Perfil',
-            onPressed: () {
-              Navigator.of(context).pushNamed('/editarPerfil');
-            },
-          ),
-        ],
       ),
       body: Container(
         padding: const EdgeInsets.only(top: 60, left: 40, right: 40,),
@@ -53,6 +44,15 @@ class _HomePageState extends State<HomePage> {
               texto: 'Estimar reivindicação',
               onPressed: () {
                 Navigator.of(context).pushNamed('/estimar');
+              },
+            ),
+
+            const SizedBox( height: 25 ),
+
+            LargeButton(
+              texto: 'WebView',
+              onPressed: () {
+                Navigator.of(context).pushNamed('/webapp');
               },
             ),
 

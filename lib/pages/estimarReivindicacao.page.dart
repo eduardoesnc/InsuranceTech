@@ -64,6 +64,7 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
     return Scaffold(
         drawer: const AppDrawer(),
         appBar: AppBar(
+          toolbarHeight: 80,
           elevation: 0,
           backgroundColor: const Color(0xFF2a5298),
           centerTitle: true,
@@ -80,9 +81,11 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
             child: ListView(
               children: <Widget>[
                 const SizedBox(height: 50),
+                
                 const pageTitle(
                   texto: 'Informe os dados',
                 ),
+
                 const SizedBox(height: 50),
 
                 //Box do nome para identificação
@@ -125,10 +128,9 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
-
+                
+                const SizedBox(height: 20,),
+                
                 //Box da idade do condutor
                 Container(
                   height: 54,
@@ -203,8 +205,9 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     iconDisabledColor: Colors.white,
                   ),
                 ),
-                const SizedBox(height: 20),
-
+                
+                const SizedBox(height: 20,),
+                
                 //Box da idade do carro
                 Container(
                   height: 54,
@@ -279,8 +282,9 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     iconDisabledColor: Colors.white,
                   ),
                 ),
-                const SizedBox(height: 20),
-
+                
+                const SizedBox(height: 20,),
+                
                 //Box do modelo do carro
                 Container(
                   height: 54,
@@ -355,8 +359,9 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     iconDisabledColor: Colors.white,
                   ),
                 ),
-                const SizedBox(height: 20),
-
+                
+                const SizedBox(height: 20,),
+                
                 //Box do tipo do combustível
                 Container(
                   height: 54,
@@ -430,8 +435,9 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     iconDisabledColor: Colors.white,
                   ),
                 ),
-                const SizedBox(height: 20),
-
+                
+                const SizedBox(height: 20,),
+                
                 //Box do segmento do carro
                 Container(
                   height: 54,
@@ -505,8 +511,9 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     iconDisabledColor: Colors.white,
                   ),
                 ),
-                const SizedBox(height: 20),
-
+                
+                const SizedBox(height: 20,),
+                
                 //Box da assistência de freio
                 Container(
                   height: 54,
@@ -580,8 +587,9 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     iconDisabledColor: Colors.white,
                   ),
                 ),
-                const SizedBox(height: 20),
-
+                
+                const SizedBox(height: 20,),
+                
                 //Box da câmera de ré
                 Container(
                   height: 54,
@@ -655,8 +663,9 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     iconDisabledColor: Colors.white,
                   ),
                 ),
-                const SizedBox(height: 20),
-
+                
+                const SizedBox(height: 20,),
+                
                 //Box do tipo de transmissão
                 Container(
                   height: 54,
@@ -730,8 +739,9 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     iconDisabledColor: Colors.white,
                   ),
                 ),
-                const SizedBox(height: 20),
-
+                
+                const SizedBox(height: 20,),
+                
                 //Box da densidade populacional
                 Container(
                   height: 54,
@@ -805,8 +815,9 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     iconDisabledColor: Colors.white,
                   ),
                 ),
-                const SizedBox(height: 20),
-
+                
+                const SizedBox(height: 20,),
+                
                 //Box do Município
                 Container(
                   height: 54,
@@ -847,10 +858,9 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
-
+                
+                const SizedBox(height: 20,),
+                
                 Container(
                   alignment: Alignment.centerLeft,
                   child: const Text(
@@ -861,9 +871,9 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
+                
+                const SizedBox(height: 20,),
+                
                 SizedBox(
                   height: 40,
                   child: SizedBox(
@@ -903,9 +913,9 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
+
+                const SizedBox(height: 20,),
+                
                 LargeButton(
                   texto: 'Enviar',
                   onPressed: () {
@@ -938,9 +948,9 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     }
                   },
                 ),
-                const SizedBox(
-                  height: 40,
-                )
+
+                const SizedBox(height: 40,)
+
               ],
             ),
           ),
