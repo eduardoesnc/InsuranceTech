@@ -64,7 +64,7 @@ class _CadastroPageState extends State<CadastroPage> {
                 controller: _nomeController,
                 validator: (value){
                   if (value!.isEmpty){
-                    return 'Campo obrigatório';
+                    return 'Digite um nome';
                   }
                 },
                 onChanged: (text) {},
@@ -100,6 +100,12 @@ class _CadastroPageState extends State<CadastroPage> {
               ),
               child: TextFormField(
                 //autofocus: true,
+                validator: (value){
+                  if (value!.isEmpty){
+                    return 'Informe um email válido!';
+                  }
+                  return null;
+                },
                 controller: _emailController,
                 onChanged: (text) {},
                 keyboardType: TextInputType.emailAddress,
@@ -134,6 +140,12 @@ class _CadastroPageState extends State<CadastroPage> {
               ),
               child: TextFormField(
                 //autofocus: true,
+                validator: (value){
+                  if (value!.isEmpty){
+                    return 'Informe uma senha!';
+                  }
+                  return null;
+                },
                 controller: _passwordController,
                 onChanged: (text) {},
                 keyboardType: TextInputType.text,
@@ -181,6 +193,12 @@ class _CadastroPageState extends State<CadastroPage> {
               ),
               child: TextFormField(
                 //autofocus: true,
+                validator: (value){
+                  if (value!.isEmpty){
+                    return 'Confirme sua senha!';
+                  }
+                  return null;
+                },
                 controller: _confirmPasswordController,
                 onChanged: (text) {},
                 keyboardType: TextInputType.text,

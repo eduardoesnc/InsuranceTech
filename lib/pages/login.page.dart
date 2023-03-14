@@ -48,6 +48,12 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               child: TextFormField(
+                validator: (value){
+                  if (value!.isEmpty){
+                    return 'Informe seu email!';
+                  }
+                  return null;
+                },
                 controller: _emailcontroller,
                 //autofocus: true,
                 keyboardType: TextInputType.emailAddress,
@@ -83,6 +89,12 @@ class _LoginPageState extends State<LoginPage> {
               ),
               child: TextFormField(
                 //autofocus: true,
+                validator: (value){
+                  if (value!.isEmpty){
+                    return 'Informe sua senha!';
+                  }
+                  return null;
+                },
                 controller: _passwordcontroller,
                 keyboardType: TextInputType.text,
                 obscureText: _showPassword,
@@ -198,14 +210,14 @@ class _LoginPageState extends State<LoginPage> {
       if (e.code == 'user-not-found') {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-            content: Text('Usuário e/ou senha inválidos'),
+            content: Text('Email/Usuário não cadastrado'),
             backgroundColor: Colors.redAccent,
           ),
         );
       } else if (e.code == 'wrong-password') {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-            content: Text('Senha incorreta.'),
+            content: Text('Senha incorreta. Tente novamente'),
             backgroundColor: Colors.redAccent,
           ),
         );
