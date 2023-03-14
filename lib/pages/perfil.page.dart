@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -269,10 +268,6 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
     });
   }
 
-  // getFotoPerfil(){
-  //   XFile a = _imageFile;
-  //   return a;
-  // }
 
   getUser() async {
     User? usuario = _firebaseAuth.currentUser;

@@ -6,6 +6,8 @@ import 'package:insurancetech/pages/login.page.dart';
 import 'package:insurancetech/pages/verificarEmail.page.dart';
 import '../components/largeButton.dart';
 import '../components/pageTitle.dart';
+import'package:insurancetech/services/database.dart';
+import 'package:insurancetech/models/user.dart';
 
 
 class CadastroPage extends StatefulWidget {
@@ -26,12 +28,6 @@ class _CadastroPageState extends State<CadastroPage> {
   bool _showconfirmPassword = true;
   final _firebaseAuth = FirebaseAuth.instance;
 
-  Future<void> createUser(String name, String email) async {
-    await FirebaseFirestore.instance.collection('users').add({
-      'nomeUser': name,
-      'emailUser': email,
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -264,14 +260,18 @@ class _CadastroPageState extends State<CadastroPage> {
   }
 
   cadastrar() async {
+
     try {
       UserCredential userCredential =
           await _firebaseAuth.createUserWithEmailAndPassword(
               email: _emailController.text, password: _passwordController.text);
-
+      OurUser _user = OurUser();
+      _user.uid = userCredential.user!.uid;
+      _user.email = userCredential.user?.email!;
+      _user.nome = _nomeController.text;
       userCredential.user!.updateDisplayName(_nomeController.text);
 
-      createUser(_nomeController.text, _emailController.text);
+      OurDatabase().createUser(_user);
 
       FirebaseFirestore.instance
           .collection('usuarios/${_emailController.text}/conta')
@@ -296,7 +296,7 @@ class _CadastroPageState extends State<CadastroPage> {
       if (e.code == 'weak-password') {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-            content: Text('Crie uma senha mais forte'),
+            content: Text('Senha fraca. Tente novamente'),
           ),
         );
       } else if (e.code == 'email-already-in-use') {
@@ -308,7 +308,12 @@ class _CadastroPageState extends State<CadastroPage> {
       }
     }
   }
+
+
+
 }
+
+
 
 class Registro extends CadastroPage {
   const Registro({super.key});
