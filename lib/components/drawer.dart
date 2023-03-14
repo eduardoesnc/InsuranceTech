@@ -16,7 +16,7 @@ class _AppDrawerState extends State<AppDrawer> {
   final _firebaseAuth = FirebaseAuth.instance;
   String nome = '';
   String email = '';
-  String fotoPerfil = EditarPerfilPage().getFotoPerfil();
+  String fotoPerfil = const EditarPerfilPage().getFotoPerfil();
 
 
 
@@ -44,7 +44,7 @@ class _AppDrawerState extends State<AppDrawer> {
                   currentAccountPicture: CircleAvatar(
                     radius: 52,
                     backgroundImage: (fotoPerfil.isEmpty)
-                        ?AssetImage('assets/profile.jpeg')
+                        ?const AssetImage('assets/profile.jpeg')
                         :FileImage(File(fotoPerfil)) as ImageProvider,
                   ),
                   accountName: Text(nome),
@@ -97,6 +97,14 @@ class _AppDrawerState extends State<AppDrawer> {
               leading: const Icon(Icons.help),
               onTap: () {
                 Navigator.of(context).pushNamed('/sobre');
+              },
+            ),
+            ListTile(
+              dense: true,
+              title: const Text("Conta"),
+              leading: const Icon(Icons.account_circle_outlined),
+              onTap: () {
+                Navigator.of(context).pushNamed('/editarPerfil');
               },
             ),
             ListTile(
