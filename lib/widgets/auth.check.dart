@@ -8,10 +8,10 @@ class AuthCheck extends StatefulWidget {
   const AuthCheck({Key? key}) : super(key: key);
 
   @override
-  AuthCheckState createState() => AuthCheckState();
+  _AuthCheckState createState() => _AuthCheckState();
 }
 
-class AuthCheckState extends State<AuthCheck> {
+class _AuthCheckState extends State<AuthCheck> {
   @override
   Widget build(BuildContext context) {
     AuthService auth = Provider.of<AuthService>(context);
