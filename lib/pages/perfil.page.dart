@@ -252,7 +252,7 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
     );
     setState(() {
       if (pickedFile != null) {
-        _imageFile = pickedFile as XFile;
+        _imageFile = pickedFile;
       } else {
         _imageFile = XFile('');
         showDialog(

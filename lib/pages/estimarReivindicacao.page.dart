@@ -81,7 +81,7 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
             child: ListView(
               children: <Widget>[
                 const SizedBox(height: 50),
-                
+
                 const pageTitle(
                   texto: 'Informe os dados',
                 ),
@@ -128,9 +128,11 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     ),
                   ),
                 ),
-                
-                const SizedBox(height: 20,),
-                
+
+                const SizedBox(
+                  height: 20,
+                ),
+
                 //Box da idade do condutor
                 Container(
                   height: 54,
@@ -205,9 +207,11 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     iconDisabledColor: Colors.white,
                   ),
                 ),
-                
-                const SizedBox(height: 20,),
-                
+
+                const SizedBox(
+                  height: 20,
+                ),
+
                 //Box da idade do carro
                 Container(
                   height: 54,
@@ -282,9 +286,11 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     iconDisabledColor: Colors.white,
                   ),
                 ),
-                
-                const SizedBox(height: 20,),
-                
+
+                const SizedBox(
+                  height: 20,
+                ),
+
                 //Box do modelo do carro
                 Container(
                   height: 54,
@@ -359,9 +365,11 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     iconDisabledColor: Colors.white,
                   ),
                 ),
-                
-                const SizedBox(height: 20,),
-                
+
+                const SizedBox(
+                  height: 20,
+                ),
+
                 //Box do tipo do combustível
                 Container(
                   height: 54,
@@ -435,9 +443,11 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     iconDisabledColor: Colors.white,
                   ),
                 ),
-                
-                const SizedBox(height: 20,),
-                
+
+                const SizedBox(
+                  height: 20,
+                ),
+
                 //Box do segmento do carro
                 Container(
                   height: 54,
@@ -511,9 +521,11 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     iconDisabledColor: Colors.white,
                   ),
                 ),
-                
-                const SizedBox(height: 20,),
-                
+
+                const SizedBox(
+                  height: 20,
+                ),
+
                 //Box da assistência de freio
                 Container(
                   height: 54,
@@ -587,9 +599,11 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     iconDisabledColor: Colors.white,
                   ),
                 ),
-                
-                const SizedBox(height: 20,),
-                
+
+                const SizedBox(
+                  height: 20,
+                ),
+
                 //Box da câmera de ré
                 Container(
                   height: 54,
@@ -663,9 +677,11 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     iconDisabledColor: Colors.white,
                   ),
                 ),
-                
-                const SizedBox(height: 20,),
-                
+
+                const SizedBox(
+                  height: 20,
+                ),
+
                 //Box do tipo de transmissão
                 Container(
                   height: 54,
@@ -739,9 +755,11 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     iconDisabledColor: Colors.white,
                   ),
                 ),
-                
-                const SizedBox(height: 20,),
-                
+
+                const SizedBox(
+                  height: 20,
+                ),
+
                 //Box da densidade populacional
                 Container(
                   height: 54,
@@ -815,9 +833,11 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     iconDisabledColor: Colors.white,
                   ),
                 ),
-                
-                const SizedBox(height: 20,),
-                
+
+                const SizedBox(
+                  height: 20,
+                ),
+
                 //Box do Município
                 Container(
                   height: 54,
@@ -858,9 +878,11 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     ),
                   ),
                 ),
-                
-                const SizedBox(height: 20,),
-                
+
+                const SizedBox(
+                  height: 20,
+                ),
+
                 Container(
                   alignment: Alignment.centerLeft,
                   child: const Text(
@@ -871,51 +893,81 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     ),
                   ),
                 ),
-                
-                const SizedBox(height: 20,),
-                
+
+                const SizedBox(
+                  height: 20,
+                ),
+
                 SizedBox(
                   height: 40,
                   child: SizedBox(
-                    child: TextButton(
-                      onPressed: () {
-                        setState(() {
-                          salvarInfo = !salvarInfo;
-                        });
-                      },
-                      child: Row(
-                        children: [
-                          const Text(
-                            'Salvar informações',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.normal,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: TextButton(
+                            onPressed: () {},
+                            child: Row(
+                              children: [
+                                const Text(
+                                  'Salvar informações',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                SizedBox(
+                                  width: 30,
+                                  child: InkWell(
+                                    onTap: () {
+                                      setState(() {
+                                        salvarInfo = !salvarInfo;
+                                      });
+                                    },
+                                    child: Icon(
+                                      salvarInfo
+                                          ? Icons.check_box
+                                          : Icons.check_box_outline_blank,
+                                      color: salvarInfo
+                                          ? Colors.green
+                                          : Colors.black,
+                                      semanticLabel: salvarInfo
+                                          ? 'Não salvar informações'
+                                          : 'Salvar informações',
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                const Tooltip(
+                                  message:
+                                      'Clique na caixa ao lado se quiser salvar as informações passadas. \nVocê pode visualizá-las depois na aba de carros salvos.',
+                                  textAlign: TextAlign.center,
+                                  triggerMode: TooltipTriggerMode.tap,
+                                  showDuration: Duration(seconds: 6),
+                                  child: Icon(
+                                    Icons.help_outline,
+                                    color: Colors.white,
+                                    size: 20,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          SizedBox(
-                            width: 30,
-                            child: Icon(
-                              salvarInfo
-                                  ? Icons.check_box
-                                  : Icons.check_box_outline_blank,
-                              color: salvarInfo ? Colors.green : Colors.black,
-                              semanticLabel: salvarInfo
-                                  ? 'Não salvar informações'
-                                  : 'Salvar informações',
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
 
-                const SizedBox(height: 20,),
-                
+                const SizedBox(
+                  height: 20,
+                ),
+
                 LargeButton(
                   texto: 'Enviar',
                   onPressed: () {
@@ -923,7 +975,8 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                         nomeControllerIdentificacao.text.isNotEmpty) {
                       if (salvarInfo) {
                         FirebaseFirestore.instance
-                            .collection('usuarios/$email/conta/reivindicacao/carros_salvos')
+                            .collection(
+                                'usuarios/$email/conta/reivindicacao/carros_salvos')
                             .doc(nomeControllerIdentificacao.text)
                             .set({
                           'nomeIdentificacao': nomeControllerIdentificacao.text,
@@ -949,8 +1002,9 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                   },
                 ),
 
-                const SizedBox(height: 40,)
-
+                const SizedBox(
+                  height: 40,
+                )
               ],
             ),
           ),
