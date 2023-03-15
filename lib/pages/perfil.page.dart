@@ -293,7 +293,7 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text(
-              'Email de  alteração de senha enviado. Verifique sua caixa de entrada e spam'),
+              'Email de alteração de senha enviado. Verifique sua caixa de entrada e spam'),
           backgroundColor: Colors.blueAccent,
         ),
       );

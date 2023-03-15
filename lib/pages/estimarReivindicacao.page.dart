@@ -111,6 +111,8 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     keyboardType: TextInputType.text,
                     decoration: const InputDecoration(
                       labelText: "Nome para identificação de seu carro *",
+                      contentPadding:
+                          EdgeInsets.symmetric(vertical: 21, horizontal: 12),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(
                           Radius.circular(8),
@@ -158,6 +160,8 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     },
                     decoration: const InputDecoration(
                       labelText: "Idade do condutor *",
+                      contentPadding:
+                          EdgeInsets.symmetric(vertical: 18, horizontal: 12),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(8)),
                       ),
@@ -172,16 +176,13 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                         83,
                         (index) {
                           final value = index + 18;
-                          return Container(
-                            alignment: Alignment.center,
-                            child: Text(
-                              "$value",
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: value == idadeCondutor
-                                    ? Colors.white
-                                    : Colors.black,
-                              ),
+                          return Text(
+                            "$value",
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: value == idadeCondutor
+                                  ? Colors.white
+                                  : Colors.black,
                             ),
                           );
                         },
@@ -237,6 +238,8 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     },
                     decoration: const InputDecoration(
                       labelText: "Idade do carro *",
+                      contentPadding:
+                          EdgeInsets.symmetric(vertical: 18, horizontal: 12),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(8)),
                       ),
@@ -251,16 +254,13 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                         40,
                         (index) {
                           final value = index + 1;
-                          return Container(
-                            alignment: Alignment.center,
-                            child: Text(
-                              "$value",
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: value == idadeCarro
-                                    ? Colors.white
-                                    : Colors.black,
-                              ),
+                          return Text(
+                            "$value",
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: value == idadeCarro
+                                  ? Colors.white
+                                  : Colors.black,
                             ),
                           );
                         },
@@ -316,6 +316,8 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     },
                     decoration: const InputDecoration(
                       labelText: "Modelo do carro *",
+                      contentPadding:
+                          EdgeInsets.symmetric(vertical: 18, horizontal: 12),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(8)),
                       ),
@@ -330,16 +332,12 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                         11,
                         (index) {
                           final value = "M${index + 1}";
-                          return Container(
-                            alignment: Alignment.center,
-                            child: Text(
-                              value,
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: value == modelo
-                                    ? Colors.white
-                                    : Colors.black,
-                              ),
+                          return Text(
+                            value,
+                            style: TextStyle(
+                              fontSize: 18,
+                              color:
+                                  value == modelo ? Colors.white : Colors.black,
                             ),
                           );
                         },
@@ -395,6 +393,8 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     },
                     decoration: const InputDecoration(
                       labelText: "Tipo de combustível *",
+                      contentPadding:
+                          EdgeInsets.symmetric(vertical: 18, horizontal: 12),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(8)),
                       ),
@@ -407,16 +407,13 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     selectedItemBuilder: (BuildContext context) {
                       return combustiveis.map(
                         (value) {
-                          return Container(
-                            alignment: Alignment.center,
-                            child: Text(
-                              value,
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: value == combustivel
-                                    ? Colors.white
-                                    : Colors.black,
-                              ),
+                          return Text(
+                            value,
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: value == combustivel
+                                  ? Colors.white
+                                  : Colors.black,
                             ),
                           );
                         },
@@ -473,6 +470,8 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     },
                     decoration: const InputDecoration(
                       labelText: "Segmento do carro *",
+                      contentPadding:
+                          EdgeInsets.symmetric(vertical: 18, horizontal: 12),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(8)),
                       ),
@@ -485,16 +484,13 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     selectedItemBuilder: (BuildContext context) {
                       return segmentos.map(
                         (value) {
-                          return Container(
-                            alignment: Alignment.center,
-                            child: Text(
-                              value,
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: value == segmento
-                                    ? Colors.white
-                                    : Colors.black,
-                              ),
+                          return Text(
+                            value,
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: value == segmento
+                                  ? Colors.white
+                                  : Colors.black,
                             ),
                           );
                         },
@@ -551,6 +547,8 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     },
                     decoration: const InputDecoration(
                       labelText: "Tem assistência de freio? *",
+                      contentPadding:
+                          EdgeInsets.symmetric(vertical: 18, horizontal: 12),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(8)),
                       ),
@@ -563,16 +561,13 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     selectedItemBuilder: (BuildContext context) {
                       return opcoes.map(
                         (value) {
-                          return Container(
-                            alignment: Alignment.center,
-                            child: Text(
-                              value,
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: value == opcaoFreio
-                                    ? Colors.white
-                                    : Colors.black,
-                              ),
+                          return Text(
+                            value,
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: value == opcaoFreio
+                                  ? Colors.white
+                                  : Colors.black,
                             ),
                           );
                         },
@@ -629,6 +624,8 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     },
                     decoration: const InputDecoration(
                       labelText: "Tem câmera de ré? *",
+                      contentPadding:
+                          EdgeInsets.symmetric(vertical: 18, horizontal: 12),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(8)),
                       ),
@@ -641,16 +638,13 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     selectedItemBuilder: (BuildContext context) {
                       return opcoes.map(
                         (value) {
-                          return Container(
-                            alignment: Alignment.center,
-                            child: Text(
-                              value,
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: value == opcaoRe
-                                    ? Colors.white
-                                    : Colors.black,
-                              ),
+                          return Text(
+                            value,
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: value == opcaoRe
+                                  ? Colors.white
+                                  : Colors.black,
                             ),
                           );
                         },
@@ -707,6 +701,8 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     },
                     decoration: const InputDecoration(
                       labelText: "Tipo de transmissão *",
+                      contentPadding:
+                          EdgeInsets.symmetric(vertical: 18, horizontal: 12),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(8)),
                       ),
@@ -719,16 +715,13 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     selectedItemBuilder: (BuildContext context) {
                       return transmissoes.map(
                         (value) {
-                          return Container(
-                            alignment: Alignment.center,
-                            child: Text(
-                              value,
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: value == transmissao
-                                    ? Colors.white
-                                    : Colors.black,
-                              ),
+                          return Text(
+                            value,
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: value == transmissao
+                                  ? Colors.white
+                                  : Colors.black,
                             ),
                           );
                         },
@@ -785,6 +778,8 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     },
                     decoration: const InputDecoration(
                       labelText: "Densidade populacional de seu município *",
+                      contentPadding:
+                          EdgeInsets.symmetric(vertical: 18, horizontal: 12),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(8)),
                       ),
@@ -797,16 +792,13 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     selectedItemBuilder: (BuildContext context) {
                       return densidadePopulacional.map(
                         (value) {
-                          return Container(
-                            alignment: Alignment.center,
-                            child: Text(
-                              value,
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: value == densidade
-                                    ? Colors.white
-                                    : Colors.black,
-                              ),
+                          return Text(
+                            value,
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: value == densidade
+                                  ? Colors.white
+                                  : Colors.black,
                             ),
                           );
                         },
@@ -861,6 +853,8 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                     keyboardType: TextInputType.text,
                     decoration: const InputDecoration(
                       labelText: "Município *",
+                      contentPadding:
+                          EdgeInsets.symmetric(vertical: 21, horizontal: 12),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(
                           Radius.circular(8),

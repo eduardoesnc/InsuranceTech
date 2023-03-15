@@ -9,14 +9,9 @@ Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  runApp(
-      MultiProvider(
-          providers: [
-            ChangeNotifierProvider(create: (context) => AuthService()),
-          ],
-      child: const MyApp()
-      )
-  );
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: (context) => AuthService()),
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -30,7 +25,6 @@ class MyApp extends StatelessWidget {
           primaryColor: const Color(0xFF2a5298),
         ),
         initialRoute: '/checar',
-        routes: instanceRoutes(context)
-    );
+        routes: instanceRoutes(context));
   }
 }
