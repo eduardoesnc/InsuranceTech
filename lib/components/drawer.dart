@@ -93,6 +93,14 @@ class _AppDrawerState extends State<AppDrawer> {
             ),
             ListTile(
               dense: true,
+              title: const Text("Mapa de sinistros"),
+              leading: const Icon(Icons.place_rounded),
+              onTap: () {
+                Navigator.of(context).pushNamed('/mapa');
+              },
+            ),
+            ListTile(
+              dense: true,
               title: const Text("Sobre"),
               leading: const Icon(Icons.help),
               onTap: () {

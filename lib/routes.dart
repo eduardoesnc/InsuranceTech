@@ -14,6 +14,8 @@ import 'package:insurancetech/pages/documentos.page.dart';
 import 'package:insurancetech/models/checagem.model.dart';
 import 'package:insurancetech/pages/analises.page.dart';
 import 'package:insurancetech/pages/webapp.page.dart';
+import 'package:insurancetech/pages/mapa.page.dart';
+import 'package:insurancetech/pages/coordenadas.page.dart';
 
 Map<String, Widget Function(dynamic)> instanceRoutes(BuildContext context) => {
       ChecagemPage.routeName: (context) => const ChecagemPage(),
@@ -31,4 +33,6 @@ Map<String, Widget Function(dynamic)> instanceRoutes(BuildContext context) => {
       EditarPerfilPage.routeName: (context) => const EditarPerfilPage(),
       AnalisePage.routeName: (context) => const AnalisePage(),
       WebAppPage.routeName: (context) => const WebAppPage(),
+      MapaPage.routeName: (context) => const MapaPage(),
+      CoordenadasPage.routeName: (context) => const CoordenadasPage(),
     };
