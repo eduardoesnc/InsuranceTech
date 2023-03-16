@@ -24,10 +24,12 @@ Map<String, Widget Function(dynamic)> instanceRoutes(BuildContext context) => {
       EsqueceuSenhaPage.routeName: (context) => const EsqueceuSenhaPage(),
       RedefinirSenhaPage.routeName: (context) => const RedefinirSenhaPage(),
       HomePage.routeName: (context) => const HomePage(),
-      EstimarReivindicacaoPage.routeName: (context) => const EstimarReivindicacaoPage(),
-      ResultadoEstimativaPage.routeName: (context) => const ResultadoEstimativaPage(),
+      EstimarReivindicacaoPage.routeName: (context) =>
+          const EstimarReivindicacaoPage(),
+      ResultadoEstimativaPage.routeName: (context) =>
+          const ResultadoEstimativaPage(),
       SobrePage.routeName: (context) => const SobrePage(),
-      SugestoesPage.routeName: (context) => const SugestoesPage(),
+      ContactForm.routeName: (context) => const ContactForm(),
       CarrosSalvosPage.routeName: (context) => const CarrosSalvosPage(),
       DocumentosPage.routeName: (context) => const DocumentosPage(),
       EditarPerfilPage.routeName: (context) => const EditarPerfilPage(),
