@@ -75,15 +75,14 @@ class _MapaState extends State<MapaPage> {
                         zoom: _zoom,
                         minZoom: 2,
                         maxZoom: 22,
-                        allowPanning: true,
                         interactiveFlags: InteractiveFlag.all),
-                    layers: [
-                      TileLayerOptions(
+                    children: [
+                      TileLayer(
                         urlTemplate:
                             "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-                        subdomains: ['a', 'b', 'c'],
+                        subdomains: const ['a', 'b', 'c'],
                       ),
-                      MarkerLayerOptions(markers: markers),
+                      MarkerLayer(markers: markers),
                     ],
                   );
                 },
@@ -137,12 +136,22 @@ class _MapaState extends State<MapaPage> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('Senha de acesso'),
-          content: TextFormField(
-            controller: _passwordController,
-            obscureText: true,
-            decoration: const InputDecoration(
-              hintText: 'Insira a senha',
-            ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextFormField(
+                controller: _passwordController,
+                obscureText: true,
+                decoration: const InputDecoration(
+                  hintText: 'Insira a senha',
+                ),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'Apenas os administradores têm acesso a essa função',
+                style: TextStyle(color: Colors.red),
+              ),
+            ],
           ),
           actions: [
             TextButton(
@@ -186,10 +195,26 @@ class _MapaState extends State<MapaPage> {
         width: 80.0,
         height: 80.0,
         point: LatLng(latitude, longitude),
-        builder: (ctx) => const Icon(
-          Icons.location_on,
-          color: Colors.red,
-          size: 50,
+        builder: (ctx) => GestureDetector(
+          onTap: () {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Text(doc.id),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: const Text('Fechar'),
+                    ),
+                  ],
+                );
+              },
+            );
+          },
+          child: const Icon(Icons.location_on, color: Colors.red, size: 50),
         ),
       );
     }).toList();
