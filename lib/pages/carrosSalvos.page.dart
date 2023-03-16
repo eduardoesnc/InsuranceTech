@@ -60,7 +60,7 @@ class _CarrosSalvosPageState extends State<CarrosSalvosPage> {
                   return Column(
                     children: snapshot.data!.docs
                         .map((doc) => Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 80),
+                              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
                               child: Container(
                                 height: 50,
                                 alignment: Alignment.centerLeft,

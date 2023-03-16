@@ -22,6 +22,9 @@ class _MapaState extends State<MapaPage> {
 
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+    final mapWidth = screenSize.width * 0.8;
+    final mapHeight = screenSize.height * 0.68;
     return Scaffold(
       drawer: const AppDrawer(),
       appBar: AppBar(
@@ -44,7 +47,7 @@ class _MapaState extends State<MapaPage> {
             ),
             const SizedBox(height: 10),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 60),
+              padding: const EdgeInsets.symmetric(),
               child: LargeButton(
                 texto: 'Adicionar local de sinistro',
                 onPressed: () {
@@ -54,8 +57,8 @@ class _MapaState extends State<MapaPage> {
             ),
             const SizedBox(height: 10),
             SizedBox(
-              width: 1000,
-              height: 1000,
+              width: mapWidth,
+              height: mapHeight,
               child: StreamBuilder<QuerySnapshot>(
                 stream: FirebaseFirestore.instance
                     .collection('coordenadas')
@@ -68,12 +71,12 @@ class _MapaState extends State<MapaPage> {
                   return FlutterMap(
                     mapController: _mapController,
                     options: MapOptions(
-                      center: LatLng(-8.0965798, -34.8876455),
-                      zoom: _zoom,
-                      minZoom: 2,
-                      maxZoom: 22,
-                      allowPanning: true,
-                    ),
+                        center: LatLng(-8.0965798, -34.8876455),
+                        zoom: _zoom,
+                        minZoom: 2,
+                        maxZoom: 22,
+                        allowPanning: true,
+                        interactiveFlags: InteractiveFlag.all),
                     layers: [
                       TileLayerOptions(
                         urlTemplate:
@@ -88,23 +91,20 @@ class _MapaState extends State<MapaPage> {
             ),
             const SizedBox(height: 20),
           ])),
-      floatingActionButton: Stack(
+      floatingActionButton: Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          Positioned(
-            bottom: 80,
-            right: 10,
-            child: FloatingActionButton(
-              onPressed: _aumentarZoom,
-              child: const Icon(Icons.add),
-            ),
+          FloatingActionButton(
+            heroTag: null,
+            onPressed: _aumentarZoom,
+            child: const Icon(Icons.add),
           ),
-          Positioned(
-            bottom: 10,
-            right: 10,
-            child: FloatingActionButton(
-              onPressed: _diminuirZoom,
-              child: const Icon(Icons.remove),
-            ),
+          const SizedBox(height: 4),
+          FloatingActionButton(
+            heroTag: null,
+            onPressed: _diminuirZoom,
+            child: const Icon(Icons.remove),
           ),
         ],
       ),

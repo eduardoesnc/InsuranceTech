@@ -36,15 +36,11 @@ class _CoordenadasPageState extends State<CoordenadasPage> {
             padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
             color: const Color(0xFF2a5298),
             child: ListView(children: <Widget>[
-
               const SizedBox(height: 50),
-
               const pageTitle(
                 texto: 'Coordenadas',
               ),
-
               const SizedBox(height: 50),
-              
               Container(
                 height: 54,
                 decoration: const BoxDecoration(
@@ -78,9 +74,7 @@ class _CoordenadasPageState extends State<CoordenadasPage> {
                   ),
                 ),
               ),
-
               const SizedBox(height: 50),
-
               Container(
                 height: 54,
                 decoration: const BoxDecoration(
@@ -114,9 +108,7 @@ class _CoordenadasPageState extends State<CoordenadasPage> {
                   ),
                 ),
               ),
-
               const SizedBox(height: 10),
-
               Container(
                 height: 54,
                 decoration: const BoxDecoration(
@@ -150,20 +142,23 @@ class _CoordenadasPageState extends State<CoordenadasPage> {
                   ),
                 ),
               ),
-
               const SizedBox(height: 50),
-
               LargeButton(
                 texto: 'Enviar',
                 onPressed: () {
-                  FirebaseFirestore.instance
-                      .collection('coordenadas')
-                      .doc(nomeControllerCarro.text)
-                      .set({
-                    'latitude': double.tryParse(nomeControllerLatitude.text) ?? 0,
-                    'longitude': double.tryParse(nomeControllerLongitude.text) ?? 0,
-                  });
-
+                  if (nomeControllerCarro.text.isNotEmpty &&
+                      nomeControllerLatitude.text.isNotEmpty &&
+                      nomeControllerLongitude.text.isNotEmpty) {
+                    FirebaseFirestore.instance
+                        .collection('coordenadas')
+                        .doc(nomeControllerCarro.text)
+                        .set({
+                      'latitude':
+                          double.tryParse(nomeControllerLatitude.text) ?? 0,
+                      'longitude':
+                          double.tryParse(nomeControllerLongitude.text) ?? 0,
+                    });
+                  }
                   Navigator.of(context).pushNamed('/mapa');
                 },
               ),
