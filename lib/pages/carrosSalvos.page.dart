@@ -48,19 +48,31 @@ class _CarrosSalvosPageState extends State<CarrosSalvosPage> {
                 texto: 'Carros salvos',
               ),
               const SizedBox(height: 50),
-
               StreamBuilder<QuerySnapshot>(
                 stream: FirebaseFirestore.instance
-                    .collection('usuarios/$email/conta/reivindicacao/carros_salvos')
+                    .collection(
+                        'usuarios/$email/conta/reivindicacao/carros_salvos')
                     .snapshots(),
                 builder: (context, snapshot) {
                   if (!snapshot.hasData) {
                     return const CircularProgressIndicator();
+                  } 
+                  else if (snapshot.data!.docs.isEmpty) {
+                    return const Center(
+                      child: Text(
+                        'Você ainda não tem carros salvos',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                        ),
+                      ),
+                    );
                   }
                   return Column(
                     children: snapshot.data!.docs
                         .map((doc) => Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 10, horizontal: 30),
                               child: Container(
                                 height: 50,
                                 alignment: Alignment.centerLeft,
@@ -143,7 +155,8 @@ class _CarrosSalvosPageState extends State<CarrosSalvosPage> {
                 const SizedBox(height: 10),
                 Text('Tipo de transmissão: ${carDoc['transmissao']}'),
                 const SizedBox(height: 10),
-                Text('Densidade populacional de seu município: ${carDoc['densidade']}'),
+                Text(
+                    'Densidade populacional de seu município: ${carDoc['densidade']}'),
                 const SizedBox(height: 10),
                 Text('Município: ${carDoc['nomeMunicípio']}'),
               ],
