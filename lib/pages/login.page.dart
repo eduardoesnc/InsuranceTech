@@ -18,11 +18,14 @@ class _LoginPageState extends State<LoginPage> {
   final _passwordcontroller = TextEditingController();
   bool _showPassword = true;
   final _firebaseAuth = FirebaseAuth.instance;
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body: Form(
+        key: formKey,
+        child: Container(
         padding: const EdgeInsets.only(
           top: 80,
           left: 40,
@@ -39,17 +42,9 @@ class _LoginPageState extends State<LoginPage> {
             const SizedBox(
               height: 80,
             ),
-            Container(
-              height: 54,
-              decoration: const BoxDecoration(
-                color: Colors.white12,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(8),
-                ),
-              ),
-              child: TextFormField(
+            TextFormField(
                 validator: (value){
-                  if (value!.isEmpty){
+                  if (value == null || value.isEmpty){
                     return 'Informe seu email!';
                   }
                   return null;
@@ -58,13 +53,15 @@ class _LoginPageState extends State<LoginPage> {
                 //autofocus: true,
                 keyboardType: TextInputType.emailAddress,
                 decoration: const InputDecoration(
+                  filled: true ,
+                  fillColor: Colors.white12,
                   labelText: "Email",
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(8),
                     ),
                   ),
-                  labelStyle: TextStyle(
+                    labelStyle: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w400,
                     fontSize: 18,
@@ -75,22 +72,13 @@ class _LoginPageState extends State<LoginPage> {
                   color: Colors.white,
                 ),
               ),
-            ),
             const SizedBox(
               height: 20,
             ),
-            Container(
-              height: 54,
-              decoration: const BoxDecoration(
-                color: Colors.white12,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(8),
-                ),
-              ),
-              child: TextFormField(
+            TextFormField(
                 //autofocus: true,
                 validator: (value){
-                  if (value!.isEmpty){
+                  if (value == null || value.isEmpty){
                     return 'Informe sua senha!';
                   }
                   return null;
@@ -99,6 +87,8 @@ class _LoginPageState extends State<LoginPage> {
                 keyboardType: TextInputType.text,
                 obscureText: _showPassword,
                 decoration: InputDecoration(
+                  filled: true ,
+                  fillColor: Colors.white12 ,
                   suffixIcon: GestureDetector(
                     child: Icon(
                       _showPassword == true
@@ -128,7 +118,6 @@ class _LoginPageState extends State<LoginPage> {
                   fontSize: 18,
                   color: Colors.white,
                 ),
-              ),
             ),
             const SizedBox(
               height: 40,
@@ -156,7 +145,9 @@ class _LoginPageState extends State<LoginPage> {
             LargeButton(
               texto: 'Login',
               onPressed: () {
-                login();
+                if (formKey.currentState!.validate()) {
+                  login();
+                }
               },
             ),
             const SizedBox(
@@ -185,7 +176,7 @@ class _LoginPageState extends State<LoginPage> {
           ],
         ),
       ),
-    );
+    ));
   }
 
   login() async {
