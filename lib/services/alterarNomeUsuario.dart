@@ -7,6 +7,7 @@ Future<void> updateUserName(String userName) async {
   final User? user = auth.currentUser;
   await user?.updateDisplayName(userName);
 
+
 }
 
 //updateUserName('Novo nome de usuário');

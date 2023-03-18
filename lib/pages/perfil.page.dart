@@ -1,7 +1,9 @@
 import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:insurancetech/services/database.dart';
 import '../services/alterarNomeUsuario.dart';
 
 
@@ -30,12 +32,15 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
   final ImagePicker _picker = ImagePicker();
 
   final _emailController = TextEditingController();
-  final _emailUserController = TextEditingController();
   final _nomeUserController = TextEditingController();
   bool isObscurePassword = true;
   final _firebaseAuth = FirebaseAuth.instance;
+  final FirebaseStorage storage = FirebaseStorage.instance;
   String nome = '';
   String email = '';
+  bool uploading = false;
+  double total = 0;
+  late String imageUrl;
 
   @override
   void dispose() {
@@ -59,19 +64,32 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
           },
         ),
         actions: [
-          IconButton(
+          uploading
+          ? const Padding(
+            padding: EdgeInsets.only(right: 12.0),
+            child: Center(
+              child:SizedBox(
+                width: 20,
+                  height: 20,
+                child:CircularProgressIndicator(
+                  strokeWidth: 3,
+                  color:Colors.white,
+                ),
+              )
+            ))
+          :IconButton(
             icon: const Icon(Icons.check, color: Colors.white),
             onPressed: () {
               if(_nomeUserController.text != '') {
                 updateUserName(_nomeUserController.text);
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
-                    content: Text('Nome de usuário alterado com sucesso'),
-                    backgroundColor: Colors.greenAccent,
+                    content: Text('Nome atualizado'),
+                    backgroundColor: Colors.blue,
                   ),
                 );
+                Navigator.of(context).popAndPushNamed('/home');
               }
-              Navigator.of(context).popAndPushNamed('/home');
             },
           )
         ],
@@ -93,7 +111,6 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
             const SizedBox(height: 30),
             buildTextField('Nome', nome, false),
             //buildTextField2('Email', email, false),
-            //buildTextField('Senha', '*********', true),
             const SizedBox(height: 30),
             TextButton(
               child: const Text(
@@ -143,38 +160,6 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
       ),
     );
   }
-
-  Widget buildTextField2(
-      String? labelText, String? placeholder, bool isPasswordTextField) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 30),
-      child: TextField(
-        controller: _emailUserController,
-        obscureText: isPasswordTextField ? isObscurePassword : false,
-        decoration: InputDecoration(
-            suffixIcon: isPasswordTextField
-                ? IconButton(
-                    icon: const Icon(Icons.remove_red_eye, color: Colors.grey),
-                    onPressed: () {
-                      setState(() {
-                        isObscurePassword = !isObscurePassword;
-                      });
-                    })
-                : null,
-            contentPadding: const EdgeInsets.only(bottom: 5),
-            labelText: labelText,
-            floatingLabelBehavior: FloatingLabelBehavior.always,
-            hintText: placeholder,
-            hintStyle: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: Colors.grey,
-            )),
-      ),
-    );
-  }
-
-
 
    Widget imageProfile() {
     return Stack(
@@ -230,6 +215,7 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
                   icon:const Icon(Icons.camera_alt_outlined),
                   onPressed: (){
                     takeImage(ImageSource.camera);
+                    Navigator.of(context).pop();
                   },
                   label: const Text('Camera'),
                 ),
@@ -237,6 +223,7 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
                   icon:const Icon(Icons.image_outlined),
                   onPressed: (){
                       takeImage(ImageSource.gallery);
+                      Navigator.of(context).pop();
                   },
                   label: const Text('Galeria'),
                 ),
@@ -253,6 +240,7 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
     setState(() {
       if (pickedFile != null) {
         _imageFile = pickedFile;
+        upload(_imageFile.path);
       } else {
         _imageFile = XFile('');
         showDialog(
@@ -274,6 +262,49 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
         );
       }
     });
+  }
+
+  upload(String path) async {
+    File file = File(path);
+    try{
+      String ref = 'images/img-${DateTime.now().toString()}.jpg';
+      TaskSnapshot task = await storage.ref(ref).putFile(file);
+      // task.snapshotEvents.listen((TaskSnapshot snapshot) async {
+      //   if(snapshot.state == TaskState.success){
+      //
+      //   imageUrl =  await task.ref.getDownloadURL().toString();
+      //   }
+      // });
+      imageUrl = await task.ref.getDownloadURL();
+      OurDatabase().updateUserImageURL(email, imageUrl);
+
+    } on FirebaseException catch (e){
+      throw Exception('Erro no upload: ${e.code}');
+    }
+  }
+
+
+  pickAndUploadImage() async {
+    XFile? file = await getImage();
+    if (file != null){
+      await upload(file.path);
+      UploadTask task = await upload(file.path) as UploadTask;
+
+      task.snapshotEvents.listen((TaskSnapshot snapshot) async {
+        if(snapshot.state == TaskState.running){
+          setState(() {
+            uploading = true;
+          });
+        } else if (snapshot.state == TaskState.success){
+          setState(() => uploading = false);
+        }
+      });
+    }
+  }
+
+  getImage(){
+    XFile foto = _EditarPerfilPageState()._imageFile;
+    return  foto.path;
   }
 
 
@@ -306,4 +337,6 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
       );
     }
   }
+
+
 }

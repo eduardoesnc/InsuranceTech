@@ -7,7 +7,6 @@ import 'package:insurancetech/pages/verificarEmail.page.dart';
 import '../components/largeButton.dart';
 import '../components/pageTitle.dart';
 import'package:insurancetech/services/database.dart';
-import 'package:insurancetech/models/user.dart';
 
 
 class CadastroPage extends StatefulWidget {
@@ -283,13 +282,10 @@ class _CadastroPageState extends State<CadastroPage> {
       UserCredential userCredential =
           await _firebaseAuth.createUserWithEmailAndPassword(
               email: _emailController.text, password: _passwordController.text);
-      OurUser _user = OurUser();
-      _user.uid = userCredential.user!.uid;
-      _user.email = userCredential.user?.email!;
-      _user.nome = _nomeController.text;
-      userCredential.user!.updateDisplayName(_nomeController.text);
 
-      OurDatabase().createUser(_user);
+      userCredential.user!.updateDisplayName(_emailController.text);
+
+      OurDatabase().createUser(nome:_nomeController.text,email:_emailController.text);
 
       FirebaseFirestore.instance
           .collection('usuarios/${_emailController.text}/conta')
@@ -327,10 +323,7 @@ class _CadastroPageState extends State<CadastroPage> {
     }
   }
 
-
-
 }
-
 
 
 class Registro extends CadastroPage {
