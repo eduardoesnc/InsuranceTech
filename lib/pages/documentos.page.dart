@@ -83,54 +83,103 @@ class _DocumentosPageState extends State<DocumentosPage> {
             //     ),
             //   ),
             // ),
-            Expanded(
-              child: StreamBuilder<QuerySnapshot>(
-                stream: firestore.collection('Documentos').snapshots(),
-                builder: (context, snapshot) {
-                  if (!snapshot.hasData) {
-                    return const Center(child: CircularProgressIndicator());
-                  }
-                  List<QueryDocumentSnapshot> documents = snapshot.data!.docs;
-                  return ListView.builder(
-                    itemCount: documents.length + 2, // Adiciona 1 ao tamanho para incluir a tag
-                    itemBuilder: (context, index) {
-                      if (index == 0) {
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                          child: Text(
-                            "RG",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                            ),
+          
+          Expanded(
+            child: StreamBuilder<QuerySnapshot>(
+              stream: firestore.collection('Documentos').snapshots(),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+                List<QueryDocumentSnapshot> documents = snapshot.data!.docs;
+                return ListView.builder(
+                  itemCount: documents.length + 2, // Adiciona 1 ao tamanho para incluir a tag
+                  itemBuilder: (context, index) {
+                    if (index == 0) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: const Text(
+                          "RG",
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                            color: Color.fromARGB(255, 255, 255, 255),
                           ),
-                        );
-                      } else if (index == 1) {
-                        return ListTile(
-                          title: const Text('Adicionar novo documento'),
-                          onTap: _selectFile,
-                        );
-                      }
-                      QueryDocumentSnapshot document = documents[index - 2];
-                      return Card(
-                        child: ListTile(
-                          leading: const Icon(Icons.file_copy),
-                          title: Text(document['nome']),
-                          subtitle: Text(document['url']),
-                          onTap: () async {
-                            // Abre a URL de download do arquivo no navegador
-                            await canLaunchUrl(document['url'])
-                              ? await launchUrl(document['url'])
-                              : throw 'Could not launch ${document['url']}';
-                          },
                         ),
                       );
-                    },
-                  );
-                },
-              ),
+                    } else if (index == 1) {
+                      return ListTile(
+                        title: const Text('Adicionar novo documento'),
+                        onTap: _selectFile,
+                      );
+                    }
+                    QueryDocumentSnapshot document = documents[index - 2];
+                    return Card(
+                      child: ListTile(
+                        leading: const Icon(Icons.file_copy),
+                        title: Text(document['nome']),
+                        subtitle: Text(document['url']),
+                        onTap: () async {
+                          // Abre a URL de download do arquivo no navegador
+                          await canLaunchUrl(document['url'])
+                            ? await launchUrl(document['url'])
+                            : throw 'Could not launch ${document['url']}';
+                        },
+                      ),
+                    );
+                  },
+                );
+              },
             ),
-
+          ),
+          Expanded(
+            child: StreamBuilder<QuerySnapshot>(
+              stream: firestore.collection('Documentos').snapshots(),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+                List<QueryDocumentSnapshot> documents = snapshot.data!.docs;
+                return ListView.builder(
+                  itemCount: documents.length + 2, // Adiciona 1 ao tamanho para incluir a tag
+                  itemBuilder: (context, index) {
+                    if (index == 0) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: const Text(
+                          "Carteira de Habilitação",
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                            color: Color.fromARGB(255, 255, 255, 255),
+                          ),
+                        ),
+                      );
+                    } else if (index == 1) {
+                      return ListTile(
+                        title: const Text('Adicionar novo documento'),
+                        onTap: _selectFile,
+                      );
+                    }
+                    QueryDocumentSnapshot document = documents[index - 2];
+                    return Card(
+                      child: ListTile(
+                        leading: const Icon(Icons.file_copy),
+                        title: Text(document['nome']),
+                        subtitle: Text(document['url']),
+                        onTap: () async {
+                          // Abre a URL de download do arquivo no navegador
+                          await canLaunchUrl(document['url'])
+                            ? await launchUrl(document['url'])
+                            : throw 'Could not launch ${document['url']}';
+                        },
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
+          ),
     ])));
   }
 }
