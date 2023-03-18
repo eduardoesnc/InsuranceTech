@@ -72,16 +72,17 @@ class _DocumentosPageState extends State<DocumentosPage> {
             const SizedBox(height: 50),
             const pageTitle(texto: 'Documentos necessários para reivindicar o seguro'),
             const SizedBox(height: 50),
-            Container(
-              height: 50,
-              alignment: Alignment.centerLeft,
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(5),
-                ),
-              ),
-            ),
+            // Container(
+            //   height: 50,
+            //   alignment: Alignment.centerLeft,
+            //   decoration: const BoxDecoration(
+            //     color: Colors.white,
+            //     // const Text(texto: 'RG'),
+            //     borderRadius: BorderRadius.all(
+            //       Radius.circular(5),
+            //     ),
+            //   ),
+            // ),
             Expanded(
               child: StreamBuilder<QuerySnapshot>(
                 stream: firestore.collection('Documentos').snapshots(),
@@ -91,15 +92,26 @@ class _DocumentosPageState extends State<DocumentosPage> {
                   }
                   List<QueryDocumentSnapshot> documents = snapshot.data!.docs;
                   return ListView.builder(
-                    itemCount: documents.length + 1,
+                    itemCount: documents.length + 2, // Adiciona 1 ao tamanho para incluir a tag
                     itemBuilder: (context, index) {
                       if (index == 0) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8.0),
+                          child: Text(
+                            "RG",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            ),
+                          ),
+                        );
+                      } else if (index == 1) {
                         return ListTile(
                           title: const Text('Adicionar novo documento'),
                           onTap: _selectFile,
                         );
                       }
-                      QueryDocumentSnapshot document = documents[index - 1];
+                      QueryDocumentSnapshot document = documents[index - 2];
                       return Card(
                         child: ListTile(
                           leading: const Icon(Icons.file_copy),
@@ -107,18 +119,19 @@ class _DocumentosPageState extends State<DocumentosPage> {
                           subtitle: Text(document['url']),
                           onTap: () async {
                             // Abre a URL de download do arquivo no navegador
-                      await canLaunchUrl(document['url'])
-                        ? await launchUrl(document['url'])
-                        : throw 'Could not launch ${document['url']}';
+                            await canLaunchUrl(document['url'])
+                              ? await launchUrl(document['url'])
+                              : throw 'Could not launch ${document['url']}';
+                          },
+                        ),
+                      );
                     },
-                  ),
-                );
-              },
-            );
-          },
-        ),
-      )
-    );
+                  );
+                },
+              ),
+            ),
+
+    ])));
   }
 }
 
