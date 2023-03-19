@@ -23,6 +23,7 @@ class EditarPerfilPage extends StatefulWidget {
 }
 
 class _EditarPerfilPageState extends State<EditarPerfilPage> {
+  
   @override
   initState() {
     super.initState();
@@ -41,7 +42,7 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
   String nome = '';
   String email = '';
   late String imageUrl;
-  late String urlData;
+  String urlData = '';
 
 
   @override
@@ -92,8 +93,7 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
           child: ListView(children: [
             Center(
               child: Stack(
-                children: [
-                  imageProfile(),
+                children: [ (urlData == '')? imageProfileDefault() : imageProfileData(),
                 ],
               ),
             ),
@@ -150,14 +150,12 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
     );
   }
 
-   Widget imageProfile() {
+   Widget imageProfileDefault() {
     return Stack(
       children: <Widget>[
         CircleAvatar(
           radius: 80,
-          backgroundImage: (_imageFile.path.isEmpty)
-              ?const AssetImage('assets/profile.jpeg')
-              :FileImage(File(_imageFile.path)) as ImageProvider
+          backgroundImage: AssetImage('assets/profile.jpeg')
         ),
         Positioned(
             bottom: 20,
@@ -166,6 +164,32 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
               onTap: () {
                 showModalBottomSheet(context: context,
                     builder: ((builder) => bottomSheet()),
+                );
+              },
+              child: const Icon(
+                Icons.edit,
+                color: Color(0xFF2a5298),
+                size: 28,
+              ),
+            ))
+      ],
+    );
+  }
+
+  Widget imageProfileData() {
+    return Stack(
+      children: <Widget>[
+        CircleAvatar(
+            radius: 80,
+            backgroundImage: NetworkImage(urlData)
+        ),
+        Positioned(
+            bottom: 20,
+            right: 20,
+            child: InkWell(
+              onTap: () {
+                showModalBottomSheet(context: context,
+                  builder: ((builder) => bottomSheet()),
                 );
               },
               child: const Icon(
@@ -268,13 +292,13 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
     }
   }
 
-  getImageUrlFirebase() async{
-    final docRef = FirebaseFirestore.instance.collection('usuários').doc(email);
+    getImageUrlFirebase() async{
+    final user = FirebaseAuth.instance.currentUser;
+    final docRef = FirebaseFirestore.instance.collection('usuários').doc(user?.email);
     docRef.get().then((doc) {
       if (doc.exists) {
         setState(() {
-          urlData = doc.data()!['imageUrl'];
-          updateUserName(urlData);
+          urlData = doc.data()!['imageURL'];
         });
       }
     }).catchError((error) {
