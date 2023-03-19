@@ -1,7 +1,10 @@
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:insurancetech/services/database.dart';
 import '../services/alterarNomeUsuario.dart';
 
 
@@ -20,22 +23,27 @@ class EditarPerfilPage extends StatefulWidget {
 }
 
 class _EditarPerfilPageState extends State<EditarPerfilPage> {
+  
   @override
   initState() {
     super.initState();
     getUser();
+    getImageUrlFirebase();
   }
 
   XFile _imageFile = XFile('');
   final ImagePicker _picker = ImagePicker();
 
   final _emailController = TextEditingController();
-  final _emailUserController = TextEditingController();
   final _nomeUserController = TextEditingController();
   bool isObscurePassword = true;
   final _firebaseAuth = FirebaseAuth.instance;
+  final FirebaseStorage storage = FirebaseStorage.instance;
   String nome = '';
   String email = '';
+  late String imageUrl;
+  String urlData = '';
+
 
   @override
   void dispose() {
@@ -66,12 +74,12 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
                 updateUserName(_nomeUserController.text);
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
-                    content: Text('Nome de usuário alterado com sucesso'),
-                    backgroundColor: Colors.greenAccent,
+                    content: Text('Nome atualizado'),
+                    backgroundColor: Colors.blue,
                   ),
                 );
+                Navigator.of(context).popAndPushNamed('/home');
               }
-              Navigator.of(context).popAndPushNamed('/home');
             },
           )
         ],
@@ -85,15 +93,13 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
           child: ListView(children: [
             Center(
               child: Stack(
-                children: [
-                  imageProfile(),
+                children: [ (urlData == '')? imageProfileDefault() : imageProfileData(),
                 ],
               ),
             ),
             const SizedBox(height: 30),
             buildTextField('Nome', nome, false),
             //buildTextField2('Email', email, false),
-            //buildTextField('Senha', '*********', true),
             const SizedBox(height: 30),
             TextButton(
               child: const Text(
@@ -144,46 +150,12 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
     );
   }
 
-  Widget buildTextField2(
-      String? labelText, String? placeholder, bool isPasswordTextField) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 30),
-      child: TextField(
-        controller: _emailUserController,
-        obscureText: isPasswordTextField ? isObscurePassword : false,
-        decoration: InputDecoration(
-            suffixIcon: isPasswordTextField
-                ? IconButton(
-                    icon: const Icon(Icons.remove_red_eye, color: Colors.grey),
-                    onPressed: () {
-                      setState(() {
-                        isObscurePassword = !isObscurePassword;
-                      });
-                    })
-                : null,
-            contentPadding: const EdgeInsets.only(bottom: 5),
-            labelText: labelText,
-            floatingLabelBehavior: FloatingLabelBehavior.always,
-            hintText: placeholder,
-            hintStyle: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: Colors.grey,
-            )),
-      ),
-    );
-  }
-
-
-
-   Widget imageProfile() {
+   Widget imageProfileDefault() {
     return Stack(
       children: <Widget>[
         CircleAvatar(
           radius: 80,
-          backgroundImage: (_imageFile.path.isEmpty)
-              ?const AssetImage('assets/profile.jpeg')
-              :FileImage(File(_imageFile.path)) as ImageProvider,
+          backgroundImage: AssetImage('assets/profile.jpeg')
         ),
         Positioned(
             bottom: 20,
@@ -192,6 +164,32 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
               onTap: () {
                 showModalBottomSheet(context: context,
                     builder: ((builder) => bottomSheet()),
+                );
+              },
+              child: const Icon(
+                Icons.edit,
+                color: Color(0xFF2a5298),
+                size: 28,
+              ),
+            ))
+      ],
+    );
+  }
+
+  Widget imageProfileData() {
+    return Stack(
+      children: <Widget>[
+        CircleAvatar(
+            radius: 80,
+            backgroundImage: NetworkImage(urlData)
+        ),
+        Positioned(
+            bottom: 20,
+            right: 20,
+            child: InkWell(
+              onTap: () {
+                showModalBottomSheet(context: context,
+                  builder: ((builder) => bottomSheet()),
                 );
               },
               child: const Icon(
@@ -230,6 +228,7 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
                   icon:const Icon(Icons.camera_alt_outlined),
                   onPressed: (){
                     takeImage(ImageSource.camera);
+                    Navigator.of(context).pop();
                   },
                   label: const Text('Camera'),
                 ),
@@ -237,6 +236,7 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
                   icon:const Icon(Icons.image_outlined),
                   onPressed: (){
                       takeImage(ImageSource.gallery);
+                      Navigator.of(context).pop();
                   },
                   label: const Text('Galeria'),
                 ),
@@ -253,6 +253,7 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
     setState(() {
       if (pickedFile != null) {
         _imageFile = pickedFile;
+        upload(_imageFile.path);
       } else {
         _imageFile = XFile('');
         showDialog(
@@ -276,6 +277,39 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
     });
   }
 
+  upload(String path) async {
+    File file = File(path);
+    try{
+
+      String ref = 'images/img-${DateTime.now().toString()}.jpg';
+      TaskSnapshot task = await storage.ref(ref).putFile(file);
+      imageUrl = await task.ref.getDownloadURL();
+      OurDatabase().updateUserImageURL(email, imageUrl);
+      //getImageUrlFirebase();
+
+    } on FirebaseException catch (e){
+      throw Exception('Erro no upload: ${e.code}');
+    }
+  }
+
+    getImageUrlFirebase() async{
+    final user = FirebaseAuth.instance.currentUser;
+    final docRef = FirebaseFirestore.instance.collection('usuários').doc(user?.email);
+    docRef.get().then((doc) {
+      if (doc.exists) {
+        setState(() {
+          urlData = doc.data()!['imageURL'];
+        });
+      }
+    }).catchError((error) {
+      print('Erro ao obter documento: $error');
+    });
+  }
+
+  // geturlData() async {
+  //   late String? url;
+  //   url = await getImageUrlFirebase(email).urlData;
+  // }
 
   getUser() async {
     User? usuario = _firebaseAuth.currentUser;
@@ -286,6 +320,20 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
       });
     }
   }
+
+  // getImage() async{
+  //   final user = FirebaseAuth.instance.currentUser;
+  //   final docRef = FirebaseFirestore.instance.collection('usuários').doc(user?.email);
+  //   docRef.get().then((doc) {
+  //     if (doc.exists) {
+  //       setState(() {
+  //         url = doc.data()!['imageUrl'];
+  //       });
+  //     }
+  //   }).catchError((error) {
+  //     print('Erro ao obter documento: $error');
+  //   });
+  // }
 
   Future resetPassword() async {
     try {
@@ -306,4 +354,6 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
       );
     }
   }
+
+
 }

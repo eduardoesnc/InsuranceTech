@@ -18,19 +18,24 @@ class _LoginPageState extends State<LoginPage> {
   final _passwordcontroller = TextEditingController();
   bool _showPassword = true;
   final _firebaseAuth = FirebaseAuth.instance;
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        padding: const EdgeInsets.only(
+        body: Container(
+          height:MediaQuery.of(context).size.height,
+          padding: const EdgeInsets.only(
           top: 80,
           left: 40,
           right: 40,
         ),
-        color: const Color(0xFF2a5298),
-        child: ListView(
-          children: <Widget>[
+      color: const Color(0xFF2a5298),
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
             SizedBox(
               width: 128,
               height: 128,
@@ -39,103 +44,104 @@ class _LoginPageState extends State<LoginPage> {
             const SizedBox(
               height: 80,
             ),
-            Container(
-              height: 54,
-              decoration: const BoxDecoration(
-                color: Colors.white12,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(8),
-                ),
-              ),
-              child: TextFormField(
-                validator: (value){
-                  if (value!.isEmpty){
-                    return 'Informe seu email!';
-                  }
-                  return null;
-                },
-                controller: _emailcontroller,
-                //autofocus: true,
-                keyboardType: TextInputType.emailAddress,
-                decoration: const InputDecoration(
-                  labelText: "Email",
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(8),
+            Form(
+              key: formKey,
+              child: Column(
+                children: [
+                  TextFormField(
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Informe seu email!';
+                      }
+                      return null;
+                    },
+                    controller: _emailcontroller,
+                    //autofocus: true,
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: const InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white12,
+                      prefixIcon: Icon(
+                        Icons.mail_outline,
+                        color: Colors.white,
+                      ),
+                      labelText: "Email",
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(8),
+                        ),
+                      ),
+                      labelStyle: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 18,
+                      ),
                     ),
-                  ),
-                  labelStyle: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w400,
-                    fontSize: 18,
-                  ),
-                ),
-                style: const TextStyle(
-                  fontSize: 18,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Container(
-              height: 54,
-              decoration: const BoxDecoration(
-                color: Colors.white12,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(8),
-                ),
-              ),
-              child: TextFormField(
-                //autofocus: true,
-                validator: (value){
-                  if (value!.isEmpty){
-                    return 'Informe sua senha!';
-                  }
-                  return null;
-                },
-                controller: _passwordcontroller,
-                keyboardType: TextInputType.text,
-                obscureText: _showPassword,
-                decoration: InputDecoration(
-                  suffixIcon: GestureDetector(
-                    child: Icon(
-                      _showPassword == true
-                          ? Icons.visibility_off
-                          : Icons.visibility,
+                    style: const TextStyle(
+                      fontSize: 18,
                       color: Colors.white,
                     ),
-                    onTap: () {
-                      setState(() {
-                        _showPassword = !_showPassword;
-                      });
-                    },
                   ),
-                  labelText: "Senha",
-                  border: const OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(8),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  TextFormField(
+                    //autofocus: true,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Informe um senha!';
+                      } else {}
+                      return null;
+                    },
+                    controller: _passwordcontroller,
+                    keyboardType: TextInputType.text,
+                    obscureText: _showPassword,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white12,
+                      prefixIcon: Icon(
+                        Icons.vpn_key_outlined,
+                        color: Colors.white,
+                      ),
+                      suffixIcon: GestureDetector(
+                        child: Icon(
+                          _showPassword == true
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                          color: Colors.white,
+                        ),
+                        onTap: () {
+                          setState(() {
+                            _showPassword = !_showPassword;
+                          });
+                        },
+                      ),
+                      labelText: "Senha",
+                      border: const OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(8),
+                        ),
+                      ),
+                      labelStyle: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 18,
+                      ),
+                    ),
+                    style: const TextStyle(
+                      fontSize: 18,
+                      color: Colors.white,
                     ),
                   ),
-                  labelStyle: const TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w400,
-                    fontSize: 18,
-                  ),
-                ),
-                style: const TextStyle(
-                  fontSize: 18,
-                  color: Colors.white,
-                ),
+                ],
               ),
             ),
             const SizedBox(
-              height: 40,
+              height: 5.0,
             ),
             Container(
               height: 40,
-              alignment: Alignment.centerLeft,
+              alignment: Alignment.topRight,
               child: TextButton(
                 child: const Text(
                   "Esqueceu a senha?",
@@ -156,7 +162,9 @@ class _LoginPageState extends State<LoginPage> {
             LargeButton(
               texto: 'Login',
               onPressed: () {
-                login();
+                if (formKey.currentState!.validate()) {
+                  login();
+                }
               },
             ),
             const SizedBox(
@@ -185,7 +193,7 @@ class _LoginPageState extends State<LoginPage> {
           ],
         ),
       ),
-    );
+    ));
   }
 
   login() async {

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-
 import 'package:insurancetech/components/drawer.dart';
-
 import '../components/pageTitle.dart';
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -18,9 +17,20 @@ class DocumentosPage extends StatefulWidget {
   State<DocumentosPage> createState() => _DocumentosPageState();
 }
 
+
 class _DocumentosPageState extends State<DocumentosPage> {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   FirebaseStorage storage = FirebaseStorage.instance;
+    @override
+  void initState() {
+    super.initState();
+    // Firebase.initializeApp().whenComplete(() {
+    //   setState(() {});
+    // });
+    final _storage = FirebaseStorage.instance; // Inicializa o Firebase Storage
+    final _auth = FirebaseAuth.instance;
+  }
+
   List<File> selectedFiles = [];
 
   Future<void> _uploadFile(File file) async {
@@ -72,18 +82,6 @@ class _DocumentosPageState extends State<DocumentosPage> {
             const SizedBox(height: 50),
             const pageTitle(texto: 'Documentos necessários para reivindicar o seguro'),
             const SizedBox(height: 50),
-            // Container(
-            //   height: 50,
-            //   alignment: Alignment.centerLeft,
-            //   decoration: const BoxDecoration(
-            //     color: Colors.white,
-            //     // const Text(texto: 'RG'),
-            //     borderRadius: BorderRadius.all(
-            //       Radius.circular(5),
-            //     ),
-            //   ),
-            // ),
-          
           Expanded(
             child: StreamBuilder<QuerySnapshot>(
               stream: firestore.collection('Documentos').snapshots(),
@@ -99,7 +97,7 @@ class _DocumentosPageState extends State<DocumentosPage> {
                       return Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
                         child: const Text(
-                          "RG",
+                          "CNH",
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 18,
@@ -147,7 +145,103 @@ class _DocumentosPageState extends State<DocumentosPage> {
                       return Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
                         child: const Text(
-                          "Carteira de Habilitação",
+                          "CRLV",
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                            color: Color.fromARGB(255, 255, 255, 255),
+                          ),
+                        ),
+                      );
+                    } else if (index == 1) {
+                      return ListTile(
+                        title: const Text('Adicionar novo documento'),
+                        onTap: _selectFile,
+                      );
+                    }
+                    QueryDocumentSnapshot document = documents[index - 2];
+                    return Card(
+                      child: ListTile(
+                        leading: const Icon(Icons.file_copy),
+                        title: Text(document['nome']),
+                        subtitle: Text(document['url']),
+                        onTap: () async {
+                          // Abre a URL de download do arquivo no navegador
+                          await canLaunchUrl(document['url'])
+                            ? await launchUrl(document['url'])
+                            : throw 'Could not launch ${document['url']}';
+                        },
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
+          ),
+          Expanded(
+            child: StreamBuilder<QuerySnapshot>(
+              stream: firestore.collection('Documentos').snapshots(),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+                List<QueryDocumentSnapshot> documents = snapshot.data!.docs;
+                return ListView.builder(
+                  itemCount: documents.length + 2, // Adiciona 1 ao tamanho para incluir a tag
+                  itemBuilder: (context, index) {
+                    if (index == 0) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: const Text(
+                          "Comprovante de Residência",
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                            color: Color.fromARGB(255, 255, 255, 255),
+                          ),
+                        ),
+                      );
+                    } else if (index == 1) {
+                      return ListTile(
+                        title: const Text('Adicionar novo documento'),
+                        onTap: _selectFile,
+                      );
+                    }
+                    QueryDocumentSnapshot document = documents[index - 2];
+                    return Card(
+                      child: ListTile(
+                        leading: const Icon(Icons.file_copy),
+                        title: Text(document['nome']),
+                        subtitle: Text(document['url']),
+                        onTap: () async {
+                          // Abre a URL de download do arquivo no navegador
+                          await canLaunchUrl(document['url'])
+                            ? await launchUrl(document['url'])
+                            : throw 'Could not launch ${document['url']}';
+                        },
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
+          ),
+          Expanded(
+            child: StreamBuilder<QuerySnapshot>(
+              stream: firestore.collection('Documentos').snapshots(),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+                List<QueryDocumentSnapshot> documents = snapshot.data!.docs;
+                return ListView.builder(
+                  itemCount: documents.length + 2, // Adiciona 1 ao tamanho para incluir a tag
+                  itemBuilder: (context, index) {
+                    if (index == 0) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: const Text(
+                          "Boletim de Ocorrência",
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 18,
