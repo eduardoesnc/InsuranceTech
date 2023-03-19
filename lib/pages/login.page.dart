@@ -61,6 +61,10 @@ class _LoginPageState extends State<LoginPage> {
                     decoration: const InputDecoration(
                       filled: true,
                       fillColor: Colors.white12,
+                      prefixIcon: Icon(
+                        Icons.mail_outline,
+                        color: Colors.white,
+                      ),
                       labelText: "Email",
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(
@@ -95,6 +99,10 @@ class _LoginPageState extends State<LoginPage> {
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.white12,
+                      prefixIcon: Icon(
+                        Icons.vpn_key_outlined,
+                        color: Colors.white,
+                      ),
                       suffixIcon: GestureDetector(
                         child: Icon(
                           _showPassword == true
