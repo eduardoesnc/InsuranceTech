@@ -41,7 +41,7 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
   String nome = '';
   String email = '';
   late String imageUrl;
-  String urlData = '';
+  late String urlData;
 
 
   @override
@@ -261,7 +261,7 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
       TaskSnapshot task = await storage.ref(ref).putFile(file);
       imageUrl = await task.ref.getDownloadURL();
       OurDatabase().updateUserImageURL(email, imageUrl);
-      getImageUrlFirebase();
+      //getImageUrlFirebase();
 
     } on FirebaseException catch (e){
       throw Exception('Erro no upload: ${e.code}');
@@ -269,8 +269,7 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
   }
 
   getImageUrlFirebase() async{
-    final user = FirebaseAuth.instance.currentUser;
-    final docRef = FirebaseFirestore.instance.collection('usuários').doc(user?.email);
+    final docRef = FirebaseFirestore.instance.collection('usuários').doc(email);
     docRef.get().then((doc) {
       if (doc.exists) {
         setState(() {

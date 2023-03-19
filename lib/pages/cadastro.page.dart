@@ -26,14 +26,18 @@ class _CadastroPageState extends State<CadastroPage> {
   bool _showPassword = true;
   bool _showconfirmPassword = true;
   final _firebaseAuth = FirebaseAuth.instance;
+  final formKey = GlobalKey<FormState>();
 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body: Form(
+        key: formKey,
+        child: Container(
+          height:MediaQuery.of(context).size.height,
         padding: const EdgeInsets.only(
-          top: 60,
+          top: 50,
           left: 40,
           right: 40,
         ),
@@ -50,26 +54,23 @@ class _CadastroPageState extends State<CadastroPage> {
               texto: 'Crie sua conta',
             ),
             const SizedBox(height: 40),
-            Container(
-              height: 54,
-              decoration: const BoxDecoration(
-                color: Colors.white12,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(8),
-                ),
-              ),
-              child: TextFormField(
+            TextFormField(
                 //autofocus: true,
                 controller: _nomeController,
                 validator: (value){
-                  if (value!.isEmpty){
-                    return 'Digite um nome';
+                  if (value == null || value.isEmpty){
+                    return 'Campo obrigatório';
+                  } else {
+
                   }
+                  return null;
                 },
                 onChanged: (text) {},
                 keyboardType: TextInputType.text,
                 obscureText: false,
                 decoration: const InputDecoration(
+                  filled: true ,
+                  fillColor: Colors.white12,
                   labelText: "Usuário",
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
@@ -86,22 +87,15 @@ class _CadastroPageState extends State<CadastroPage> {
                   fontSize: 18,
                   color: Colors.white,
                 ),
-              ),
             ),
             const SizedBox(height: 18),
-            Container(
-              height: 54,
-              decoration: const BoxDecoration(
-                color: Colors.white12,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(8),
-                ),
-              ),
-              child: TextFormField(
+            TextFormField(
                 //autofocus: true,
                 validator: (value){
-                  if (value!.isEmpty){
-                    return 'Informe um email válido!';
+                  if (value == null || value.isEmpty){
+                    return 'Informe um email!';
+                  } else {
+
                   }
                   return null;
                 },
@@ -110,6 +104,8 @@ class _CadastroPageState extends State<CadastroPage> {
                 keyboardType: TextInputType.emailAddress,
                 obscureText: false,
                 decoration: const InputDecoration(
+                  filled: true ,
+                  fillColor: Colors.white12,
                   labelText: "Email",
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
@@ -126,22 +122,15 @@ class _CadastroPageState extends State<CadastroPage> {
                   fontSize: 18,
                   color: Colors.white,
                 ),
-              ),
             ),
             const SizedBox(height: 18),
-            Container(
-              height: 54,
-              decoration: const BoxDecoration(
-                color: Colors.white12,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(8),
-                ),
-              ),
-              child: TextFormField(
+            TextFormField(
                 //autofocus: true,
                 validator: (value){
-                  if (value!.isEmpty){
-                    return 'Informe uma senha!';
+                  if (value == null || value.isEmpty){
+                    return 'Informe sua senha!';
+                  } else {
+
                   }
                   return null;
                 },
@@ -150,6 +139,8 @@ class _CadastroPageState extends State<CadastroPage> {
                 keyboardType: TextInputType.text,
                 obscureText: _showPassword,
                 decoration: InputDecoration(
+                  filled: true ,
+                  fillColor: Colors.white12,
                   suffixIcon: GestureDetector(
                     child: Icon(
                       _showPassword == true
@@ -179,22 +170,15 @@ class _CadastroPageState extends State<CadastroPage> {
                   fontSize: 18,
                   color: Colors.white,
                 ),
-              ),
             ),
             const SizedBox(height: 18),
-            Container(
-              height: 54,
-              decoration: const BoxDecoration(
-                color: Colors.white12,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(8),
-                ),
-              ),
-              child: TextFormField(
+            TextFormField(
                 //autofocus: true,
                 validator: (value){
-                  if (value!.isEmpty){
+                  if (value == null || value.isEmpty){
                     return 'Confirme sua senha!';
+                  } else {
+
                   }
                   return null;
                 },
@@ -203,6 +187,8 @@ class _CadastroPageState extends State<CadastroPage> {
                 keyboardType: TextInputType.text,
                 obscureText: _showconfirmPassword,
                 decoration: InputDecoration(
+                  filled: true ,
+                  fillColor: Colors.white12,
                   suffixIcon: GestureDetector(
                     child: Icon(
                       _showconfirmPassword == true
@@ -232,27 +218,25 @@ class _CadastroPageState extends State<CadastroPage> {
                   fontSize: 18,
                   color: Colors.white,
                 ),
-              ),
             ),
             const SizedBox(height: 40),
             LargeButton(
               texto: 'Cadastrar',
               onPressed: () {
-                if (_confirmPasswordController.text ==
-                    _passwordController.text) {
+                if (formKey.currentState!.validate()) {
                   cadastrar();
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                    content: Text(
-                      'As senhas são diferentes.',
-                    ),
-                    backgroundColor: Colors.redAccent,
-                  ));
+                // } else {
+                //   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                //     content: Text(
+                //       'As senhas são diferentes.',
+                //     ),
+                //     backgroundColor: Colors.redAccent,
+                //   ));
                 }
               },
             ),
             const SizedBox(
-              height: 40,
+              height: 20,
             ),
             SizedBox(
               height: 40,
@@ -273,17 +257,16 @@ class _CadastroPageState extends State<CadastroPage> {
           ],
         ),
       ),
-    );
+      ));
   }
 
   cadastrar() async {
-
     try {
       UserCredential userCredential =
           await _firebaseAuth.createUserWithEmailAndPassword(
               email: _emailController.text, password: _passwordController.text);
 
-      userCredential.user!.updateDisplayName(_emailController.text);
+      userCredential.user!.updateDisplayName(_nomeController.text);
 
       OurDatabase().createUser(nome:_nomeController.text,email:_emailController.text);
 
