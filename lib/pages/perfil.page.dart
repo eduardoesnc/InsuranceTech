@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +27,7 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
   initState() {
     super.initState();
     getUser();
+    getImageUrlFirebase();
   }
 
   XFile _imageFile = XFile('');
@@ -38,9 +40,9 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
   final FirebaseStorage storage = FirebaseStorage.instance;
   String nome = '';
   String email = '';
-  bool uploading = false;
-  double total = 0;
   late String imageUrl;
+  String urlData = '';
+
 
   @override
   void dispose() {
@@ -64,20 +66,7 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
           },
         ),
         actions: [
-          uploading
-          ? const Padding(
-            padding: EdgeInsets.only(right: 12.0),
-            child: Center(
-              child:SizedBox(
-                width: 20,
-                  height: 20,
-                child:CircularProgressIndicator(
-                  strokeWidth: 3,
-                  color:Colors.white,
-                ),
-              )
-            ))
-          :IconButton(
+          IconButton(
             icon: const Icon(Icons.check, color: Colors.white),
             onPressed: () {
               if(_nomeUserController.text != '') {
@@ -168,7 +157,7 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
           radius: 80,
           backgroundImage: (_imageFile.path.isEmpty)
               ?const AssetImage('assets/profile.jpeg')
-              :FileImage(File(_imageFile.path)) as ImageProvider,
+              :FileImage(File(_imageFile.path)) as ImageProvider
         ),
         Positioned(
             bottom: 20,
@@ -267,46 +256,37 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
   upload(String path) async {
     File file = File(path);
     try{
+
       String ref = 'images/img-${DateTime.now().toString()}.jpg';
       TaskSnapshot task = await storage.ref(ref).putFile(file);
-      // task.snapshotEvents.listen((TaskSnapshot snapshot) async {
-      //   if(snapshot.state == TaskState.success){
-      //
-      //   imageUrl =  await task.ref.getDownloadURL().toString();
-      //   }
-      // });
       imageUrl = await task.ref.getDownloadURL();
       OurDatabase().updateUserImageURL(email, imageUrl);
+      getImageUrlFirebase();
 
     } on FirebaseException catch (e){
       throw Exception('Erro no upload: ${e.code}');
     }
   }
 
-
-  pickAndUploadImage() async {
-    XFile? file = await getImage();
-    if (file != null){
-      await upload(file.path);
-      UploadTask task = await upload(file.path) as UploadTask;
-
-      task.snapshotEvents.listen((TaskSnapshot snapshot) async {
-        if(snapshot.state == TaskState.running){
-          setState(() {
-            uploading = true;
-          });
-        } else if (snapshot.state == TaskState.success){
-          setState(() => uploading = false);
-        }
-      });
-    }
+  getImageUrlFirebase() async{
+    final user = FirebaseAuth.instance.currentUser;
+    final docRef = FirebaseFirestore.instance.collection('usuários').doc(user?.email);
+    docRef.get().then((doc) {
+      if (doc.exists) {
+        setState(() {
+          urlData = doc.data()!['imageUrl'];
+          updateUserName(urlData);
+        });
+      }
+    }).catchError((error) {
+      print('Erro ao obter documento: $error');
+    });
   }
 
-  getImage(){
-    XFile foto = _EditarPerfilPageState()._imageFile;
-    return  foto.path;
-  }
-
+  // geturlData() async {
+  //   late String? url;
+  //   url = await getImageUrlFirebase(email).urlData;
+  // }
 
   getUser() async {
     User? usuario = _firebaseAuth.currentUser;
@@ -317,6 +297,20 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
       });
     }
   }
+
+  // getImage() async{
+  //   final user = FirebaseAuth.instance.currentUser;
+  //   final docRef = FirebaseFirestore.instance.collection('usuários').doc(user?.email);
+  //   docRef.get().then((doc) {
+  //     if (doc.exists) {
+  //       setState(() {
+  //         url = doc.data()!['imageUrl'];
+  //       });
+  //     }
+  //   }).catchError((error) {
+  //     print('Erro ao obter documento: $error');
+  //   });
+  // }
 
   Future resetPassword() async {
     try {
