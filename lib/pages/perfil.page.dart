@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:insurancetech/services/database.dart';
+import 'package:insurancetech/models/database.dart';
 import '../services/alterarNomeUsuario.dart';
 
 
@@ -70,7 +70,7 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
           IconButton(
             icon: const Icon(Icons.check, color: Colors.white),
             onPressed: () {
-              if(_nomeUserController.text != '') {
+              if (_nomeUserController.text != '') {
                 updateUserName(_nomeUserController.text);
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
@@ -91,15 +91,30 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
             FocusScope.of(context).unfocus();
           },
           child: ListView(children: [
-            Center(
-              child: Stack(
-                children: [ (urlData == '')? imageProfileDefault() : imageProfileData(),
-                ],
-              ),
-            ),
+            StreamBuilder<DocumentSnapshot>(
+                stream: FirebaseFirestore.instance.collection('usuários').doc(
+                    email).snapshots(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return const CircularProgressIndicator(
+                    );
+                  }
+                  final data = snapshot.data!.data() as Map<String, dynamic>;
+                  final imageUrl = data['imageURL'] as String;
+                  return Center(
+                    child: Stack(
+                      children: [ (imageUrl == '')
+                          ? imageProfileDefault()
+                          : imageProfileData(),
+                      ],
+                    ),
+                  );
+                  }),
             const SizedBox(height: 30),
             buildTextField('Nome', nome, false),
             //buildTextField2('Email', email, false),
+
+
             const SizedBox(height: 30),
             TextButton(
               child: const Text(
@@ -114,7 +129,8 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
                 resetPassword();
               },
             ),
-          ]),
+          ]
+          ),
         ),
       ),
     );
@@ -284,15 +300,15 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
       String ref = 'images/img-${DateTime.now().toString()}.jpg';
       TaskSnapshot task = await storage.ref(ref).putFile(file);
       imageUrl = await task.ref.getDownloadURL();
-      OurDatabase().updateUserImageURL(email, imageUrl);
-      //getImageUrlFirebase();
+      OurDatabase().updateUserImageURL(imageUrl);
 
     } on FirebaseException catch (e){
       throw Exception('Erro no upload: ${e.code}');
     }
   }
 
-    getImageUrlFirebase() async{
+
+  getImageUrlFirebase() async{
     final user = FirebaseAuth.instance.currentUser;
     final docRef = FirebaseFirestore.instance.collection('usuários').doc(user?.email);
     docRef.get().then((doc) {
@@ -355,5 +371,5 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
     }
   }
 
-
 }
+

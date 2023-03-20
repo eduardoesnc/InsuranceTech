@@ -1,12 +1,10 @@
-import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../models/checagem.model.dart';
-import '../pages/perfil.page.dart';
 
 class AppDrawer extends StatefulWidget {
   const AppDrawer({Key? key}) : super(key: key);
-
 
   @override
   State<AppDrawer> createState() => _AppDrawerState();
@@ -16,15 +14,11 @@ class _AppDrawerState extends State<AppDrawer> {
   final _firebaseAuth = FirebaseAuth.instance;
   String nome = '';
   String email = '';
-  String fotoPerfil = const EditarPerfilPage().getFotoPerfil();
-
-
 
   @override
-  initState(){
+  initState() {
     super.initState();
     getUser();
-
   }
 
   @override
@@ -33,24 +27,46 @@ class _AppDrawerState extends State<AppDrawer> {
       width: 260,
       backgroundColor: Colors.white,
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(0,0,0,0),
+        padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-             UserAccountsDrawerHeader(
-                  decoration: const BoxDecoration(
-                    color: Color(0xFF2a5298),
-                    ),
-                  currentAccountPicture: CircleAvatar(
-                    radius: 52,
-                    backgroundImage: (fotoPerfil.isEmpty)
-                        ?const AssetImage('assets/profile.jpeg')
-                        :FileImage(File(fotoPerfil)) as ImageProvider,
-                  ),
-                  accountName: Text(nome),
-                  accountEmail: Text(email),
-              ),
+            StreamBuilder<DocumentSnapshot>(
+                stream: FirebaseFirestore.instance.collection('usuários').doc(email).snapshots(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return const CircularProgressIndicator(
+                    );
+                  }
+                  final data = snapshot.data!.data() as Map<String, dynamic>;
+                  final imageUrl = data['imageURL'] as String;
 
+                  if (imageUrl != '') {
+                    return UserAccountsDrawerHeader(
+                      decoration: const BoxDecoration(
+                        color: Color(0xFF2a5298),
+                      ),
+                      currentAccountPicture: CircleAvatar(
+                          radius: 52,
+                          backgroundImage: NetworkImage(imageUrl)
+                      ),
+                      accountName: Text(nome),
+                      accountEmail: Text(email),
+                    );
+                  } else {
+                    return UserAccountsDrawerHeader(
+                      decoration: const BoxDecoration(
+                        color: Color(0xFF2a5298),
+                      ),
+                      currentAccountPicture: const CircleAvatar(
+                          radius: 52,
+                          backgroundImage: AssetImage('assets/profile.jpeg')
+                      ),
+                      accountName: Text(nome),
+                      accountEmail: Text(email),
+                    );
+                  }
+                }),
             ListTile(
               dense: true,
               title: const Text("Home"),
@@ -129,25 +145,25 @@ class _AppDrawerState extends State<AppDrawer> {
     );
   }
 
-  getUser() async{
+  getUser() async {
     User? usuario = _firebaseAuth.currentUser;
-    if (usuario != null){
-        setState(() {
-          nome = usuario.displayName!;
-          email = usuario.email!;
-        });
+    if (usuario != null) {
+      setState(() {
+        nome = usuario.displayName!;
+        email = usuario.email!;
+      });
     }
   }
 
   sair() async {
     await _firebaseAuth.signOut().then(
           (user) => Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const ChecagemPage(),
-        ),
-      ),
-    );
+            context,
+            MaterialPageRoute(
+              builder: (context) => const ChecagemPage(),
+            ),
+          ),
+        );
     Navigator.of(context).pushReplacementNamed('/');
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(

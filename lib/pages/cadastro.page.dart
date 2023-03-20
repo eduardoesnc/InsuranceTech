@@ -6,7 +6,7 @@ import 'package:insurancetech/pages/login.page.dart';
 import 'package:insurancetech/pages/verificarEmail.page.dart';
 import '../components/largeButton.dart';
 import '../components/pageTitle.dart';
-import'package:insurancetech/services/database.dart';
+import'package:insurancetech/models/database.dart';
 
 
 class CadastroPage extends StatefulWidget {
