@@ -59,6 +59,15 @@ class _HomePageState extends State<HomePage> {
             const SizedBox( height: 25 ),
 
             LargeButton(
+              texto: 'Mapa de sinistros',
+              onPressed: () {
+                Navigator.of(context).pushNamed('/mapa');
+              },
+            ),
+
+            const SizedBox( height: 25 ),
+
+            LargeButton(
               texto: 'Análises gráficas',
               onPressed: () {
                 Navigator.of(context).pushNamed('/analise');
@@ -88,21 +97,12 @@ class _HomePageState extends State<HomePage> {
             const SizedBox( height: 25 ),
 
             LargeButton(
-              texto: 'Mapa de sinistros',
-              onPressed: () {
-                Navigator.of(context).pushNamed('/mapa');
-              },
-            ),
-
-            const SizedBox( height: 25 ),
-
-            LargeButton(
               texto: 'Sobre',
               onPressed: () {
                 Navigator.of(context).pushNamed('/sobre');
               },
             ),
-            
+
             const SizedBox( height: 25 ),
           ],
         ),

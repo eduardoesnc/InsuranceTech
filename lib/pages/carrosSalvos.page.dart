@@ -18,6 +18,7 @@ class _CarrosSalvosPageState extends State<CarrosSalvosPage> {
   final _firebaseAuth = FirebaseAuth.instance;
   String email = '';
   String _selectedCar = '';
+  late DocumentSnapshot doc;
 
   @override
   initState() {
@@ -45,10 +46,13 @@ class _CarrosSalvosPageState extends State<CarrosSalvosPage> {
         child: ListView(
           children: <Widget>[
             const SizedBox(height: 20),
+
             const pageTitle(
               texto: 'Carros salvos',
             ),
+
             const SizedBox(height: 50),
+
             StreamBuilder<QuerySnapshot>(
               stream: FirebaseFirestore.instance
                   .collection(
@@ -76,25 +80,32 @@ class _CarrosSalvosPageState extends State<CarrosSalvosPage> {
                 return Column(
                   children: <Widget>[
                     Container(
-                      padding: const EdgeInsets.all(15.0),
+                      padding: const EdgeInsets.all(16),
                       height: 60,
                       decoration: BoxDecoration(
-                          color: Colors.white10,
-                          borderRadius: const BorderRadius.all(
-                            Radius.circular(8),
-                          ),
-                          border: Border.all(
-                            color: Colors.black26,
-                            width: 1,
-                          )),
+                        color: Colors.white10,
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(8),
+                        ),
+                        border: Border.all(
+                          color: Colors.black26,
+                          width: 1,
+                        ),
+                      ),
                       child: DropdownButton<String>(
-                        hint: const Text('Selecione um carro'),
-                        value: carNames.contains(_selectedCar)
-                            ? _selectedCar
-                            : null,
+                        hint: const Text(
+                          'Selecione um carro',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                        value: carNames.contains(_selectedCar) ? _selectedCar : null,
                         onChanged: (value) {
                           setState(() {
                             _selectedCar = value!;
+                            doc = snapshot.data!.docs.firstWhere(
+                              (doc) => doc['nomeIdentificacao'] == _selectedCar,
+                            );
                           });
                         },
                         style: const TextStyle(
@@ -108,75 +119,80 @@ class _CarrosSalvosPageState extends State<CarrosSalvosPage> {
                         ),
                         iconSize: 27,
                         elevation: 16,
-                        underline: Container(),
                         dropdownColor: Colors.white,
                         iconEnabledColor: Colors.white,
                         iconDisabledColor: Colors.white,
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(8)),
+                        underline: const SizedBox(height: 0,),
+                        isDense: true,
+                        isExpanded: true,
+                        alignment: AlignmentDirectional.centerStart,
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(8),
+                        ),
+                        selectedItemBuilder: (BuildContext context) {
+                          return carNames.map<Widget>((String value) {
+                            return Text(
+                              value,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                              ),
+                            );
+                          }).toList();
+                        },
                         items: carNames
-                            .map((value) => DropdownMenuItem<String>(
-                                  value: value,
-                                  child: Text(
-                                    value,
-                                    style: const TextStyle(
-                                      fontSize: 18,
-                                      color: Colors.black,
-                                    ),
+                            .map(
+                              (value) => DropdownMenuItem<String>(
+                                value: value,
+                                enabled: true,
+                                child: Text(
+                                  value,
+                                  style: const TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.black,
                                   ),
-                                ))
+                                ),
+                              ),
+                            )
                             .toList(),
                       ),
                     ),
+
                     const SizedBox(height: 40),
+
                     if (_selectedCar.isNotEmpty)
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 10,
-                          horizontal: 30,
-                        ),
-                        child: Container(
-                          height: 50,
-                          alignment: Alignment.centerLeft,
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.all(Radius.circular(5)),
-                          ),
-                          child: SizedBox.expand(
-                            child: TextButton(
-                              onPressed: () {
-                                DocumentSnapshot doc = snapshot.data!.docs
-                                    .firstWhere((doc) =>
-                                        doc['nomeIdentificacao'] ==
-                                        _selectedCar);
-                                carrosDetalhes(doc);
-                              },
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: const <Widget>[
-                                  Text(
-                                    'Clique para ver mais detalhes',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                                    textAlign: TextAlign.left,
-                                  ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  carInfo('Idade do condutor: ${doc['idadeCondutor']}'),
+                                  const SizedBox(height: 10),
+                                  carInfo('Idade do carro: ${doc['idadeCarro']}'),
+                                  const SizedBox(height: 10),
+                                  carInfo('Modelo do carro: ${doc['modeloCarro']}'),
+                                  const SizedBox(height: 10),
+                                  carInfo('Tipo de combustível: ${doc['combustivel']}'),
+                                  const SizedBox(height: 10),
+                                  carInfo('Segmento do carro: ${doc['segmento']}'),
+                                  const SizedBox(height: 10),
+                                  carInfo('Tem assistência de freio? ${doc['freio']}'),
+                                  const SizedBox(height: 10),
+                                  carInfo('Tem câmera de ré? ${doc['re']}'),
+                                  const SizedBox(height: 10),
+                                  carInfo('Tipo de transmissão: ${doc['transmissao']}'),
+                                  const SizedBox(height: 10),
+                                  carInfo(
+                                      'Densidade populacional de seu município: ${doc['densidade']}'),
+                                  const SizedBox(height: 10),
+                                  carInfo('Município: ${doc['nomeMunicípio']}'),
                                 ],
                               ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    // const SizedBox(height: 5),
                   ],
                 );
               },
             ),
             const SizedBox(height: 50),
             LargeButton(
-              texto: 'Voltar',
+              texto: 'Retornar para página inicial',
               onPressed: () {
                 Navigator.of(context).pushNamed('/home');
               },
@@ -187,6 +203,18 @@ class _CarrosSalvosPageState extends State<CarrosSalvosPage> {
     );
   }
 
+  Widget carInfo(String texto){
+    return Text(
+      texto,
+      style: const TextStyle(
+        fontSize: 18,
+        color: Colors.white
+
+      ),
+      textAlign: TextAlign.left,
+    );
+  }
+
   getUser() async {
     User? usuario = _firebaseAuth.currentUser;
     if (usuario != null) {
@@ -194,50 +222,5 @@ class _CarrosSalvosPageState extends State<CarrosSalvosPage> {
         email = usuario.email!;
       });
     }
-  }
-
-  carrosDetalhes(DocumentSnapshot carDoc) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Detalhes do carro'),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[
-                Text('Idade do condutor: ${carDoc['idadeCondutor']}'),
-                const SizedBox(height: 10),
-                Text('Idade do carro: ${carDoc['idadeCarro']}'),
-                const SizedBox(height: 10),
-                Text('Modelo do carro: ${carDoc['modeloCarro']}'),
-                const SizedBox(height: 10),
-                Text('Tipo de combustível: ${carDoc['combustivel']}'),
-                const SizedBox(height: 10),
-                Text('Segmento do carro: ${carDoc['segmento']}'),
-                const SizedBox(height: 10),
-                Text('Tem assistência de freio? ${carDoc['freio']}'),
-                const SizedBox(height: 10),
-                Text('Tem câmera de ré? ${carDoc['re']}'),
-                const SizedBox(height: 10),
-                Text('Tipo de transmissão: ${carDoc['transmissao']}'),
-                const SizedBox(height: 10),
-                Text(
-                    'Densidade populacional de seu município: ${carDoc['densidade']}'),
-                const SizedBox(height: 10),
-                Text('Município: ${carDoc['nomeMunicípio']}'),
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            TextButton(
-              child: const Text('OK'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
   }
 }

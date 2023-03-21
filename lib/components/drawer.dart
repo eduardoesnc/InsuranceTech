@@ -35,8 +35,7 @@ class _AppDrawerState extends State<AppDrawer> {
                 stream: FirebaseFirestore.instance.collection('usuários').doc(email).snapshots(),
                 builder: (context, snapshot) {
                   if (!snapshot.hasData) {
-                    return const CircularProgressIndicator(
-                    );
+                    return const CircularProgressIndicator();
                   }
                   final data = snapshot.data!.data() as Map<String, dynamic>;
                   final imageUrl = data['imageURL'] as String;
@@ -85,6 +84,14 @@ class _AppDrawerState extends State<AppDrawer> {
             ),
             ListTile(
               dense: true,
+              title: const Text("Mapa de sinistros"),
+              leading: const Icon(Icons.place_rounded),
+              onTap: () {
+                Navigator.of(context).pushNamed('/mapa');
+              },
+            ),
+            ListTile(
+              dense: true,
               title: const Text("Análises sobre seguros"),
               leading: const Icon(Icons.query_stats),
               onTap: () {
@@ -105,14 +112,6 @@ class _AppDrawerState extends State<AppDrawer> {
               leading: const Icon(Icons.description),
               onTap: () {
                 Navigator.of(context).pushNamed('/documentos');
-              },
-            ),
-            ListTile(
-              dense: true,
-              title: const Text("Mapa de sinistros"),
-              leading: const Icon(Icons.place_rounded),
-              onTap: () {
-                Navigator.of(context).pushNamed('/mapa');
               },
             ),
             ListTile(

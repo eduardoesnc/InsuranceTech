@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:insurancetech/pages/login.page.dart';
-import 'package:insurancetech/pages/esqueceuSenhaEnviar.page.dart';
+import 'package:insurancetech/pages/esqueceuSenha.page.dart';
 import 'package:insurancetech/pages/cadastro.page.dart';
 import 'package:insurancetech/pages/perfil.page.dart';
-import 'package:insurancetech/pages/redefinirSenha.page.dart';
 import 'package:insurancetech/pages/home.page.dart';
 import 'package:insurancetech/pages/estimarReivindicacao.page.dart';
 import 'package:insurancetech/pages/resultadoEstimativa.page.dart';
@@ -22,7 +21,6 @@ Map<String, Widget Function(dynamic)> instanceRoutes(BuildContext context) => {
       LoginPage.routeName: (context) => const LoginPage(),
       CadastroPage.routeName: (context) => const CadastroPage(),
       EsqueceuSenhaPage.routeName: (context) => const EsqueceuSenhaPage(),
-      RedefinirSenhaPage.routeName: (context) => const RedefinirSenhaPage(),
       HomePage.routeName: (context) => const HomePage(),
       EstimarReivindicacaoPage.routeName: (context) =>
           const EstimarReivindicacaoPage(),

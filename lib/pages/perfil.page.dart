@@ -74,12 +74,12 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
                 updateUserName(_nomeUserController.text);
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
-                    content: Text('Nome atualizado'),
+                    content: Text('Informações atualizadas'),
                     backgroundColor: Colors.blue,
                   ),
                 );
-                Navigator.of(context).popAndPushNamed('/home');
               }
+              Navigator.of(context).popAndPushNamed('/home');
             },
           )
         ],
@@ -169,7 +169,7 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
    Widget imageProfileDefault() {
     return Stack(
       children: <Widget>[
-        CircleAvatar(
+        const CircleAvatar(
           radius: 80,
           backgroundImage: AssetImage('assets/profile.jpeg')
         ),

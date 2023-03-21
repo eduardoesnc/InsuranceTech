@@ -26,7 +26,7 @@ class _LoginPageState extends State<LoginPage> {
         body: Container(
           height:MediaQuery.of(context).size.height,
           padding: const EdgeInsets.only(
-          top: 80,
+          top: 150,
           left: 40,
           right: 40,
         ),
@@ -99,7 +99,7 @@ class _LoginPageState extends State<LoginPage> {
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.white12,
-                      prefixIcon: Icon(
+                      prefixIcon: const Icon(
                         Icons.vpn_key_outlined,
                         color: Colors.white,
                       ),
