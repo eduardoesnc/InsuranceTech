@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:insurancetech/models/user.dart';
+import 'package:insurancetech/models/user.model.dart';
 
 class OurDatabase{
   final FirebaseFirestore docUser =  FirebaseFirestore.instance;

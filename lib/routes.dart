@@ -13,7 +13,7 @@ import 'package:insurancetech/pages/carrosSalvos.page.dart';
 import 'package:insurancetech/pages/documentos.page.dart';
 import 'package:insurancetech/models/checagem.model.dart';
 import 'package:insurancetech/pages/analises.page.dart';
-import 'package:insurancetech/pages/webapp.page.dart';
+import 'package:insurancetech/pages/webview.page.dart';
 import 'package:insurancetech/pages/mapa.page.dart';
 import 'package:insurancetech/pages/coordenadas.page.dart';
 
