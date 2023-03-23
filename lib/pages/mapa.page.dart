@@ -45,17 +45,7 @@ class _MapaState extends State<MapaPage> {
             const pageTitle(
               texto: 'Mapa de sinistros',
             ),
-            const SizedBox(height: 10),
-            Padding(
-              padding: const EdgeInsets.symmetric(),
-              child: LargeButton(
-                texto: 'Adicionar local de sinistro',
-                onPressed: () {
-                  _showPasswordDialog();
-                },
-              ),
-            ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 20),
             SizedBox(
               width: mapWidth,
               height: mapHeight,
@@ -88,8 +78,24 @@ class _MapaState extends State<MapaPage> {
                 },
               ),
             ),
+
             const SizedBox(height: 20),
-          ])),
+
+            Padding(
+              padding: const EdgeInsets.symmetric(),
+              child: LargeButton(
+                texto: 'Adicionar local de sinistro',
+                onPressed: () {
+                  _showPasswordDialog();
+                },
+              ),
+            ),
+
+            const SizedBox(height: 20),
+            
+          ]
+        ),
+      ),
       floatingActionButton: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         mainAxisAlignment: MainAxisAlignment.end,

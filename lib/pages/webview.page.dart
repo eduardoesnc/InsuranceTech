@@ -32,14 +32,14 @@ class _WebAppPageState extends State<WebAppPage> {
       },
     ),
   )
-  ..loadRequest(Uri.parse('https://eduardoesnc-smd-home-streamlit-lq5j5r.streamlit.app'));
+  ..loadRequest(Uri.parse('https://smd-insurancetech.streamlit.app/Estimar_Chance'));
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: const AppDrawer(),
       appBar: AppBar(
-          toolbarHeight: 80,
+          toolbarHeight: 60,
           elevation: 0,
           backgroundColor: const Color(0xFF2a5298),
           centerTitle: true,
