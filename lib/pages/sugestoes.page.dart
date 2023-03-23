@@ -1,349 +1,380 @@
+import 'dart:io';
+import 'package:mailer/mailer.dart';
+import 'package:mailer/smtp_server.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_email_sender/flutter_email_sender.dart';
-import 'package:insurancetech/components/largeButton.dart';
 import '../components/drawer.dart';
 import '../components/pageTitle.dart';
 
-class ContactForm extends StatefulWidget {
-  const ContactForm({super.key});
+class EnvioSugestoes extends StatefulWidget {
+  const EnvioSugestoes({super.key});
 
   static const routeName = '/sugestoes';
 
   @override
-  _ContactFormState createState() => _ContactFormState();
+  State<EnvioSugestoes> createState() => _EnvioSugestoesState();
 }
 
-class _ContactFormState extends State<ContactForm> {
+class _EnvioSugestoesState extends State<EnvioSugestoes> {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _subjectController = TextEditingController();
-  final TextEditingController _messageController = TextEditingController();
-
-  Future<void> sendEmail() async {
-    final Email email = Email(
-      body: _messageController.text,
-      subject: _subjectController.text,
-      recipients: ['insurancetechapp@gmail.com'],
-      //cc: [_emailController.text],
-      // You can also add attachments like this:
-      // attachments: [AttachmentFile('path/to/attachment')],
-    );
-
-    await FlutterEmailSender.send(email);
-  }
+  final _nameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _subjectController = TextEditingController();
+  final _messageController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: const AppDrawer(),
-        appBar: AppBar(
-          toolbarHeight: 80,
-          elevation: 0,
-          backgroundColor: const Color(0xFF2a5298),
-          centerTitle: true,
-          title: SizedBox(
-            width: 90,
-            child: Image.asset("assets/logo.png"),
-          ),
+      drawer: const AppDrawer(),
+      appBar: AppBar(
+        toolbarHeight: 80,
+        elevation: 0,
+        backgroundColor: const Color(0xFF2a5298),
+        centerTitle: true,
+        title: SizedBox(
+          width: 90,
+          child: Image.asset("assets/logo.png"),
         ),
-        body: Container(
-            padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
-            color: const Color(0xFF2a5298),
-            child: ListView(children: <Widget>[
-              const SizedBox(height: 48),
-              const pageTitle(
-                texto: 'Envie-nos sugestões',
+      ),
+      body: Container(
+        padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
+        color: const Color(0xFF2a5298),
+        child: ListView(
+          children: <Widget>[
+            const SizedBox(height: 48),
+            const pageTitle(
+              texto: 'Envie-nos sugestões',
+            ),
+            const SizedBox(height: 48),
+            Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  TextFormField(
+                    controller: _nameController,
+                    validator: (value) {
+                      if (value?.isEmpty ?? true) {
+                        return 'Por favor, digite o nome';
+                      }
+                      return null;
+                    },
+                    decoration: const InputDecoration(
+                      labelText: 'Name',
+                      hintText: 'Nome *',
+                      hintStyle: TextStyle(
+                        color: Colors.white24,
+                      ),
+                      labelStyle: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                        borderSide: BorderSide(
+                          color: Colors.black12,
+                          width: 2,
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                        borderSide: BorderSide(
+                          color: Colors.white,
+                        ),
+                      ),
+                      errorStyle: TextStyle(
+                        fontSize: 14,
+                        color: Colors.white,
+                      ),
+                      errorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                        borderSide: BorderSide(
+                          color: Colors.orangeAccent,
+                          width: 2.0,
+                        ),
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                        borderSide: BorderSide(
+                          color: Colors.orangeAccent,
+                          width: 2,
+                        ),
+                      ),
+                    ),
+                    style: const TextStyle(
+                      fontSize: 18,
+                      color: Colors.white,
+                    ),
+                    // validator: (value) {
+                    //   if (value?.isEmpty ?? true) {
+                    //     return 'Por favor, digite o nome';
+                    //   }
+                    //   return null;
+                    // },
+                  ),
+                  const SizedBox(height: 25),
+                  TextFormField(
+                    controller: _emailController,
+                    validator: (value) {
+                      if (value?.isEmpty ?? true) {
+                        return 'Por favor digite seu e-mail';
+                      } else if (!RegExp(r'^[\w-.]+@([\w-]+.)+[\w-]{2,4}$')
+                          .hasMatch(value!)) {
+                        return 'Por favor, digite um e-mail válido';
+                      }
+                      return null;
+                    },
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: const InputDecoration(
+                      labelText: 'Email',
+                      hintText: 'Email *',
+                      hintStyle: TextStyle(
+                        color: Colors.white24,
+                      ),
+                      labelStyle: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                        borderSide: BorderSide(
+                          color: Colors.black12,
+                          width: 2,
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10),
+                          ),
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                          )),
+                      errorStyle: TextStyle(
+                        fontSize: 14,
+                        color: Colors.white,
+                      ),
+                      errorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                        borderSide: BorderSide(
+                          color: Colors.orangeAccent,
+                          width: 2.0,
+                        ),
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                        borderSide: BorderSide(
+                          color: Colors.orangeAccent,
+                          width: 2.0,
+                        ),
+                      ),
+                    ),
+                    style: const TextStyle(
+                      fontSize: 18,
+                      color: Colors.white,
+                    ),
+
+                    ///   validator: (value) {
+                    //   if (value?.isEmpty ?? true) {
+                    //     return 'Por favor digite seu e-mail';
+                    //   } else if (!RegExp(r'^[\w-.]+@([\w-]+.)+[\w-]{2,4}$')
+                    //       .hasMatch(value!)) {
+                    //     return 'Por favor, digite um e-mail válido';
+                    //   }
+                    //   return null;
+                    // },
+                  ),
+                  const SizedBox(height: 25),
+                  TextFormField(
+                    controller: _subjectController,
+                    validator: (value) {
+                      if (value?.isEmpty ?? true) {
+                        return 'Por favor digite o assunto';
+                      }
+                      return null;
+                    },
+                    decoration: const InputDecoration(
+                      labelText: 'Assunto',
+                      hintText: 'Assunto *',
+                      hintStyle: TextStyle(
+                        color: Colors.white24,
+                      ),
+                      labelStyle: TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.w400),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                        borderSide: BorderSide(
+                          color: Colors.black12,
+                          width: 2,
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                        borderSide: BorderSide(
+                          color: Colors.white,
+                        ),
+                      ),
+                      errorStyle: TextStyle(
+                        fontSize: 14,
+                        color: Colors.white,
+                      ),
+                      errorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                        borderSide: BorderSide(
+                          color: Colors.orangeAccent,
+                          width: 2.0,
+                        ),
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                        borderSide:
+                            BorderSide(color: Colors.orangeAccent, width: 2.0),
+                      ),
+                    ),
+                    style: const TextStyle(
+                      fontSize: 18,
+                      color: Colors.white,
+                    ),
+                    // validator: (value) {
+                    //   if (value?.isEmpty ?? true) {
+                    //     return 'Por favor digite o assunto';
+                    //   }
+                    //   return null;
+                    // },
+                  ),
+                  const SizedBox(height: 25),
+                  TextFormField(
+                    controller: _messageController,
+                    validator: (value) {
+                      if (value?.isEmpty ?? true) {
+                        return 'Por favor digite a menssagem';
+                      }
+                      return null;
+                    },
+                    decoration: const InputDecoration(
+                      labelText: 'Messagem',
+                      hintText: 'Menssagem *',
+                      hintStyle: TextStyle(
+                        color: Colors.white24,
+                      ),
+                      labelStyle: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                        borderSide: BorderSide(
+                          color: Colors.black12,
+                          width: 2,
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                        borderSide: BorderSide(
+                          color: Colors.white,
+                        ),
+                      ),
+                      errorStyle: TextStyle(
+                        fontSize: 14,
+                        color: Colors.white,
+                      ),
+                      errorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                        borderSide:
+                            BorderSide(color: Colors.orangeAccent, width: 2.0),
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                        borderSide: BorderSide(
+                          color: Colors.orangeAccent,
+                          width: 2.0,
+                        ),
+                      ),
+                    ),
+                    style: const TextStyle(
+                      fontSize: 18,
+                      color: Colors.white,
+                    ),
+                    maxLines: 5,
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        sendEmail();
+                        _nameController.clear();
+                        _emailController.clear();
+                        _subjectController.clear();
+                        _messageController.clear();
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Email enviado'),
+                            duration: Duration(seconds: 2),
+                          ),
+                        );
+                      }
+                    },
+                    child: const Text('Enviar'),
+                  ),
+                  const SizedBox(height: 40),
+                ],
               ),
-              const SizedBox(height: 48),
-              Form(
-                key: _formKey,
-                child: Column(
-                  children: [
-                    TextFormField(
-                      controller: _nameController,
-                      validator: (value) {
-                        if (value == null || value.trim().isEmpty) {
-                          return 'Por favor preencha o nome';
-                        }
-                        return null;
-                      },
-                      //   if (value == null) {]
-                      //     return 'Please enter your name';
-                      //   }
-                      //   return null;
-                      // },
-                      decoration: const InputDecoration(
-                        labelText: 'Nome',
-                        hintText: 'Nome * ',
-                        hintStyle: TextStyle(
-                          color: Colors.white24,
-                        ),
-                        labelStyle: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w400,
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                          borderSide: BorderSide(
-                            color: Colors.black12,
-                            width: 2,
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(10),
-                            ),
-                            borderSide: BorderSide(
-                              color: Colors.white,
-                            )),
-                        errorStyle: TextStyle(
-                          fontSize: 14,
-                          color: Colors.white,
-                        ),
-                        errorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                          borderSide: BorderSide(
-                            color: Colors.orangeAccent,
-                            width: 2.0,
-                          ),
-                        ),
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                          borderSide: BorderSide(
-                            color: Colors.orangeAccent,
-                            width: 2,
-                          ),
-                        ),
-                      ),
-                      style: const TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
-                      ),
-                    ),
-                    const SizedBox(height: 25),
-                    TextFormField(
-                      controller: _emailController,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Por favor preencha o email';
-                        }
-                        return null;
-                      },
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: const InputDecoration(
-                        labelText: 'Email',
-                        hintText: 'Email *',
-                        hintStyle: TextStyle(
-                          color: Colors.white24,
-                        ),
-                        labelStyle: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w400,
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                          borderSide: BorderSide(
-                            color: Colors.black12,
-                            width: 2,
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                          borderSide: BorderSide(
-                            color: Colors.white,
-                          ),
-                        ),
-                        errorStyle: TextStyle(
-                          fontSize: 14,
-                          color: Colors.white,
-                        ),
-                        errorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                          borderSide: BorderSide(
-                            color: Colors.orangeAccent,
-                            width: 2.0,
-                          ),
-                        ),
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                          borderSide: BorderSide(
-                            color: Colors.orangeAccent,
-                            width: 2.0,
-                          ),
-                        ),
-                      ),
-                      style: const TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
-                      ),
-                    ),
-                    const SizedBox(height: 25),
-                    TextFormField(
-                      controller: _subjectController,
-                      validator: (value) {
-                        if (value == null || value.trim().isEmpty) {
-                          return 'Digite o assunto';
-                        }
-                        return null;
-                      },
-                      decoration: const InputDecoration(
-                        labelText: 'Assunto',
-                        hintText: 'Assunto *',
-                        hintStyle: TextStyle(
-                          color: Colors.white24,
-                        ),
-                        labelStyle: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w400,
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                          borderSide: BorderSide(
-                            color: Colors.black12,
-                            width: 2,
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                          borderSide: BorderSide(
-                            color: Colors.white,
-                          ),
-                        ),
-                        errorStyle: TextStyle(
-                          fontSize: 14,
-                          color: Colors.white,
-                        ),
-                        errorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                          borderSide: BorderSide(
-                            color: Colors.orangeAccent,
-                            width: 2.0,
-                          ),
-                        ),
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                          borderSide: BorderSide(
-                            color: Colors.orangeAccent,
-                            width: 2.0,
-                          ),
-                        ),
-                      ),
-                      style: const TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
-                      ),
-                    ),
-                    const SizedBox(height: 25),
-                    TextFormField(
-                      controller: _messageController,
-                      validator: (value) {
-                        if (value == null || value.trim().isEmpty) {
-                          return 'Digite a mensagem';
-                        }
-                        return null;
-                      },
-                      maxLines: 7,
-                      decoration: const InputDecoration(
-                        labelText: 'Messagem',
-                        hintText: 'Menssagem *',
-                        hintStyle: TextStyle(
-                          color: Colors.white24,
-                        ),
-                        labelStyle: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w400,
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                          borderSide: BorderSide(
-                            color: Colors.black12,
-                            width: 2,
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                          borderSide: BorderSide(
-                            color: Colors.white,
-                          ),
-                        ),
-                        errorStyle: TextStyle(
-                          fontSize: 14,
-                          color: Colors.white,
-                        ),
-                        errorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                          borderSide: BorderSide(
-                            color: Colors.orangeAccent,
-                            width: 2.0,
-                          ),
-                        ),
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                          borderSide: BorderSide(
-                            color: Colors.orangeAccent,
-                            width: 2.0,
-                          ),
-                        ),
-                      ),
-                      style: const TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    LargeButton(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          sendEmail();
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text('Messagem enviada com sucesso'),
-                            ),
-                          );
-                        }
-                      },
-                      texto: 'Enviar ',
-                      //  child: const Text('Enviar'),
-                    ),
-                    const SizedBox(
-                      height: 40,
-                    ),
-                  ],
-                ),
-              ),
-            ])));
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void sendEmail() async {
+    final smtpServer = SmtpServer(
+      'smtp.gmail.com',
+      port: 587,
+      username: 'itappcontato@gmail.com',
+      password: 'kuortuvmdibhvnfp',
+      ssl: false,
+      ignoreBadCertificate: true,
+    );
+
+    final message = Message()
+      ..from = Address(_emailController.text, _nameController.text)
+      ..recipients.add('itappcontato@gmail.com')
+      ..subject = _subjectController.text
+      ..text = _messageController.text;
+
+    try {
+      await send(message, smtpServer);
+    } on MailerException catch (e) {
+      print('Sugestão não envida. ${e.message}');
+    }
   }
 }

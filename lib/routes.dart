@@ -27,7 +27,7 @@ Map<String, Widget Function(dynamic)> instanceRoutes(BuildContext context) => {
       ResultadoEstimativaPage.routeName: (context) =>
           const ResultadoEstimativaPage(),
       SobrePage.routeName: (context) => const SobrePage(),
-      ContactForm.routeName: (context) => const ContactForm(),
+      EnvioSugestoes.routeName: (context) => const EnvioSugestoes(),
       CarrosSalvosPage.routeName: (context) => const CarrosSalvosPage(),
       DocumentosPage.routeName: (context) => const DocumentosPage(),
       EditarPerfilPage.routeName: (context) => const EditarPerfilPage(),

@@ -52,6 +52,7 @@ dependencies:
   webview_flutter: ^4.0.6
   flutter_email_sender: ^5.2.0
   firebase_storage: ^11.0.16
+  mailer: ^6.0.0
 
 dev_dependencies:
   flutter_test:
