@@ -7,6 +7,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'dart:typed_data';
+import 'dart:convert';
 
 class DocumentosPage extends StatefulWidget {
   const DocumentosPage({Key? key}) : super(key: key);
@@ -20,6 +22,7 @@ class DocumentosPage extends StatefulWidget {
 class _DocumentosPageState extends State<DocumentosPage> {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   FirebaseStorage storage = FirebaseStorage.instance;
+  File? file;
   @override
   void initState() {
     super.initState();
@@ -52,14 +55,55 @@ class _DocumentosPageState extends State<DocumentosPage> {
     });
   }
 
-  Future<void> _selectFile() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles();
-    if (result != null) {
-      File file = File(result.files.single.path!);
-      uploadDoc(file.toString());
-      // _uploadFile(file);
-    }
+  Future _selectFile() async {
+  final result = await FilePicker.platform.pickFiles();
+
+  if (result == null) return;
+  final path = result.files.single.path!;
+
+  setState(() => file = File(path));
+
   }
+
+  // Future<void> _selectFile() async {
+  //   FilePickerResult? result = await FilePicker.platform.pickFiles();
+  //   if (result != null) {
+  //     File file = File(result.files.single.path!);
+  //     uploadDoc(file.toString());
+  //     // _uploadFile(file);
+  //   }
+  // }
+
+  //   void _selectFile() async {
+  //   // Verifique se o aplicativo está sendo executado em um dispositivo móvel ou na Web
+  //   bool isMobile = Platform.isAndroid;
+  //   bool isWeb = Platform.isWindows || Platform.isLinux;
+
+  //   if (isMobile) {
+  //     // Escolha o arquivo usando o seletor de arquivo
+  //     FilePickerResult? result = await FilePicker.platform.pickFiles();
+
+  //     if (result != null) {
+  //       // Obtenha o arquivo como um objeto File
+  //       File file = File(result.files.single.path!);
+
+  //       // Faça algo com o arquivo, como fazer upload para o Firebase Storage
+  //     }
+  //   } else if (isWeb) {
+  //     // Escolha o arquivo usando o seletor de arquivo
+  //     FilePickerResult? result = await FilePicker.platform.pickFiles(allowMultiple: false, withReadStream: true);
+
+  //     if (result != null) {
+  //       // Obtenha o conteúdo do arquivo como uma lista de bytes
+  //       Uint8List bytes = await result.files.single.readStream!.toBytes();
+
+  //       // Converta a lista de bytes em uma string (opcional)
+  //       String fileContent = utf8.decode(bytes);
+
+  //       // Faça algo com o arquivo, como fazer upload para o Firebase Storage
+  //     }
+  //   }
+  // }
 
   uploadDoc(String path) async {
     late String docUrl;
