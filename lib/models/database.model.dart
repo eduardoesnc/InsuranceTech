@@ -35,7 +35,7 @@ class OurDatabase{
     });
   }
 
-    updateUsercrlvURL(crlvURL) async{
+    updateUserCRLVURL(crlvURL) async{
     final _user= FirebaseAuth.instance.currentUser;
     final docUser = FirebaseFirestore.instance
         .collection('usuários')
@@ -45,7 +45,7 @@ class OurDatabase{
     });
   }
   
-    updateUsercrURL(crURL) async{
+    updateUserCRURL(crURL) async{
     final _user= FirebaseAuth.instance.currentUser;
     final docUser = FirebaseFirestore.instance
         .collection('usuários')
@@ -55,7 +55,7 @@ class OurDatabase{
     });
   }
 
-    updateUserboURL(boURL) async{
+    updateUserBOURL(boURL) async{
     final _user= FirebaseAuth.instance.currentUser;
     final docUser = FirebaseFirestore.instance
         .collection('usuários')

@@ -65,7 +65,16 @@ class _DocumentosPageState extends State<DocumentosPage> {
     try{
       if (tipo == 'CNH'){
         OurDatabase().updateUserCNHURL(downloadUrl);
-      } // Criar os outros IFs
+      }
+      if (tipo == 'CRLV'){
+        OurDatabase().updateUserCRLVURL(downloadUrl);
+      }
+      if (tipo == 'CR'){
+        OurDatabase().updateUserCRURL(downloadUrl);
+      }
+      if (tipo == 'BO'){
+        OurDatabase().updateUserBOURL(downloadUrl);
+      }
     } on FirebaseException catch (e){
       throw Exception('Erro no upload: ${e.code}');
     }
@@ -91,6 +100,34 @@ class _DocumentosPageState extends State<DocumentosPage> {
       _uploadFile(file, tipo);
     }
   } 
+
+
+  Future<void> _selectFileCRLV() async {
+    String tipo = 'CRLV';
+    FilePickerResult? result = await FilePicker.platform.pickFiles();
+    if (result != null) {
+      File file = File(result.files.single.path!);
+      _uploadFile(file, tipo);
+    }
+  }
+
+    Future<void> _selectFileCR() async {
+    String tipo = 'CR';
+    FilePickerResult? result = await FilePicker.platform.pickFiles();
+    if (result != null) {
+      File file = File(result.files.single.path!);
+      _uploadFile(file, tipo);
+    }
+  }
+
+    Future<void> _selectFileBO() async {
+    String tipo = 'BO';
+    FilePickerResult? result = await FilePicker.platform.pickFiles();
+    if (result != null) {
+      File file = File(result.files.single.path!);
+      _uploadFile(file, tipo);
+    }
+  }
 
   // Criar um selectFile para cada documento
 
@@ -194,7 +231,231 @@ class _DocumentosPageState extends State<DocumentosPage> {
                 },
               ),
 
-              
+              const SizedBox(height: 50),
+
+              StreamBuilder<DocumentSnapshot>(
+                stream: FirebaseFirestore.instance.collection('usuários').doc(email).snapshots(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+                  final documents = snapshot.data!.data() as Map<String, dynamic>;
+                  return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    const Text(
+                      'CRLV', // Alterar pro nome do documento
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    
+                    const SizedBox(height: 15,),
+
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(5),
+                        ),
+                      ),
+                      child: ListTile(
+                        leading: const Icon(Icons.file_copy),
+                        title: Text(documents[' crlvURL'] != null ? 'CRLV de $nome' : '',), // Alterar pro nome do documento
+                        subtitle: Text(documents['crlvURL'] != null ? 'Clique para baixar sua CRLV' : 'Você ainda não adicionou este documento'), // Alterar pro nome do documento
+                        onTap: () async {
+                          // Abre a URL de download do arquivo no navegador
+                          if(documents['crlvURL'] != null){
+                            await canLaunchUrl(documents['crlvURL']) // Alterar pro nome do documento
+                                ? await launchUrl(documents['crlvURL']) // Alterar pro nome do documento
+                                : throw 'Could not launch ${documents['crlvURL']}'; // Alterar pro nome do documento
+                          }
+                        },
+                      ),
+                    ),
+
+                    const SizedBox(height: 20,),
+
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(50),
+                        ),
+                      ),
+                      child: ListTile(
+                         title: const Text(
+                          'Adicionar novo documento de CRLV', // Alterar pro nome do documento
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                          ),
+                         ),
+                         onTap: _selectFileCRLV, // Alterar pro nome do documento
+                      ),
+                    ),
+                    
+                  ],
+                  );
+                },
+              ),
+
+              const SizedBox(height: 50),
+
+              StreamBuilder<DocumentSnapshot>(
+                stream: FirebaseFirestore.instance.collection('usuários').doc(email).snapshots(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+                  final documents = snapshot.data!.data() as Map<String, dynamic>;
+                  return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    const Text(
+                      'Comprovante de Residência', // Alterar pro nome do documento
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    
+                    const SizedBox(height: 15,),
+
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(5),
+                        ),
+                      ),
+                      child: ListTile(
+                        leading: const Icon(Icons.file_copy),
+                        title: Text(documents[' crURL'] != null ? 'Comprovante de Residência de $nome' : '',), // Alterar pro nome do documento
+                        subtitle: Text(documents['crURL'] != null ? 'Clique para baixar sua Comprovante de Residência' : 'Você ainda não adicionou este documento'), // Alterar pro nome do documento
+                        onTap: () async {
+                          // Abre a URL de download do arquivo no navegador
+                          if(documents['crURL'] != null){
+                            await canLaunchUrl(documents['crURL']) // Alterar pro nome do documento
+                                ? await launchUrl(documents['crURL']) // Alterar pro nome do documento
+                                : throw 'Could not launch ${documents['crURL']}'; // Alterar pro nome do documento
+                          }
+                        },
+                      ),
+                    ),
+
+                    const SizedBox(height: 20,),
+
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(50),
+                        ),
+                      ),
+                      child: ListTile(
+                         title: const Text(
+                          'Adicionar novo documento de Comprovante de Residência', // Alterar pro nome do documento
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                          ),
+                         ),
+                         onTap: _selectFileCR, // Alterar pro nome do documento
+                      ),
+                    ),
+                    
+                  ],
+                  );
+                },
+              ),
+
+              const SizedBox(height: 50),
+
+              StreamBuilder<DocumentSnapshot>(
+                stream: FirebaseFirestore.instance.collection('usuários').doc(email).snapshots(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+                  final documents = snapshot.data!.data() as Map<String, dynamic>;
+                  return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    const Text(
+                      'Boletim de Ocorrência', // Alterar pro nome do documento
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    
+                    const SizedBox(height: 15,),
+
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(5),
+                        ),
+                      ),
+                      child: ListTile(
+                        leading: const Icon(Icons.file_copy),
+                        title: Text(documents[' boURL'] != null ? 'Boletim de Ocorrência de $nome' : '',), // Alterar pro nome do documento
+                        subtitle: Text(documents['boURL'] != null ? 'Clique para baixar sua Comprovante de Residência' : 'Você ainda não adicionou este documento'), // Alterar pro nome do documento
+                        onTap: () async {
+                          // Abre a URL de download do arquivo no navegador
+                          if(documents['boURL'] != null){
+                            await canLaunchUrl(documents['boURL']) // Alterar pro nome do documento
+                                ? await launchUrl(documents['boURL']) // Alterar pro nome do documento
+                                : throw 'Could not launch ${documents['boURL']}'; // Alterar pro nome do documento
+                          }
+                        },
+                      ),
+                    ),
+
+                    const SizedBox(height: 20,),
+
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(50),
+                        ),
+                      ),
+                      child: ListTile(
+                         title: const Text(
+                          'Adicionar novo documento de Boletim de Ocorrência', // Alterar pro nome do documento
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                          ),
+                         ),
+                         onTap: _selectFileBO, // Alterar pro nome do documento
+                      ),
+                    ),
+                    
+                  ],
+                  );
+                },
+              ),
+
             ])));
   }
 }
