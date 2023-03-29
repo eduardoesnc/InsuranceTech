@@ -1,8 +1,8 @@
-import 'dart:io';
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server.dart';
 import 'package:flutter/material.dart';
 import '../components/drawer.dart';
+import '../components/largeButton.dart';
 import '../components/pageTitle.dart';
 
 class EnvioSugestoes extends StatefulWidget {
@@ -17,6 +17,8 @@ class EnvioSugestoes extends StatefulWidget {
 class _EnvioSugestoesState extends State<EnvioSugestoes> {
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
+
+  ////final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _subjectController = TextEditingController();
   final _messageController = TextEditingController();
@@ -58,7 +60,9 @@ class _EnvioSugestoesState extends State<EnvioSugestoes> {
                       return null;
                     },
                     decoration: const InputDecoration(
-                      labelText: 'Name',
+                      filled: true,
+                      fillColor: Colors.white12,
+                      labelText: 'Nome',
                       hintText: 'Nome *',
                       hintStyle: TextStyle(
                         color: Colors.white24,
@@ -111,12 +115,6 @@ class _EnvioSugestoesState extends State<EnvioSugestoes> {
                       fontSize: 18,
                       color: Colors.white,
                     ),
-                    // validator: (value) {
-                    //   if (value?.isEmpty ?? true) {
-                    //     return 'Por favor, digite o nome';
-                    //   }
-                    //   return null;
-                    // },
                   ),
                   const SizedBox(height: 25),
                   TextFormField(
@@ -132,6 +130,8 @@ class _EnvioSugestoesState extends State<EnvioSugestoes> {
                     },
                     keyboardType: TextInputType.emailAddress,
                     decoration: const InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white12,
                       labelText: 'Email',
                       hintText: 'Email *',
                       hintStyle: TextStyle(
@@ -184,16 +184,6 @@ class _EnvioSugestoesState extends State<EnvioSugestoes> {
                       fontSize: 18,
                       color: Colors.white,
                     ),
-
-                    ///   validator: (value) {
-                    //   if (value?.isEmpty ?? true) {
-                    //     return 'Por favor digite seu e-mail';
-                    //   } else if (!RegExp(r'^[\w-.]+@([\w-]+.)+[\w-]{2,4}$')
-                    //       .hasMatch(value!)) {
-                    //     return 'Por favor, digite um e-mail válido';
-                    //   }
-                    //   return null;
-                    // },
                   ),
                   const SizedBox(height: 25),
                   TextFormField(
@@ -205,6 +195,8 @@ class _EnvioSugestoesState extends State<EnvioSugestoes> {
                       return null;
                     },
                     decoration: const InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white12,
                       labelText: 'Assunto',
                       hintText: 'Assunto *',
                       hintStyle: TextStyle(
@@ -254,12 +246,6 @@ class _EnvioSugestoesState extends State<EnvioSugestoes> {
                       fontSize: 18,
                       color: Colors.white,
                     ),
-                    // validator: (value) {
-                    //   if (value?.isEmpty ?? true) {
-                    //     return 'Por favor digite o assunto';
-                    //   }
-                    //   return null;
-                    // },
                   ),
                   const SizedBox(height: 25),
                   TextFormField(
@@ -271,6 +257,8 @@ class _EnvioSugestoesState extends State<EnvioSugestoes> {
                       return null;
                     },
                     decoration: const InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white12,
                       labelText: 'Messagem',
                       hintText: 'Menssagem *',
                       hintStyle: TextStyle(
@@ -305,8 +293,10 @@ class _EnvioSugestoesState extends State<EnvioSugestoes> {
                         borderRadius: BorderRadius.all(
                           Radius.circular(10),
                         ),
-                        borderSide:
-                            BorderSide(color: Colors.orangeAccent, width: 2.0),
+                        borderSide: BorderSide(
+                          color: Colors.orangeAccent,
+                          width: 2.0,
+                        ),
                       ),
                       focusedErrorBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.all(
@@ -327,7 +317,8 @@ class _EnvioSugestoesState extends State<EnvioSugestoes> {
                   const SizedBox(
                     height: 20,
                   ),
-                  ElevatedButton(
+                  LargeButton(
+                    texto: 'Enviar',
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         sendEmail();
@@ -343,7 +334,6 @@ class _EnvioSugestoesState extends State<EnvioSugestoes> {
                         );
                       }
                     },
-                    child: const Text('Enviar'),
                   ),
                   const SizedBox(height: 40),
                 ],
@@ -356,6 +346,9 @@ class _EnvioSugestoesState extends State<EnvioSugestoes> {
   }
 
   void sendEmail() async {
+    final name = _nameController.text;
+    final email = _emailController.text;
+    final messagem = _messageController.text;
     final smtpServer = SmtpServer(
       'smtp.gmail.com',
       port: 587,
@@ -369,7 +362,7 @@ class _EnvioSugestoesState extends State<EnvioSugestoes> {
       ..from = Address(_emailController.text, _nameController.text)
       ..recipients.add('itappcontato@gmail.com')
       ..subject = _subjectController.text
-      ..text = _messageController.text;
+      ..text = 'Nome: $name\n\nEmail: $email\n\nMensagem: $messagem';
 
     try {
       await send(message, smtpServer);
