@@ -37,6 +37,11 @@ dependencies:
   basic_utils: ^5.5.1
   flutter_map: ^3.1.0
   latlong2: ^0.8.1
+  file_picker: ^4.1.4
+  url_launcher: ^6.0.9
+
+
+
 
 #Firebase Database
   firebase_auth: ^4.2.9
@@ -53,6 +58,8 @@ dependencies:
   flutter_email_sender: ^5.2.0
   firebase_storage: ^11.0.16
   mailer: ^6.0.0
+  typed_data: ^1.3.1
+  convert: ^3.1.1
 
 dev_dependencies:
   flutter_test:
@@ -118,4 +125,3 @@ flutter:
     - assets/analises/distribuicao-geografica.png
     - assets/analises/segmento-x-claim.png
     - assets/profile.jpeg
-    - assets/updateUserName.gif
