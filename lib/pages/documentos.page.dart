@@ -129,8 +129,6 @@ class _DocumentosPageState extends State<DocumentosPage> {
     }
   }
 
-  // Criar um selectFile para cada documento
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -148,7 +146,7 @@ class _DocumentosPageState extends State<DocumentosPage> {
         body: Container(
             padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
             color: const Color(0xFF2a5298),
-            child: Column(children: <Widget>[
+            child: ListView(children: <Widget>[
 
               const SizedBox(height: 50),
 
@@ -170,7 +168,7 @@ class _DocumentosPageState extends State<DocumentosPage> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     const Text(
-                      'CNH', // Alterar pro nome do documento
+                      'CNH',
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 18,
@@ -189,15 +187,16 @@ class _DocumentosPageState extends State<DocumentosPage> {
                         ),
                       ),
                       child: ListTile(
-                        leading: const Icon(Icons.file_copy),
-                        title: Text(documents['cnhURL'] != null ? 'CNH de $nome' : '',), // Alterar pro nome do documento
-                        subtitle: Text(documents['cnhURL'] != null ? 'Clique para baixar sua CNH' : 'Você ainda não adicionou este documento'), // Alterar pro nome do documento
+                        dense: true,
+                        leading: Icon(Icons.file_copy, color: documents['cnhURL'] != '' ? Colors.green : Colors.grey,),
+                        title: Text(documents['cnhURL'] != '' ? 'CNH de $nome' : '',),
+                        subtitle: Text(documents['cnhURL'] != '' ? 'Clique para baixar sua CNH' : 'Você ainda não adicionou este documento'),
                         onTap: () async {
                           // Abre a URL de download do arquivo no navegador
-                          if(documents['cnhURL'] != null){
-                            await canLaunchUrl(documents['cnhURL']) // Alterar pro nome do documento
-                                ? await launchUrl(documents['cnhURL']) // Alterar pro nome do documento
-                                : throw 'Could not launch ${documents['cnhURL']}'; // Alterar pro nome do documento
+                          if(documents['cnhURL'] != ''){
+                            await canLaunchUrl(documents['cnhURL'])
+                                ? await launchUrl(documents['cnhURL'])
+                                : throw 'Could not launch ${documents['cnhURL']}';
                           }
                         },
                       ),
@@ -215,14 +214,14 @@ class _DocumentosPageState extends State<DocumentosPage> {
                       ),
                       child: ListTile(
                          title: const Text(
-                          'Adicionar novo documento de CNH', // Alterar pro nome do documento
+                          'Adicionar novo documento de CNH',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Colors.black,
-                            fontSize: 16,
+                            fontSize: 14,
                           ),
                          ),
-                         onTap: _selectFileCNH, // Alterar pro nome do documento
+                         onTap: _selectFileCNH,
                       ),
                     ),
                     
@@ -245,7 +244,7 @@ class _DocumentosPageState extends State<DocumentosPage> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     const Text(
-                      'CRLV', // Alterar pro nome do documento
+                      'CRLV',
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 18,
@@ -264,15 +263,16 @@ class _DocumentosPageState extends State<DocumentosPage> {
                         ),
                       ),
                       child: ListTile(
-                        leading: const Icon(Icons.file_copy),
-                        title: Text(documents[' crlvURL'] != null ? 'CRLV de $nome' : '',), // Alterar pro nome do documento
-                        subtitle: Text(documents['crlvURL'] != null ? 'Clique para baixar sua CRLV' : 'Você ainda não adicionou este documento'), // Alterar pro nome do documento
+                        dense: true,
+                        leading: Icon(Icons.file_copy, color: documents['crlvURL'] != '' ? Colors.green : Colors.grey,),
+                        title: Text(documents['crlvURL'] != '' ? 'CRLV de $nome' : '',),
+                        subtitle: Text(documents['crlvURL'] != '' ? 'Clique para baixar sua CRLV' : 'Você ainda não adicionou este documento'),
                         onTap: () async {
                           // Abre a URL de download do arquivo no navegador
-                          if(documents['crlvURL'] != null){
-                            await canLaunchUrl(documents['crlvURL']) // Alterar pro nome do documento
-                                ? await launchUrl(documents['crlvURL']) // Alterar pro nome do documento
-                                : throw 'Could not launch ${documents['crlvURL']}'; // Alterar pro nome do documento
+                          if(documents['crlvURL'] != ''){
+                            await canLaunchUrl(documents['crlvURL'])
+                                ? await launchUrl(documents['crlvURL'])
+                                : throw 'Could not launch ${documents['crlvURL']}';
                           }
                         },
                       ),
@@ -290,14 +290,14 @@ class _DocumentosPageState extends State<DocumentosPage> {
                       ),
                       child: ListTile(
                          title: const Text(
-                          'Adicionar novo documento de CRLV', // Alterar pro nome do documento
+                          'Adicionar novo documento de CRLV',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Colors.black,
-                            fontSize: 16,
+                            fontSize: 14,
                           ),
                          ),
-                         onTap: _selectFileCRLV, // Alterar pro nome do documento
+                         onTap: _selectFileCRLV,
                       ),
                     ),
                     
@@ -320,7 +320,7 @@ class _DocumentosPageState extends State<DocumentosPage> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     const Text(
-                      'Comprovante de Residência', // Alterar pro nome do documento
+                      'Comprovante de Residência',
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 18,
@@ -339,15 +339,16 @@ class _DocumentosPageState extends State<DocumentosPage> {
                         ),
                       ),
                       child: ListTile(
-                        leading: const Icon(Icons.file_copy),
-                        title: Text(documents[' crURL'] != null ? 'Comprovante de Residência de $nome' : '',), // Alterar pro nome do documento
-                        subtitle: Text(documents['crURL'] != null ? 'Clique para baixar sua Comprovante de Residência' : 'Você ainda não adicionou este documento'), // Alterar pro nome do documento
+                        dense: true,
+                        leading: Icon(Icons.file_copy, color: documents['crURL'] != '' ? Colors.green : Colors.grey,),
+                        title: Text(documents['crURL'] != '' ? 'Comprovante de Residência de $nome' : '',),
+                        subtitle: Text(documents['crURL'] != '' ? 'Clique para baixar sua Comprovante de Residência' : 'Você ainda não adicionou este documento'),
                         onTap: () async {
                           // Abre a URL de download do arquivo no navegador
-                          if(documents['crURL'] != null){
-                            await canLaunchUrl(documents['crURL']) // Alterar pro nome do documento
-                                ? await launchUrl(documents['crURL']) // Alterar pro nome do documento
-                                : throw 'Could not launch ${documents['crURL']}'; // Alterar pro nome do documento
+                          if(documents['crURL'] != ''){
+                            await canLaunchUrl(documents['crURL'])
+                                ? await launchUrl(documents['crURL'])
+                                : throw 'Could not launch ${documents['crURL']}';
                           }
                         },
                       ),
@@ -365,14 +366,14 @@ class _DocumentosPageState extends State<DocumentosPage> {
                       ),
                       child: ListTile(
                          title: const Text(
-                          'Adicionar novo documento de Comprovante de Residência', // Alterar pro nome do documento
+                          'Adicionar novo documento de Comprovante de Residência',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Colors.black,
-                            fontSize: 16,
+                            fontSize: 14,
                           ),
                          ),
-                         onTap: _selectFileCR, // Alterar pro nome do documento
+                         onTap: _selectFileCR,
                       ),
                     ),
                     
@@ -395,7 +396,7 @@ class _DocumentosPageState extends State<DocumentosPage> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     const Text(
-                      'Boletim de Ocorrência', // Alterar pro nome do documento
+                      'Boletim de Ocorrência',
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 18,
@@ -414,15 +415,16 @@ class _DocumentosPageState extends State<DocumentosPage> {
                         ),
                       ),
                       child: ListTile(
-                        leading: const Icon(Icons.file_copy),
-                        title: Text(documents[' boURL'] != null ? 'Boletim de Ocorrência de $nome' : '',), // Alterar pro nome do documento
-                        subtitle: Text(documents['boURL'] != null ? 'Clique para baixar sua Comprovante de Residência' : 'Você ainda não adicionou este documento'), // Alterar pro nome do documento
+                        dense: true,
+                        leading: Icon(Icons.file_copy, color: documents['boURL'] != '' ? Colors.green : Colors.grey,),
+                        title: Text(documents['boURL'] != '' ? 'Boletim de Ocorrência de $nome' : '',),
+                        subtitle: Text(documents['boURL'] != '' ? 'Clique para baixar sua Comprovante de Residência' : 'Você ainda não adicionou este documento'),
                         onTap: () async {
                           // Abre a URL de download do arquivo no navegador
-                          if(documents['boURL'] != null){
-                            await canLaunchUrl(documents['boURL']) // Alterar pro nome do documento
-                                ? await launchUrl(documents['boURL']) // Alterar pro nome do documento
-                                : throw 'Could not launch ${documents['boURL']}'; // Alterar pro nome do documento
+                          if(documents['boURL'] != ''){
+                            await canLaunchUrl(documents['boURL'])
+                                ? await launchUrl(documents['boURL'])
+                                : throw 'Could not launch ${documents['boURL']}';
                           }
                         },
                       ),
@@ -440,14 +442,14 @@ class _DocumentosPageState extends State<DocumentosPage> {
                       ),
                       child: ListTile(
                          title: const Text(
-                          'Adicionar novo documento de Boletim de Ocorrência', // Alterar pro nome do documento
+                          'Adicionar novo documento de Boletim de Ocorrência',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Colors.black,
-                            fontSize: 16,
+                            fontSize: 14,
                           ),
                          ),
-                         onTap: _selectFileBO, // Alterar pro nome do documento
+                         onTap: _selectFileBO,
                       ),
                     ),
                     
@@ -455,6 +457,8 @@ class _DocumentosPageState extends State<DocumentosPage> {
                   );
                 },
               ),
+
+              const SizedBox(height: 40,),
 
             ])));
   }
