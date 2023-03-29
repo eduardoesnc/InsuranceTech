@@ -194,8 +194,9 @@ class _DocumentosPageState extends State<DocumentosPage> {
                         onTap: () async {
                           // Abre a URL de download do arquivo no navegador
                           if(documents['cnhURL'] != ''){
-                            await canLaunchUrl(documents['cnhURL'])
-                                ? await launchUrl(documents['cnhURL'])
+                            final Uri uri = Uri.parse(documents['cnhURL']);
+                            await canLaunchUrl(uri)
+                                ? await launchUrl(uri, mode: LaunchMode.externalApplication,)
                                 : throw 'Could not launch ${documents['cnhURL']}';
                           }
                         },
@@ -213,10 +214,10 @@ class _DocumentosPageState extends State<DocumentosPage> {
                         ),
                       ),
                       child: ListTile(
-                         title: const Text(
-                          'Adicionar novo documento de CNH',
+                         title: Text(
+                          documents['cnhURL'] != '' ? 'Adicionar nova CNH' : 'Adicionar CNH',
                           textAlign: TextAlign.center,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.black,
                             fontSize: 14,
                           ),
@@ -270,8 +271,9 @@ class _DocumentosPageState extends State<DocumentosPage> {
                         onTap: () async {
                           // Abre a URL de download do arquivo no navegador
                           if(documents['crlvURL'] != ''){
-                            await canLaunchUrl(documents['crlvURL'])
-                                ? await launchUrl(documents['crlvURL'])
+                            final Uri uri = Uri.parse(documents['crlvURL']);
+                            await canLaunchUrl(uri)
+                                ? await launchUrl(uri, mode: LaunchMode.externalApplication,)
                                 : throw 'Could not launch ${documents['crlvURL']}';
                           }
                         },
@@ -289,10 +291,10 @@ class _DocumentosPageState extends State<DocumentosPage> {
                         ),
                       ),
                       child: ListTile(
-                         title: const Text(
-                          'Adicionar novo documento de CRLV',
+                         title: Text(
+                          documents['crlvURL'] != '' ? 'Adicionar novo CRLV' : 'Adicionar CRLV',
                           textAlign: TextAlign.center,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.black,
                             fontSize: 14,
                           ),
@@ -346,8 +348,9 @@ class _DocumentosPageState extends State<DocumentosPage> {
                         onTap: () async {
                           // Abre a URL de download do arquivo no navegador
                           if(documents['crURL'] != ''){
-                            await canLaunchUrl(documents['crURL'])
-                                ? await launchUrl(documents['crURL'])
+                            final Uri uri = Uri.parse(documents['crURL']);
+                            await canLaunchUrl(uri)
+                                ? await launchUrl(uri, mode: LaunchMode.externalApplication,)
                                 : throw 'Could not launch ${documents['crURL']}';
                           }
                         },
@@ -365,10 +368,10 @@ class _DocumentosPageState extends State<DocumentosPage> {
                         ),
                       ),
                       child: ListTile(
-                         title: const Text(
-                          'Adicionar novo documento de Comprovante de Residência',
+                         title: Text(
+                          documents['crURL'] != '' ? 'Adicionar novo Comprovante de Residência' : 'Adicionar Comprovante de residência',
                           textAlign: TextAlign.center,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.black,
                             fontSize: 14,
                           ),
@@ -422,8 +425,9 @@ class _DocumentosPageState extends State<DocumentosPage> {
                         onTap: () async {
                           // Abre a URL de download do arquivo no navegador
                           if(documents['boURL'] != ''){
-                            await canLaunchUrl(documents['boURL'])
-                                ? await launchUrl(documents['boURL'])
+                            final Uri uri = Uri.parse(documents['boURL']);
+                            await canLaunchUrl(uri)
+                                ? await launchUrl(uri, mode: LaunchMode.externalApplication,)
                                 : throw 'Could not launch ${documents['boURL']}';
                           }
                         },
@@ -441,10 +445,10 @@ class _DocumentosPageState extends State<DocumentosPage> {
                         ),
                       ),
                       child: ListTile(
-                         title: const Text(
-                          'Adicionar novo documento de Boletim de Ocorrência',
+                         title: Text(
+                          documents['boURL'] != '' ? 'Adicionar novo Boletim de Ocorrência' : 'Adicionar Boletim de Ocorrência',
                           textAlign: TextAlign.center,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.black,
                             fontSize: 14,
                           ),
