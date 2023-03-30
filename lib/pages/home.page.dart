@@ -40,17 +40,17 @@ class _HomePageState extends State<HomePage> {
 
             const SizedBox( height: 60 ),
 
+            // LargeButton(
+            //   texto: 'Estimar reivindicação',
+            //   onPressed: () {
+            //     Navigator.of(context).pushNamed('/estimar');
+            //   },
+            // ),
+
+            // const SizedBox( height: 25 ),
+
             LargeButton(
               texto: 'Estimar reivindicação',
-              onPressed: () {
-                Navigator.of(context).pushNamed('/estimar');
-              },
-            ),
-
-            const SizedBox( height: 25 ),
-
-            LargeButton(
-              texto: 'WebView',
               onPressed: () {
                 Navigator.of(context).pushNamed('/webapp');
               },
@@ -75,14 +75,14 @@ class _HomePageState extends State<HomePage> {
             ),
 
 
-            const SizedBox( height: 25 ),
+            // const SizedBox( height: 25 ),
 
-            LargeButton(
-              texto: 'Carros Salvos',
-              onPressed: () {
-                Navigator.of(context).pushNamed('/carrosSalvos');
-              },
-            ),
+            // LargeButton(
+            //   texto: 'Carros Salvos',
+            //   onPressed: () {
+            //     Navigator.of(context).pushNamed('/carrosSalvos');
+            //   },
+            // ),
 
 
             const SizedBox( height: 25 ),
