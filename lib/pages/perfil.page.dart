@@ -74,8 +74,9 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
                 updateUserName(_nomeUserController.text);
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
-                    content: Text('Informações atualizadas'),
-                    backgroundColor: Colors.blue,
+                    content: Text('Nome atualizado',
+                        textAlign: TextAlign.center),
+                    backgroundColor: Colors.greenAccent,
                   ),
                 );
               }
@@ -166,7 +167,7 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
     );
   }
 
-   Widget imageProfileDefault() {
+  Widget imageProfileDefault() {
     return Stack(
       children: <Widget>[
         const CircleAvatar(
@@ -220,7 +221,7 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
 
   Widget bottomSheet() {
     return Container(
-        height: 100,
+        height: 150,
         width: MediaQuery.of(context).size.width,
         margin: const EdgeInsets.symmetric(
           horizontal: 20,
@@ -257,7 +258,17 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
                   label: const Text('Galeria'),
                 ),
               ],
-            )
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            TextButton.icon(
+              icon:const Icon(Icons.restore_from_trash_outlined),
+              onPressed: (){
+                removeImage();
+              },
+              label: const Text('Remover foto'),
+            ),
           ],
         ));
   }
@@ -270,6 +281,15 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
       if (pickedFile != null) {
         _imageFile = pickedFile;
         upload(_imageFile.path);
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Foto atualizada',
+                textAlign: TextAlign.center
+            ),
+            backgroundColor: Colors.greenAccent,
+          ),
+        );
+        Navigator.of(context).popAndPushNamed('/home');
       } else {
         _imageFile = XFile('');
         showDialog(
@@ -307,6 +327,18 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
     }
   }
 
+  removeImage() async {
+    imageUrl = '';
+    OurDatabase().updateUserImageURL(imageUrl);
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Foto removida'),
+        backgroundColor: Colors.greenAccent,
+      ),
+    );
+    Navigator.of(context).pop();
+}
+
 
   getImageUrlFirebase() async{
     final user = FirebaseAuth.instance.currentUser;
@@ -321,11 +353,6 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
       print('Erro ao obter documento: $error');
     });
   }
-
-  // geturlData() async {
-  //   late String? url;
-  //   url = await getImageUrlFirebase(email).urlData;
-  // }
 
   getUser() async {
     User? usuario = _firebaseAuth.currentUser;
