@@ -167,8 +167,10 @@ class _AppDrawerState extends State<AppDrawer> {
     Navigator.of(context).pushReplacementNamed('/');
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
-        content: Text('Deslogado'),
-        backgroundColor: Colors.grey,
+        content: Text(
+            'Deslogado',
+            textAlign: TextAlign.center),
+            backgroundColor: Colors.grey,
       ),
     );
   }

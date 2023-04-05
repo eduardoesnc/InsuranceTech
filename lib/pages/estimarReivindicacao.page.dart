@@ -990,7 +990,10 @@ class _EstimarReivindicacaoPageState extends State<EstimarReivindicacaoPage> {
                       Navigator.of(context).pushNamed('/resultado');
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text('Preencha todos os campos obrigatórios'),
+                        content: Text(
+                            'Preencha todos os campos obrigatórios',
+                            textAlign: TextAlign.center,
+                        ),
                       ));
                     }
                   },

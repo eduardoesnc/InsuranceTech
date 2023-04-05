@@ -30,7 +30,10 @@ class _EsqueceuSenhaPageState extends State<EsqueceuSenhaPage> {
           .sendPasswordResetEmail(email: _emailController.text.trim());
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('Email enviado. Verifique sua caixa de entrada e spam'),
+          content: Text(
+              'Email enviado. Verifique sua caixa de entrada e spam',
+              textAlign: TextAlign.center,
+          ),
           backgroundColor: Colors.blueAccent,
         ),
       );
@@ -38,7 +41,10 @@ class _EsqueceuSenhaPageState extends State<EsqueceuSenhaPage> {
         } on FirebaseAuthException {
       ScaffoldMessenger.of(context).showSnackBar(
          const SnackBar(
-          content: Text('Email não cadastrado'),
+          content: Text(
+              'Email não cadastrado',
+              textAlign: TextAlign.center,
+          ),
           backgroundColor: Colors.redAccent,
         ),
       );

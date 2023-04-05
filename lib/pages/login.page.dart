@@ -210,7 +210,9 @@ class _LoginPageState extends State<LoginPage> {
       );
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('Logado'),
+          content: Text(
+              'Logado',
+              textAlign: TextAlign.center,),
           backgroundColor: Colors.greenAccent,
         ),
       );
@@ -218,14 +220,20 @@ class _LoginPageState extends State<LoginPage> {
       if (e.code == 'user-not-found') {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-            content: Text('Email/Usuário não cadastrado'),
+            content: Text(
+                'Email/Usuário não cadastrado',
+                textAlign: TextAlign.center,
+            ),
             backgroundColor: Colors.redAccent,
           ),
         );
       } else if (e.code == 'wrong-password') {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-            content: Text('Senha incorreta. Tente novamente'),
+            content: Text(
+                'Senha incorreta. Tente novamente',
+                textAlign: TextAlign.center,
+            ),
             backgroundColor: Colors.redAccent,
           ),
         );

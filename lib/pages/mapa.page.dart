@@ -179,7 +179,10 @@ class _MapaState extends State<MapaPage> {
                   Navigator.pushNamed(context, '/coordenadas');
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Senha incorreta')),
+                    const SnackBar(content: Text(
+                        'Senha incorreta',
+                        textAlign: TextAlign.center,
+                    )),
                   );
                 }
               },

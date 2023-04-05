@@ -332,7 +332,9 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
     OurDatabase().updateUserImageURL(imageUrl);
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
-        content: Text('Foto removida'),
+        content: Text(
+            'Foto removida',
+            textAlign: TextAlign.center,),
         backgroundColor: Colors.greenAccent,
       ),
     );
@@ -384,14 +386,19 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text(
-              'Email de alteração de senha enviado. Verifique sua caixa de entrada e spam'),
+              'Email de alteração de senha enviado. Verifique sua caixa de entrada e spam',
+              textAlign: TextAlign.center,
+          ),
           backgroundColor: Colors.blueAccent,
         ),
       );
     } on FirebaseAuthException {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('Email não cadastrado'),
+          content: Text(
+              'Email não cadastrado',
+              textAlign: TextAlign.center,
+          ),
           backgroundColor: Colors.redAccent,
         ),
       );

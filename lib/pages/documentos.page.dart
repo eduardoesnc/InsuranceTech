@@ -85,7 +85,10 @@ class _DocumentosPageState extends State<DocumentosPage> {
 
     ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('Documento enviado com sucesso!'),
+          content: Text(
+              'Documento enviado com sucesso!',
+              textAlign: TextAlign.center,
+          ),
           backgroundColor: Colors.greenAccent,
         ),
     );

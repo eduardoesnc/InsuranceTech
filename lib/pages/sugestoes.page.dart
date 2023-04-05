@@ -328,7 +328,10 @@ class _EnvioSugestoesState extends State<EnvioSugestoes> {
                         _messageController.clear();
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
-                            content: Text('Email enviado'),
+                            content: Text(
+                                'Email enviado',
+                                textAlign: TextAlign.center,
+                            ),
                             duration: Duration(seconds: 2),
                           ),
                         );

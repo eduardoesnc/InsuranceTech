@@ -285,7 +285,9 @@ class _CadastroPageState extends State<CadastroPage> {
           (route) => false);
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('Cadastro realizado.'),
+          content: Text(
+              'Cadastro realizado.',
+               textAlign: TextAlign.center,),
           backgroundColor: Colors.greenAccent,
         ),
       );
@@ -293,13 +295,18 @@ class _CadastroPageState extends State<CadastroPage> {
       if (e.code == 'weak-password') {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-            content: Text('Senha fraca. Tente novamente'),
+            content: Text(
+                'Senha fraca. Tente novamente',
+                 textAlign: TextAlign.center,),
           ),
         );
       } else if (e.code == 'email-already-in-use') {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-            content: Text('Email já foi cadastrado'),
+            content: Text(
+                'Email já foi cadastrado',
+                textAlign: TextAlign.center,
+            ),
           ),
         );
       }
